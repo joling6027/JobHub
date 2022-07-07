@@ -18,6 +18,11 @@
   <!-- JavaScript Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+  <!-- table filter control -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
   <link rel="stylesheet" href="../CSS/style.css">
 </head>
 
@@ -40,7 +45,7 @@
             </li>
             <li class="nav-item">
               <!-- <a class="nav-link" href="">RIGISTER</a> -->
-              <a href="registration.html"></a><button type="button" class="btn btn-info btn-lg">REGISTER</button></a>
+              <a href="registration.html"><button type="button" class="btn btn-info btn-lg">REGISTER</button></a>
             </li>
           </ul>
         </div>
@@ -51,7 +56,9 @@
     <section class="job-listing mx-auto">
       <div class="job-listing-content ">
         <h3 class="current-openings" style="color:#82C8D7;">Current Openings</h3>
-        <table class="table table-hover" id="job-listing-table" data-filter-control="true">
+        <br>
+        <input class="form-control" id="myInput" type="text" placeholder="Search..">
+        <table class="table table-hover" id="job-listing-table" data-filter-control="true" data-show-search-clear-button="true" data-filter-control-visible="true">
           <thead>
             <tr style="background-color:#82c7d724;">
               <th data-field="companyName">Company Name</th>
@@ -60,7 +67,7 @@
               <th data-field="type" data-filter-control="select">Type</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="myTable">
             <tr class="job-tr">
               <td>Apple</td>
               <td>Software Engineer Entry Level</td>
@@ -126,15 +133,18 @@
             </tr>
           </tbody>
         </table>
-        
-        <script>
-          $(function () {
-            $('#table').bootstrapTable()
-          });
-        </script>
       </div>
+      <script>
+        $(document).ready(function () {
+          $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+              $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+          });
+        });
+      </script>
       
-
     </section>
   </div>
 
