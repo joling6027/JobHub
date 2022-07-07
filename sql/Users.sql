@@ -20,3 +20,4 @@ CREATE TABLE Users (
   UNIQUE KEY  Email  ( Email )
 ) ENGINE=InnoDB
 
+ 
