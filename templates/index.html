@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <!-- Google font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap CDN -->
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./CSS/style.css">
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <section id="title">
+      <!-- Nav bar -->
+      <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand fs-1" href="/" >Job Portal</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto d-grid gap-2 d-md-flex justify-content-md-end">
+            <li class="nav-item">
+              <!-- <a class="nav-link" href="">LOGIN</a> -->
+              <a href="login.html"><button type="button" class="btn btn-info btn-lg">LOGIN</button></a>
+            </li>
+            <li class="nav-item">
+              <!-- <a class="nav-link" href="">RIGISTER</a> -->
+              <button type="button" class="btn btn-info btn-lg">REGISTER</button>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    
+    </section>
+
+    <section class="job-listing mx-auto">
+      <div class="job-listing-content ">
+        <h3 class="current-openings" style="color:#82C8D7;">Current Openings</h3>
+        <table class="table table-hover" id="job-listing-table" data-filter-control="true">
+          <thead>
+            <tr style="background-color:#82c7d724;">
+              <th data-field="companyName">Company Name</th>
+              <th data-field="position" data-filter-control="input">Position</th>
+              <th data-field="location" data-filter-control="select">Location</th>
+              <th data-field="type" data-filter-control="select">Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="job-tr">
+              <td>Apple</td>
+              <td>Software Engineer Entry Level</td>
+              <td>Vancouver, BC</td>
+              <td>Full-time</td>
+              <td>Apply</td>
+            </tr>
+            <tr class="job-tr">
+              <td>IBM</td>
+              <td>Software Testing Engineer</td>
+              <td>Edmonton, AB</td>
+              <td>Full-time</td>
+              <td>Apply</td>
+            </tr>
+            <tr class="job-tr" >
+              <td>FISPAN</td>
+              <td >Front End Developer</td>
+              <td>Burnaby, BC</td>
+              <td>Part-time</td>
+              <td>Apply</td>
+            </tr>
+            <tr class="job-tr">
+              <td>Apple</td>
+              <td>Software Engineer Entry Level</td>
+              <td>Vancouver, BC</td>
+              <td>Full-time</td>
+              <td>Apply</td>
+            </tr>
+            <tr class="job-tr">
+              <td>IBM</td>
+              <td>Software Testing Engineer</td>
+              <td>Edmonton, AB</td>
+              <td>Full-time</td>
+              <td>Apply</td>
+            </tr>
+            <tr class="job-tr">
+              <td>FISPAN</td>
+              <td >Front End Developer</td>
+              <td>Burnaby, BC</td>
+              <td>Part-time</td>
+              <td>Apply</td>
+            </tr>
+            <tr class="job-tr">
+              <td>Apple</td>
+              <td>Software Engineer Entry Level</td>
+              <td>Vancouver, BC</td>
+              <td>Full-time</td>
+              <td>Apply</td>
+            </tr>
+            <tr class="job-tr">
+              <td>IBM</td>
+              <td>Software Testing Engineer</td>
+              <td>Edmonton, AB</td>
+              <td>Full-time</td>
+              <td>Apply</td>
+            </tr>
+            <tr class="job-tr">
+              <td>FISPAN</td>
+              <td >Front End Developer</td>
+              <td>Burnaby, BC</td>
+              <td>Part-time</td>
+              <td>Apply</td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <script>
+          $(function () {
+            $('#table').bootstrapTable()
+          });
+        </script>
+      </div>
+      
+
+    </section>
+  </div>
+
+  <div class="footer">
+    <footer class="">
+      <p class="copyright">Copyright&#169; 2022 Joing & Jaspal</p>
+      <p class="copyright">All rights reserved</p>
+    </footer>  
+  </div>
+  
+</body>
+</html>
