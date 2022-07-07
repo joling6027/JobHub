@@ -13,7 +13,6 @@ CREATE TABLE Jobs (
  JobType varchar(4) NOT NULL COMMENT 'It should be job type code come from another table of job type example FT(Full time), PT(Part Time)',
  JobPosition varchar(50) NOT NULL,
  JobDescription varchar(500) NOT NULL,
- JDFile longblob NOT NULL,
  CompanyName varchar(200) NOT NULL,
  PRIMARY KEY ( JobID )
 ) ENGINE=InnoDB
