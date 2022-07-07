@@ -2,10 +2,6 @@
   --blue: #82C8D7;
 }
 
-*{
-  box-sizing: content-box;
-}
-
 body{
   background-color: rgb(236, 236, 236);
 }
@@ -34,7 +30,7 @@ body{
     margin-bottom: 3%;
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
+    border-radius: 25px;
 }
 
 .job-listing-content{
