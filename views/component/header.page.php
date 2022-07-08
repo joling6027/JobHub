@@ -13,7 +13,7 @@
                     <meta charset="UTF-8">
                     <meta http-equiv="X-UA-Compatible" content="IE=edge">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>Job Portal</title>
+                    <title>Job Hub</title>
 
                     <!-- Google font -->
                     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,7 +31,7 @@
         }
 
 
-        static function nav($pageName)
+        static function nav($pageName=false)
         {
             ?>
                 <body>
@@ -39,7 +39,7 @@
                         <section id="title">
                             <!-- Nav bar -->
                             <nav class="navbar navbar-expand-lg">
-                                <a class="navbar-brand fs-1" href="index.html">Job Portal</a>
+                                <!-- <a class="navbar-brand fs-1" href="index.html">Job Portal</a> -->
                             </nav>
                         </section>
             <?php

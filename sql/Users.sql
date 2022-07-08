@@ -16,6 +16,7 @@ CREATE TABLE Users (
   Phone int(15) NOT NULL,
   Password varchar(50) NOT NULL,
   Role varchar(6) NOT NULL,
+  Agreement tinyint(1) NOT NULL,
   PRIMARY KEY ( UserID ),
   UNIQUE KEY  Email  ( Email )
 ) ENGINE=InnoDB

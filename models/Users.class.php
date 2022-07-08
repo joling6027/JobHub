@@ -8,15 +8,11 @@
         private $Phone;
         private $Password;
         private $Role;
+        private $Agreement;
 
 
         function getUserID() : int{
             return $this->UserID;
-        }
-
-        function setUserID(int $userId)
-        {
-            $this->UserID = $userId;
         }
 
         function getFname() : string{
@@ -68,6 +64,13 @@
             $this->Role = $role;
         }
 
+        function getAgreement() : bool{
+            return $this->Agreement;
+        }
+
+        function setAgreement(bool $agree){
+            $this->Agreement = $agree;
+        }
         
     }
 
