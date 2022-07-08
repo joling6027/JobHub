@@ -14,14 +14,10 @@ CREATE TABLE Users (
   Lname varchar(50) DEFAULT NULL,
   Email varchar(50) NOT NULL,
   Phone int(15) NOT NULL,
-  City varchar(20) DEFAULT NULL,
-  Province varchar(20) DEFAULT NULL,
-  PostalCode varchar(10) DEFAULT NULL,
   Password varchar(50) NOT NULL,
-  Address varchar(50) DEFAULT NULL,
-  Street varchar(20) DEFAULT NULL,
   Role varchar(6) NOT NULL,
   PRIMARY KEY ( UserID ),
   UNIQUE KEY  Email  ( Email )
 ) ENGINE=InnoDB
 
+ 

@@ -6,12 +6,7 @@
         private $Lname;
         private $Email;
         private $Phone;
-        private $City;
-        private $Province;
-        private $PostalCode;
         private $Password;
-        private $Address;
-        private $Street;
         private $Role;
 
 
@@ -49,7 +44,6 @@
             $this->Email = $email;
         }
 
-
         function getPhone() : int{
             return $this->Phone;
         }
@@ -58,64 +52,19 @@
             $this->Phone = $phone;
         }
 
-        function getCity() : string{
-            return $this->City;
-        }
-
-        function setCity(string $city){
-            $this->City = $city;
-        }
-
-        function getProvince(): string{
-            return $this->Province;
-        }
-
-        function setProvince(string $province){
-            $this->Province = $province;
-        }
-
-        function getPostalCode() : string{
-            return $this->PostalCode;
-        }
-
-        
-        function setPostalCode(string $postalCode){
-            $this->PostalCode = $postalCode;
-        }
-
         function getPassword() : string{
             return $this->Password;
         }
 
-        
         function setPassword(string $password){
             $this->Password = $password;
         }
-
-        function getAddress() : string{
-            return $this->Address;
-        }
-
-        
-        function setAddress(string $address){
-            $this->Address = $address;
-        }
-
-        function getStreet() : string{
-            return $this->Street;
-        }
-
-        
-        function setStreet(string $street){
-            $this->Street = $street;
-        }
-
 
         function getRole() : string{
             return $this->Role;
         }
 
-        function setRole(string $role){
+        function setRole(string $role = "User"){
             $this->Role = $role;
         }
 

@@ -14,5 +14,6 @@ CREATE TABLE Jobs (
  JobPosition varchar(50) NOT NULL,
  JobDescription varchar(500) NOT NULL,
  CompanyName varchar(200) NOT NULL,
+ CreatedOn date DEFAULT NULL,
  PRIMARY KEY ( JobID )
 ) ENGINE=InnoDB

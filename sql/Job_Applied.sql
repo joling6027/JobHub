@@ -17,9 +17,10 @@ CREATE TABLE  Job_Applied  (
  AdditionalUrls  varchar(50) DEFAULT NULL,
  Comments  varchar(500) DEFAULT NULL,
  Resume  longblob DEFAULT NULL,
+ AppliedOn date DEFAULT NULL,
  PRIMARY KEY ( AppliedID ),
  KEY  UserID  ( UserID ),
  KEY  JobID  ( JobID ),
  CONSTRAINT  job_applied_ibfk_1  FOREIGN KEY ( UserID ) REFERENCES  users  ( UserID ) ON DELETE CASCADE ON UPDATE CASCADE,
  CONSTRAINT  job_applied_ibfk_2  FOREIGN KEY ( JobID ) REFERENCES  jobs  ( JobID ) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+) ENGINE=InnoDB
