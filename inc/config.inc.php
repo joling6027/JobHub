@@ -3,7 +3,7 @@
     define("DB_HOST", "localhost");  
     define("DB_USER", "root");  
     define("DB_PASS", "");  
-    define("DB_NAME", "Assignment3_JSi45938");
+    define("DB_NAME", "JobPortal");
     define("DB_PORT", "3306");  
 
     // definition for log file
@@ -12,5 +12,7 @@
     ini_set('error_log', LOGFILE); 
     
 
+    //Model classes
+    define('USERS', 'Users');
 
 ?>

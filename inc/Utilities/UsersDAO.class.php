@@ -10,20 +10,28 @@
 
         static function createUser(Users $user): int{
    
-            $sql ="INSERT INTO users (Fname, Lname, Email, Phone, Password, Role)
-                    VALUES(:Fname, :Lname, :Email, :Phone, :Password, :Role)";
+            try{
+                $sql ="INSERT INTO users (Fname, Lname, Email, Phone, Password, Role, Agreement)
+                VALUES(:Fname, :Lname, :Email, :Phone, :Password, :Role, :Agreement)";
 
-            self::$db->query($sql);
-            self::$db->bind(':Fname', $user->getFname());
-            self::$db->bind(':Lname', $user->getLname());
-            self::$db->bind(':Email', $user->getEmail());
-            self::$db->bind(':Phone', $user->getPhone());
-            self::$db->bind(':Password', $user->getPassword());
-            self::$db->bind(':Role', $user->getRole());
-            self::$db->execute();
+                self::$db->query($sql);
+                self::$db->bind(':Fname', $user->getFname());
+                self::$db->bind(':Lname', $user->getLname());
+                self::$db->bind(':Email', $user->getEmail());
+                self::$db->bind(':Phone', $user->getPhone());
+                self::$db->bind(':Password', $user->getPassword());
+                self::$db->bind(':Role', $user->getRole());
+                self::$db->bind(':Agreement', $user->getAgreement());
+                self::$db->execute();
 
-            return self::$db->lastInsertedId();
-
+                return self::$db->lastInsertedId();
+            }
+            catch(Exception $ex)
+            {
+                echo $ex->getMessage();
+                self::$db->debugDumpParams();
+                error_log($ex->getMessage());
+            }
         }
 
         static function getUser($emailId): Users{

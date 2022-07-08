@@ -15,17 +15,13 @@ body{
 }
 
 .btn-info{
-  /* --bs-btn-color: #82C8D7; */
   --bs-btn-bg:var(--blue);
   --bs-btn-border-color: none;
 }
 
 .job-listing{
-    /* display:  */
     min-width: 70rem;
     min-height: 30rem;
-    /* left: 56px;
-    top: 100px; */
     margin-top: 3%;
     margin-bottom: 3%;
     background: #FFFFFF;
@@ -65,3 +61,7 @@ body{
 .img-fluid{
   margin-top: 8%;
 }
+
+.fname{border-top-left-radius: .375rem; border-bottom-left-radius:.375rem;}
+.loginMargin{margin-top: 5rem;}
+.loginContainer{border-radius: 25px; min-height: 35rem;}
