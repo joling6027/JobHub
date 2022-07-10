@@ -8,12 +8,16 @@ CREATE DATABASE IF NOT EXISTS JobPortal;
 USE JobPortal;
 
 CREATE TABLE Jobs (
- JobID int(11) NOT NULL AUTO_INCREMENT,
- JobLocation varchar(100) NOT NULL,
- JobType varchar(4) NOT NULL COMMENT 'It should be job type code come from another table of job type example FT(Full time), PT(Part Time)',
- JobPosition varchar(50) NOT NULL,
- JobDescription varchar(500) NOT NULL,
- CompanyName varchar(200) NOT NULL,
- CreatedOn date DEFAULT NULL,
+ JobID INT NOT NULL AUTO_INCREMENT,
+ JobLocation VARCHAR(100) NOT NULL,
+ JobType VARCHAR(4) NOT NULL,
+ JobPosition VARCHAR(50) NOT NULL,
+ Salary NUMERIC(8) CHECK (Salary > 0),
+ JobDescription VARCHAR(500) NOT NULL,
+ Duty VARCHAR(500),
+ Qualification VARCHAR(500),
+ Benefits VARCHAR(500),
+ CompanyName VARCHAR(200) NOT NULL,
+ CreatedOn DATE DEFAULT NULL,
  PRIMARY KEY ( JobID )
 ) ENGINE=InnoDB

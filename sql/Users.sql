@@ -9,16 +9,15 @@ USE JobPortal;
 
 --CREATE TABLE USERS
 CREATE TABLE Users (
-  UserID int(11) NOT NULL AUTO_INCREMENT,
-  Fname varchar(50) NOT NULL,
-  Lname varchar(50) DEFAULT NULL,
-  Email varchar(50) NOT NULL,
-  Phone int(15) NOT NULL,
-  Password varchar(50) NOT NULL,
-  Role varchar(6) NOT NULL,
-  Agreement tinyint(1) NOT NULL,
+  UserID INT NOT NULL AUTO_INCREMENT,
+  Fname VARCHAR(50) NOT NULL,
+  Lname VARCHAR(50) DEFAULT NULL,
+  Email VARCHAR(50) NOT NULL UNIQUE,
+  Phone VARCHAR(20) NOT NULL,
+  Password VARCHAR(50) NOT NULL,
+  Role CHAR(6) NOT NULL,
+  Agreement TINYINT(1) NOT NULL,
   PRIMARY KEY ( UserID ),
-  UNIQUE KEY  Email  ( Email )
 ) ENGINE=InnoDB
 
  
