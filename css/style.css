@@ -1,3 +1,5 @@
+/* varibale declare */
+/* For all pages */
 :root{
   --blue: #82C8D7;
 }
@@ -12,6 +14,19 @@ body{
 
 .navbar-brand{
   font-family: 'Ubuntu', sans-serif;
+}
+
+.footer {
+  background-color: var(--blue);
+}
+
+.footer p {
+  margin: 0;
+}
+
+.copyright {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.947)
 }
 
 .btn-info{
@@ -45,19 +60,6 @@ body{
   padding-top: 2rem;
 }
 
-.footer{
-  background-color: var(--blue);
-}
-
-.footer p{
-  margin: 0;
-}
-
-.copyright{
-  text-align: center;
-  color: rgba(255, 255, 255, 0.947)
-}
-
 .img-fluid{
   margin-top: 8%;
 }
@@ -65,3 +67,15 @@ body{
 .fname{border-top-left-radius: .375rem; border-bottom-left-radius:.375rem;}
 .loginMargin{margin-top: 5rem;}
 .loginContainer{border-radius: 25px; min-height: 35rem;}
+
+.btn-apply{
+  position: fixed;
+
+}
+
+@media screen and (max-width: 670px){
+  .btn-apply{
+    top:10px;
+    right:30px;
+  }
+}
