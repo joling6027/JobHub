@@ -2,7 +2,7 @@
 
     class PageIndex{
          
-            static function adminDetails(){
+            static function adminDetails($email, $name){
                 ?>
                      <main class="">
         <div class="container ">
