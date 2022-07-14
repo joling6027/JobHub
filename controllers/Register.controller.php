@@ -33,7 +33,7 @@
     }
     else{
         PageHeader::header();
-        PageHeader::nav();
+      //  PageHeader::nav();
         PageRegister::register();
     }
 
