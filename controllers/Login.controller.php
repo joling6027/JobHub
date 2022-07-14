@@ -5,7 +5,7 @@
     require_once('../views/Login.page.php');
 
     PageHeader::header();
-    PageHeader::nav();
+   // PageHeader::nav();
     PageLogin::login();
 
     if(!empty($_POST) && isset($_POST))
@@ -13,6 +13,6 @@
         echo "".$_POST['email'];
         echo "".$_POST['password'];
     }
-    // PageFooter::footer();
+    //PageFooter::footer();
 
 ?>
