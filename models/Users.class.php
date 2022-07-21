@@ -15,6 +15,10 @@
             return $this->UserID;
         }
 
+        function setUserID(int $Id){
+            $this->UserID = $Id;
+        }
+        
         function getFname() : string{
             return $this->Fname;
         }

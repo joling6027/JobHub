@@ -126,4 +126,3 @@ class PageJobDescription
 <?php
                 }
             }
-?>

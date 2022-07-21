@@ -10,6 +10,7 @@
         private $AdditionalUrls;
         private $Comments;
         private $Resume;
+        
 
         function getAppliedID():int{
             return $this->AppliedID;

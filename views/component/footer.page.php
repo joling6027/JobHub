@@ -39,12 +39,6 @@ class PageFooter
 
 
             </footer>
-            <script rel="text/javascript">
-                $("#nav-manage-users").on('table .clickable-row', function(e, row, $element) {
-                    window.location = $element.data('href');
-                });
-            </script>
-
             </body>
 
             </html>
@@ -63,5 +57,3 @@ class PageFooter
         }
     }
 }
-
-?>

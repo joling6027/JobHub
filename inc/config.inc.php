@@ -3,7 +3,7 @@
     define("DB_HOST", "localhost");  
     define("DB_USER", "root");  
     define("DB_PASS", "");  
-    define("DB_NAME", "JobPortal");
+    define("DB_NAME", "JobHub");
     define("DB_PORT", "3306");  
 
     // definition for log file
@@ -14,5 +14,7 @@
 
     //Model classes
     define('USERS', 'Users');
+    define('JOBS', 'Jobs');
+
 
 ?>
