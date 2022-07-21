@@ -35,6 +35,7 @@
         PageHeader::header();
       //  PageHeader::nav();
         PageRegister::register();
+        
     }
 
 ?>

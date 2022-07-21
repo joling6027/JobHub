@@ -4,9 +4,65 @@
         private $JobID;
         private $JobLocation;
         private $JobType;
-        private $JobPosition;
+        private $JobTitle;
         private $JobDescription;
         private $CompanyName;
+        private $Duty;
+        private $Qualification;
+        private $Benefits;
+        private $Salary;
+        private $CreatedOn;
+        private $Category;
+
+        function getCategory():string{
+            return $this->Category;
+        }
+
+        function setCategory(string $category){
+            $this->Category = $category;
+        }
+
+        function getCreatedOn(){
+            return $this->CreatedOn;
+        }
+
+        function setCreatedOn(){
+            $dtz = new DateTimeZone("America/Vancouver");
+            $dt = new DateTime("now", $dtz);
+            $this->CreatedOn = $dt->format("Y-m-d");
+        }
+
+        function getsalary():string{
+            return $this->Salary;
+        }
+
+        function setsalary(string $salary){
+            $this->Salary = $salary;
+        }
+
+        function getDuty():string{
+            return $this->Duty;
+        }
+
+        function setDuty(string $duty){
+            $this->Duty = $duty;
+        }
+        
+        function getQualification():string{
+            return $this->Qualification;
+        }
+
+        function setQualification(string $qualification){
+            $this->Qualification = $qualification;
+        }
+        
+        function getBenefits():string{
+            return $this->Benefits;
+        }
+
+        function setBenefits(string $benefits){
+            $this->Benefits = $benefits;
+        }
 
         function getJobId():int{
             return $this->JobID;
@@ -32,12 +88,12 @@
             $this->JobType = $jobType;
         }
 
-        function getJobPosition():string{
-            return $this->JobPosition;
+        function getJobTitle():string{
+            return $this->JobTitle;
         }
 
-        function setJobPosition(string $jobPosition){
-            $this->JobPosition = $jobPosition;
+        function setJobTitle(string $jobPosition){
+            $this->JobTitle = $jobPosition;
         }
 
         function getJobDescription():string{
