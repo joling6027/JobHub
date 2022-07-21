@@ -18,6 +18,7 @@ CREATE TABLE Users (
   Role CHAR(6) NOT NULL,
   Agreement TINYINT(1) NOT NULL,
   PRIMARY KEY ( UserID )
-)ENGINE=InnoDB
+) ENGINE=InnoDB
+
 
  
