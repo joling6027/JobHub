@@ -29,21 +29,18 @@
             catch(Exception $ex)
             {
                 echo $ex->getMessage();
-                self::$db->debugDumpParams();
                 error_log($ex->getMessage());
             }
         }
 
-        static function getUser($userId): Users{
+        static function getUser(string $email){
 
+            $sql ="SELECT * FROM users WHERE email = :email;";
             try
             {
-                $sql ="SELECT * FROM users WHERE UserID=:UserID";
-
                 self::$db->query($sql);
-                self::$db->bind(':UserID', $userId);
+                self::$db->bind(':email', $email);
                 self::$db->execute();
-     
                 return self::$db->singleResult();
             }
             catch(Exception $ex)
@@ -53,6 +50,24 @@
             }
         }
 
+        static function getUserById($userId): Users
+        {
+            try
+            {
+                    $sql ="SELECT * FROM users WHERE UserID=:UserID";
+
+                    self::$db->query($sql);
+                    self::$db->bind(':UserID', $userId);
+                    self::$db->execute();
+        
+                    return self::$db->singleResult();
+            }
+            catch(Exception $ex)
+            {
+                echo $ex->getMessage();
+                error_log($ex->getMessage());
+            }
+        }
 
         static function getUsers(): array{
 
@@ -109,12 +124,26 @@
                     }
                 }catch(Exception $exc){
                     echo $exc->getMessage();
-                    self::$db->debugDumpParams();
                     return false;
                 }
         
                 return true;
         }
-       
+
+        static function getUsersAppliedJob(){
+
+            $sql = "SELECT users.*, job_applied.AppliedID FROM users, job_applied
+                    WHERE users.userId = job_applied.userId";
+            try
+            {
+                    self::$db->query($sql);
+                    self::$db->execute();
+                    return self::$db->resultSet();
+            }
+            catch(Exception $exc){
+                    echo $exc->getMessage();
+                    return false;
+            } 
+        } 
     }
 ?>

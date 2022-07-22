@@ -26,14 +26,14 @@
         {
            //update notification 
         }
-        header("Location: /CSIS/JobPortal/controllers/admin/Index.controller.php");
+        header(LOCATION_ADMIN);
         exit;
     }
     else
     {
         PageHeader::header(true);
         if (isset($_GET["action"]) && $_GET["action"] == "edit")  {
-            $user = UsersDAO::getUser($_GET['id']);
+            $user = UsersDAO::getUserById($_GET['id']);
         }
         PageUserDetails::userInfo($user);
         PageFooter::footer(true);

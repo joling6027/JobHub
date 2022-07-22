@@ -37,7 +37,7 @@ class PageHeader
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
-            <link rel="stylesheet" type="text/css" href="../../css/custom.css">
+           
             
             <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
             <title>Job hub Admin</title>
@@ -47,6 +47,7 @@ class PageHeader
         if ($flag) 
         {
             ?>
+             <link rel="stylesheet" type="text/css" href="../../css/custom.css">
 </head>
                 <body>
                     <header class="bg pt-2 pb-2 d-flex fixed">
@@ -54,11 +55,13 @@ class PageHeader
                             <a href="#" class="logo text-white d-inline"> Job Hub </a>
                             <div class="dropdown d-inline float-end w-20">
                                 <button class="btn dropdown-toggle text-white" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                    John Doe
+                                    <?php
+                                      echo $_SESSION['username']['Name'];
+                                    ?>
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                     <li><a class="dropdown-item" href="#">Change Password</a></li>
-                                    <li><a class="dropdown-item" href="#">Logout</a></li>
+                                    <li><a class="dropdown-item" href="../../controllers/Logout.controller.php">Logout</a></li>
                                 </ul>
                             </div>
                     </header>
@@ -77,8 +80,7 @@ class PageHeader
                     </section>
             <?php
         }
-            ?>
-        <?php
+         
     }
 
 }
