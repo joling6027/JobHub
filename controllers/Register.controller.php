@@ -13,29 +13,37 @@
 
     if(!empty($_POST) && isset($_POST))
     {
-        $user = new Users();
-        $user->setFname($_POST['fname']);
-        $user->setLname($_POST['lname']);
-        $user->setEmail($_POST['email']);
-        $user->setPhone($_POST['phone']);
-        $user->setPassword($_POST['password']);
-        $user->setAgreement($_POST['agreement']);
-        $user->setRole();
-        
-        $res = UsersDAO::createUser($user);
-
-        if($res > 0)
+        $existingUser = UsersDAO::getUser($_POST['email']);
+        if (!empty($existingUser)) 
         {
-            header("Location: Login.controller.php");
-            exit;
+            echo "Already exists !!!";
+            PageHeader::header();
+            PageRegister::register();
+        } 
+        else
+        {
+            $user = new Users();
+            $user->setFname($_POST['fname']);
+            $user->setLname($_POST['lname']);
+            $user->setEmail($_POST['email']);
+            $user->setPhone($_POST['phone']);
+            $user->setPassword(password_hash($_POST['password'], PASSWORD_DEFAULT));
+            $user->setAgreement($_POST['agreement']);
+            $user->setRole();
+            
+            $res = UsersDAO::createUser($user);
+
+            if($res > 0)
+            {
+                header(LOCATION_LOGIN);
+                exit;
+            }
         }
 
     }
     else{
         PageHeader::header();
-      //  PageHeader::nav();
         PageRegister::register();
         
     }
 
-?>
