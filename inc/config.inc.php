@@ -16,5 +16,14 @@
     define('USERS', 'Users');
     define('JOBS', 'Jobs');
 
+    //User ROle
+    define('ROLE_ADMIN', "Admin");
+    define('ROLE_USER', "User");
+
+    //Header Location
+    define("LOCATION_LOGIN", "Location: /CSIS/JobPortal/controllers/Login.controller.php");
+    define("LOCATION_ADMIN", "Location: /CSIS/JobPortal/controllers/admin/Index.controller.php");
+    define("LOCATION_USER", "Location: /CSIS/JobPortal/controllers/Register.controller.php");
+    define("LOCATION_USER_DETAILS", "Location: /CSIS/JobPortal/controllers/admin/User_details.controller.php");
 
 ?>

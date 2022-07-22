@@ -1,9 +1,9 @@
 <?php
 
-class PageJobDescription
+class PageJobApplied
 {
 
-    static function userAppliedJobs()
+    static function userAppliedJobs($users)
     {
 ?>
         <main class="innerMain">
@@ -11,7 +11,7 @@ class PageJobDescription
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                         <button class="nav-link active" id="nav-applied-tab" data-bs-toggle="tab" data-bs-target="#nav-applied" type="button" role="tab" aria-controls="nav-applied" aria-selected="true">Users Applied for this job</button>
-                        <button class="nav-link " id="nav-edit-tab" data-bs-toggle="tab" data-bs-target="#nav-edit" type="button" role="tab" aria-controls="nav-edit" aria-selected="true">Edit Job</button>
+                        <button class="nav-link " id="nav-edit-tab" data-bs-toggle="tab" data-bs-target="#nav-edit" type="button" role="tab" aria-controls="nav-edit" aria-selected="true">Job Description</button>
                     </div>
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
@@ -34,7 +34,21 @@ class PageJobDescription
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
+                                          
+                                    <?php
+                                            $i=1;
+                                            foreach($users as $user)  {
+                                                echo "<tr>";
+                                                echo "<th scope='row'>".$i."</th>";
+                                                echo "<td>".$user->getFname()." ".$user->getLname()."</td>";
+                                                echo "<td>".$user->getEmail()."</td>";
+                                                echo "<td>".$user->getPhone()."</td>";
+                                                echo "<td><a href=\"".$_SERVER['PHP_SELF']."?action=download&id=".$user->AppliedID."\">Resume</td>";
+                                                echo "</tr></tbody>";
+                                            } 
+                                    ?>
+
+                                        <!-- <tr>
                                             <th scope="row">1</th>
                                             <td>Mark</td>
                                             <td>mark12@gmail.com</td>
@@ -68,7 +82,7 @@ class PageJobDescription
                                             <td>mark12@gmail.com</td>
                                             <td>6047439820</td>
                                             <td><a href="#">resume link</a></td>
-                                        </tr>
+                                        </tr> -->
                                     </tbody>
                                 </table>
                             </div>
