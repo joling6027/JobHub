@@ -57,10 +57,10 @@ CREATE TABLE Job_Applied (
  AppliedOn date DEFAULT NULL,
  PRIMARY KEY (AppliedID, UserID, JobID),
  KEY job_applied_ibfk_1 (UserID),
- KEY job_applied_ibfk_2 (JobID)
- CONSTRAINT job_applied_ibfk_1FOREIGN KEY (UserID) REFERENCES users (UserID) ON DELETE CASCADE ON UPDATE CASCADE,
+ KEY job_applied_ibfk_2 (JobID),
+ CONSTRAINT job_applied_ibfk_1 FOREIGN KEY (UserID) REFERENCES users (UserID) ON DELETE CASCADE ON UPDATE CASCADE,
  CONSTRAINT job_applied_ibfk_2 FOREIGN KEY (JobID) REFERENCES jobs (JobID) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB
+) ENGINE=InnoDB;
 
 --Drop Table 
 DROP TABLE IF EXISTS Job_Category;
@@ -90,3 +90,4 @@ CREATE TABLE Job_Type (
 INSERT INTO Job_Type(JobTypeValue, JobTypeName)
 VALUES('FT', 'Full-Time'),
       ('PT', 'Part-Time');
+
