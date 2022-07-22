@@ -7,13 +7,13 @@ a{text-decoration: none; color:#000 }
 .bg{background:#36b7d3!important}
 .btn{border:none!important}
 .btn:hover{border:none!important}
-.adminDetails{background:url("../Images/bg.png")no-repeat; background-position: right; }
+.adminDetails{background:url("../images/bg.png")no-repeat; background-position: right; }
 .jobs .card:hover{ color: black; border: 1px solid #36b7d3; background:#f1f1f1}
 .bg-primary,.btn-primary{background:#36b7d3!important }
 ul li {list-style: none;}
 .inneradminDetails{border:none;z-index:9999}
 .inneradminDetails .card:hover{background:none; border:none }
-.innerMain{background:url("../Images/bg-inner.png");background-position: top;}
+.innerMain{background:url("../images/bg-inner.png");background-position: top;}
 /* .carousel-control-prev, .carousel-control-next{visibility: hidden;z-index:99999}
 .carousel-control-prev:hover, .carousel-control-next:hover{visibility: visible;} */
 #carousal-prev{ position: absolute!important; left: -68px!important;}

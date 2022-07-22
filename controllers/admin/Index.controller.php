@@ -23,10 +23,27 @@
     
         $users = UsersDAO::getUsers();
     
-        if (isset($_GET["action"]) && $_GET["action"] == "edit")  {
-            header(LOCATION_USER_DETAILS);
-            exit;
+        if (isset($_GET["action"]))  {
+            if($_GET["action"] == "edit")
+            {
+                header(LOCATION_USER_DETAILS);
+                exit;
+            }
+
+            if ($_GET["action"] == "delete")  {
+                if(UsersDAO::deleteUser($_GET["id"]))
+                {
+                    header(LOCATION_ADMIN);
+                    exit;
+                }
+            }
+            else{
+                //show toast for user not deleted
+            }
         }
+
+        
+       
         if(!empty($_POST) && isset($_POST))
         {
             $job = new Jobs();
@@ -46,8 +63,7 @@
     
             // if($res > 0)
             // {
-            //     header("Location:  Login.controller.php");
-            //     exit;
+            //    //show toast for user not created
             // }
     
         }
