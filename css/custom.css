@@ -20,5 +20,9 @@ ul li {list-style: none;}
 #carousal-next{position: absolute!important; right: -60px!important;}
 .edituser:hover svg{fill:#36b7d3}
 .deleteuser:hover svg{fill:#f00}
+.hide-model{display: none !important;}
+.toast-mail{position: absolute; top: 50px; left: 0; z-index: 9999;}
+.round-input-otp{border-top-left-radius: 5px !important; border-bottom-left-radius: 5px !important; border-top-right-radius:0px !important; border-bottom-right-radius: 0px !important;}
+.round-btn-otp{border-top-right-radius: 5px !important; border-bottom-right-radius: 5px !important; border-top-left-radius: 0px !important; border-bottom-left-radius: 0px !important;}
 
 

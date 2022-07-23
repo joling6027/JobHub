@@ -399,35 +399,15 @@
               Are you sure to delete this user?
             </div>
             <div class="modal-footer">
-              <button href="#" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <input type="hidden" id="del_loc" value="<?=$_SERVER['PHP_SELF']."?action=delete&id="?>">
+              <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
               <button id="delBtn" class="btn btn-danger">Delete</button>
             </div>
           </div>
         </div>
       </div>
       
-      <script>
-        $(document).ready(function(){
-          var usr_id;
-            $('.deleteuser').click(function(e){
-              e.preventDefault();
-              usr_id = $(this).closest('tr').find('#delete_usr_id').val();
-             //  = document.getElementById('delete_usr_id').value;
-              $('#deletemodal').modal('show')
-            });
-
-            $('#delBtn').click(function(){
-              location.href = "<?=$_SERVER['PHP_SELF']."?action=delete&id="?>"+usr_id;
-            });
-
-            $("#searchInput").on("keyup", function () {
-            var value = $(this).val().toLowerCase();
-            $("#tblUsr tr").filter(function () {
-              $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-          });
-        });
-      </script>
+      
                 <?php
             }
     }

@@ -1,16 +1,11 @@
---DROP DB IF EXISTS
 DROP DATABASE IF EXISTS JobHub;
 
---CREATE DB IF NOT EXISTS
 CREATE DATABASE IF NOT EXISTS JobHub;
 
---USE JobPortal DATABASE
 USE JobHub;
 
---Drop Table 
 DROP TABLE IF EXISTS Users;
 
---CREATE TABLE USERS
 CREATE TABLE Users (
   UserID INT NOT NULL AUTO_INCREMENT,
   Fname VARCHAR(50) NOT NULL,
@@ -23,7 +18,6 @@ CREATE TABLE Users (
   PRIMARY KEY ( UserID )
 )ENGINE=InnoDB;
 
---Drop Table 
 DROP TABLE IF EXISTS Jobs; 
 
 CREATE TABLE Jobs (
@@ -43,7 +37,6 @@ CREATE TABLE Jobs (
 ) ENGINE=InnoDB;
 
 
---Drop Table 
 DROP TABLE IF EXISTS Job_Applied;
 
 CREATE TABLE Job_Applied (
@@ -57,12 +50,11 @@ CREATE TABLE Job_Applied (
  AppliedOn date DEFAULT NULL,
  PRIMARY KEY (AppliedID, UserID, JobID),
  KEY job_applied_ibfk_1 (UserID),
- KEY job_applied_ibfk_2 (JobID)
- CONSTRAINT job_applied_ibfk_1FOREIGN KEY (UserID) REFERENCES users (UserID) ON DELETE CASCADE ON UPDATE CASCADE,
+ KEY job_applied_ibfk_2 (JobID),
+ CONSTRAINT job_applied_ibfk_1 FOREIGN KEY (UserID) REFERENCES users (UserID) ON DELETE CASCADE ON UPDATE CASCADE,
  CONSTRAINT job_applied_ibfk_2 FOREIGN KEY (JobID) REFERENCES jobs (JobID) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB
+) ENGINE=InnoDB;
 
---Drop Table 
 DROP TABLE IF EXISTS Job_Category;
 
 CREATE TABLE Job_Category (
@@ -77,7 +69,6 @@ VALUES('IT', 'Information Technology'),
       ('MT', 'Management'),
       ('LB', 'Labour');
 
---Drop Table 
 DROP TABLE IF EXISTS Job_Type; 
 
 CREATE TABLE Job_Type (

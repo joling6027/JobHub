@@ -68,7 +68,7 @@
     
         }
             PageHeader::header(true);
-            PageIndex::adminDetails("Jaspal3101@gmail.com", "Jaspal Singh");
+            PageIndex::adminDetails($_SESSION['username']['Email'], $_SESSION['username']['Name']);
             PageIndex::createJobs();
             PageIndex::existingJobs();
             PageIndex::manageUsers($users);

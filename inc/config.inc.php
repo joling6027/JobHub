@@ -22,8 +22,11 @@
 
     //Header Location
     define("LOCATION_LOGIN", "Location: /CSIS/JobPortal/controllers/Login.controller.php");
+    define("LOCATION_LOGOUT", "Location: /CSIS/JobPortal/controllers/Logout.controller.php");
     define("LOCATION_ADMIN", "Location: /CSIS/JobPortal/controllers/admin/Index.controller.php");
     define("LOCATION_USER", "Location: /CSIS/JobPortal/controllers/Register.controller.php");
     define("LOCATION_USER_DETAILS", "Location: /CSIS/JobPortal/controllers/admin/User_details.controller.php");
+    define("SECURE_TOKEN", "5f66daf9-e5a0-4ac4-9bea-768012559fde");
+    define("FROM_EMAIL", "jaspal3101@gmail.com");
 
 ?>
