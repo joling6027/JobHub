@@ -21,9 +21,11 @@
                 $_SESSION['username'] = array('Email'=> $user->getEmail(), 'Name' => $user->getFname()." ". $user->getLname());
                 if($user->getRole() == ROLE_ADMIN){
                     header(LOCATION_ADMIN);
+                    exit;
                 }
                 if($user->getRole() == ROLE_USER){
                     header(LOCATION_USER);
+                    exit;
                 }
                 
             }

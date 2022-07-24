@@ -111,6 +111,26 @@
             }
         }
         
+        static function updatePassword($email, $password)
+        {
+            try{
+                $sql = "UPDATE users SET Password=:Password
+                WHERE email = :email";
+        
+                self::$db->query($sql);
+                self::$db->bind(':email', $email);
+                self::$db->bind(':Password', $password);
+                self::$db->execute();
+        
+                return self::$db->rowCount();
+            }
+            catch(Exception $ex)
+            {
+                echo $ex->getMessage();
+                error_log($ex->getMessage());
+            }
+
+        }
         static function deleteUser(string $userId): bool {
     
                 $sql = "DELETE FROM users WHERE UserID = :UserID";

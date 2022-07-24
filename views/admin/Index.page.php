@@ -22,9 +22,9 @@
           <div class="container mt-5 adminTabs">
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                  <button class="nav-link <?= 'active' ?> " id="nav-create-tab" data-bs-toggle="tab" data-bs-target="#nav-create" type="button" role="tab" aria-controls="nav-create" aria-selected="true">Create Jobs</button>
-                  <button class="nav-link " id="nav-jobs-tab" data-bs-toggle="tab" data-bs-target="#nav-jobs" type="button" role="tab" aria-controls="nav-jobs" aria-selected="true">Existing Jobs</button>
-                  <button class="nav-link" id="nav-manage-users-tab" data-bs-toggle="tab" data-bs-target="#nav-manage-users" type="button" role="tab" aria-controls="nav-manage-users" aria-selected="false">Manage users</button>
+                  <button class="nav-link " id="nav-create-tab" data-bs-toggle="tab" data-bs-target="#nav-create" type="button" role="tab" aria-controls="nav-create" aria-selected="true">Create Jobs</button>
+                  <button class="nav-link <?= 'active' ?> " id="nav-jobs-tab" data-bs-toggle="tab" data-bs-target="#nav-jobs" type="button" role="tab" aria-controls="nav-jobs" aria-selected="true">Existing Jobs</button>
+                  <button class="nav-link" id="nav-manage-users-tab" data-bs-toggle="tab" data-bs-target="#nav-manage-users" type="button" role="tab" aria-controls="nav-manage-users" aria-selected="true">Manage users</button>
                 
                 </div>
               </nav>
@@ -36,7 +36,7 @@
                 ?>
  
               <div class="tab-content jobs" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="nav-create" role="tabpanel" aria-labelledby="nav-create-tab" tabindex="0">
+                <div class="tab-pane fade " id="nav-create" role="tabpanel" aria-labelledby="nav-create-tab" tabindex="0">
                     <div class="d-flex">
                     <form class=" col mt-5" action="<?php echo $_SERVER["PHP_SELF"];?>" method="POST">
                             <div class="mb-3 col d-flex">
@@ -133,7 +133,7 @@
             static function existingJobs(){
                 ?>
 
-<div class="tab-pane fade " id="nav-jobs" role="tabpanel" aria-labelledby="nav-jobs-tab" tabindex="0">
+<div class="tab-pane fade show active" id="nav-jobs" role="tabpanel" aria-labelledby="nav-jobs-tab" tabindex="0">
                     <h4 class="mt-5">Information Technology</h4>
                     <div id="carousel1" class="carousel slide " data-bs-ride="carousel">
                         <div class="carousel-inner d-flex">
@@ -335,9 +335,9 @@
                      <div class="tab-pane fade" id="nav-manage-users" role="tabpanel" aria-labelledby="nav-manage-users-tab" tabindex="0">
                       <div class="input-group mb-3 mt-4" >
                         <span class="input-group-text" id="basic-addon1">Search</span>
-                        <input type="search" class="form-control" placeholder="keyword" aria-label="Username" aria-describedby="basic-addon1">
+                        <input type="search" id="searchInput" class="form-control" placeholder="keyword" aria-label="Username" aria-describedby="basic-addon1">
                       </div>
-                        <table class="table table-striped mt-3">
+                        <table class="table table-striped mt-3" data-filter-control="true" data-show-search-clear-button="true" data-filter-control-visible="true">
                             <thead>
                               <tr>
                                 <th scope="col">#</th>
@@ -348,13 +348,14 @@
                                 <th scope="col">Options</th>
                               </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="tblUsr">
                              
                                 <?php
                                     $i=1;
                                     foreach($users as $user)  {
                                         ?>
                                          <tr>
+                                            <input type="hidden" id="delete_usr_id" value="<?=$user->getUserID()?>">
                                             <th scope="row"><?=$i?></th>
                                             <td><?=$user->getFname()." ".$user->getLname()?></td>
                                             <td><?=$user->getEmail()?></td>
@@ -366,7 +367,8 @@
                                             <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="16" height="16" fill="#000" class="bi bi-pencil-fill" viewBox="0 0 16 16">
                                                 <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
                                             </svg></a>
-                                            <a class="deleteuser" href="<?=$_SERVER['PHP_SELF']."?action=delete&id=".$user->getUserID()?>"><svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="16" height="16" fill="#000" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                            <!-- data-bs-target="#deletemodal" data-bs-toggle="modal"  -->
+                                            <a href="javascript:void(0)" class="deleteuser" ><svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="16" height="16" fill="#000" class="bi bi-trash-fill" viewBox="0 0 16 16">
                                                 <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
                                             </svg></a>
                                             </td>
@@ -376,50 +378,6 @@
                                         $i++;
                                     }
                                 ?>
-                                
-                                <!-- <td>Mark</td>
-                                <td>mark12@gmail.com</td>
-                                <td>6047439820</td>
-                                <td><a href="#">resume link</a></td>
-                                <td><a class="edituser" href="User_details.html">
-                                  <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="16" height="16" fill="#000" class="bi bi-pencil-fill" viewBox="0 0 16 16">
-                                    <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
-                                  </svg></a>
-                                  <a class="deleteuser" href="User_details.html"><svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="16" height="16" fill="#000" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                                    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
-                                  </svg></a>
-                                </td>   -->
-                             
-                              <!-- <tr>
-                                <th scope="row">2</th>
-                                <td>Mark</td>
-                                <td>mark12@gmail.com</td>
-                                <td>6047439820</td>
-                                <td><a href="#">resume link</a></td>
-                                <td><a class="edituser" href="User_details.html">
-                                  <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="16" height="16" fill="#000" class="bi bi-pencil-fill" viewBox="0 0 16 16">
-                                    <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
-                                  </svg></a>
-                                  <a class="deleteuser" href="User_details.html"><svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="16" height="16" fill="#000" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                                    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
-                                  </svg></a>
-                                </td>   
-                              </tr>
-                              <tr>
-                                <th scope="row">3</th>
-                                <td>Mark</td>
-                                <td>mark12@gmail.com</td>
-                                <td>6047439820</td>
-                                <td><a href="#">resume link</a></td>
-                                <td><a class="edituser" href="User_details.html">
-                                  <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="16" height="16" fill="#000" class="bi bi-pencil-fill" viewBox="0 0 16 16">
-                                    <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
-                                  </svg></a>
-                                  <a class="deleteuser" href="User_details.html"><svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="16" height="16" fill="#000" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                                    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
-                                  </svg></a>
-                                </td>  
-                              </tr> -->
                             </tbody>
                           </table>
                     </div>
@@ -430,6 +388,26 @@
               </div>
           </div>
           </main>
+          <div class="modal fade" id="deletemodal" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">Delete User</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Are you sure to delete this user?
+            </div>
+            <div class="modal-footer">
+              <input type="hidden" id="del_loc" value="<?=$_SERVER['PHP_SELF']."?action=delete&id="?>">
+              <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button id="delBtn" class="btn btn-danger">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
                 <?php
             }
     }
