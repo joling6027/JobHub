@@ -17,9 +17,9 @@
 
                 self::$db->query($sql);
                 self::$db->bind(':JobLocation', $jobs->getJobLocation());
-                self::$db->bind(':JobCategory', $jobs->getCategory());
+                self::$db->bind(':JobCategory', $jobs->getJobCategory());
                 self::$db->bind(':JobType', $jobs->getJobType());
-                self::$db->bind(':JobPosition', $jobs->getJobTitle());
+                self::$db->bind(':JobPosition', $jobs->getJobPosition());
                 self::$db->bind(':Salary', $jobs->getsalary());
                 self::$db->bind(':JobDescription', $jobs->getJobDescription());
                 self::$db->bind(':Duty', $jobs->getDuty());
@@ -70,6 +70,37 @@
                 error_log($ex->getMessage());
             }
         }
-       
+
+        static function getJobs():array{
+
+            $sql = "SELECT * FROM Jobs";
+
+            try{
+                self::$db->query($sql);
+                self::$db->execute();
+                return self::$db->resultSet();
+
+            }catch(Exception $ex){
+                echo $ex->getMessage();
+                error_log($ex->getMessage());
+            }
+        }
+
+       static function getJob($jobid){
+
+        $sql = "SELECT * FROM Jobs WHERE JobID=:jobid";
+
+        try{
+            self::$db->query($sql);
+            self::$db->bind(":jobid", $jobid);
+            self::$db->execute();
+
+            return self::$db->singleResult();
+
+        }catch(Exception $ex){
+            echo $ex->getMessage();
+            error_log($ex->getMessage());
+        }
+       }
     }
 ?>

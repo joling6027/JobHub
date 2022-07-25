@@ -32,7 +32,13 @@ class Validate{
     $filterPhone = filter_input(INPUT_POST, "phoneNumber", FILTER_VALIDATE_REGEXP, $option);
     if(!$filterPhone){
       $validate = false;
-      PageRegister::$notification .= "phone number";
+      PageRegister::$notification .= " phone number,";
+    }
+
+    //validate agreement checkbox
+    if (!isset($_POST['agreement'])) {
+      $validate = false;
+      PageRegister::$notification .= "and agreement";
     }
 
     //validate password
@@ -43,6 +49,8 @@ class Validate{
       $validate = false;
       PageRegister::$notification .= "\nPassword should be min 8 chars, 1 uppercase, 1 lowercase, 1 number and 1 special character.";
     }
+
+    
 
   }
 
