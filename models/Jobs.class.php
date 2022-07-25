@@ -4,7 +4,7 @@
         private $JobID;
         private $JobLocation;
         private $JobType;
-        private $JobTitle;
+        private $JobPosition;
         private $JobDescription;
         private $CompanyName;
         private $Duty;
@@ -12,14 +12,14 @@
         private $Benefits;
         private $Salary;
         private $CreatedOn;
-        private $Category;
+        private $JobCategory;
 
-        function getCategory():string{
-            return $this->Category;
+        function getJobCategory():string{
+            return $this->JobCategory;
         }
 
-        function setCategory(string $category){
-            $this->Category = $category;
+        function setJobCategory(string $jobCategory){
+            $this->JobCategory = $jobCategory;
         }
 
         function getCreatedOn(){
@@ -88,12 +88,12 @@
             $this->JobType = $jobType;
         }
 
-        function getJobTitle():string{
-            return $this->JobTitle;
+        function getJobPosition():string{
+            return $this->JobPosition;
         }
 
-        function setJobTitle(string $jobPosition){
-            $this->JobTitle = $jobPosition;
+        function setJobPosition(string $jobPosition){
+            $this->JobPosition = $jobPosition;
         }
 
         function getJobDescription():string{
