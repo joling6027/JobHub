@@ -19,12 +19,13 @@
             {
                 session_start();
                 $_SESSION['username'] = array('Email'=> $user->getEmail(), 'Name' => $user->getFname()." ". $user->getLname());
+                $_SESSION['user_role'] = $user->getRole(); //for click on logo -> go back to home page purpose
                 if($user->getRole() == ROLE_ADMIN){
                     header(LOCATION_ADMIN);
                     exit;
                 }
                 if($user->getRole() == ROLE_USER){
-                    header(LOCATION_USER);
+                    header(LOCATION_USER_ENTRANCE);
                     exit;
                 }
                 

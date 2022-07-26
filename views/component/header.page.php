@@ -38,6 +38,7 @@ class PageHeader
             <script src="../../js/script.js" defer></script>
             <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
             <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
+            <link rel="stylesheet" type="text/css" href="../css/custom.css">
             <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
             <title>Job hub Admin</title>
 
@@ -47,13 +48,23 @@ class PageHeader
             ?>
 
 
+                <link rel="stylesheet" type="text/css" href="../css/custom.css">
                 <link rel="stylesheet" type="text/css" href="../../css/custom.css">
         </head>
 
         <body>
             <header class="bg pt-2 pb-2 d-flex fixed">
                 <div class="container">
-                    <a href="#" class="logo text-white d-inline"> Job Hub </a>
+                    <?php
+                    //if user is admin, go to admin control page, otherwise go to user entrance page
+                    $home = '';
+                    if (!empty($_SESSION) && $_SESSION['user_role'] == 'Admin')
+                        $home = "Index.controller.php";
+                    else
+                        $home = "user_entrance.controller.php";
+
+                    ?>
+                    <a href="<?php echo $home ?>" class="logo text-white d-inline"> Job Hub </a>
                     <div class="dropdown d-inline float-end w-20">
                         <button class="btn dropdown-toggle text-white" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                             <?php
@@ -71,7 +82,7 @@ class PageHeader
                                 <input type="hidden" id="mailFrm" value="<?= FROM_EMAIL ?>">
                                 <input type="hidden" id="token" value="<?= SECURE_TOKEN ?>">
                                 <li><a class="dropdown-item changePwd" href="javascript:void(0)">Change Password</a></li>
-                                <li><a class="dropdown-item" href="../../controllers/Logout.controller.php">Logout</a></li>
+                                <li><a class="dropdown-item" href="../Login.controller.php">Logout</a></li>
                             <?php
                             } else {
                             ?>

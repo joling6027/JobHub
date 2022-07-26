@@ -16,6 +16,7 @@
     //Model classes
     define('USERS', 'Users');
     define('JOBS', 'Jobs');
+    define("JOBAPPLIED", 'JobApplied');
 
     //define password regex
     define("PHONE_VALIDATION", "/^\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/");
@@ -31,6 +32,7 @@
     define("LOCATION_ADMIN", "Location: ./admin/Index.controller.php");
     define("LOCATION_USER", "Location: ./Register.controller.php");
     define("LOCATION_USER_DETAILS", "Location: ./admin/User_details.controller.php");
+    define("LOCATION_USER_ENTRANCE","Location: ./user_entrance.controller.php");
     define("SECURE_TOKEN", "5f66daf9-e5a0-4ac4-9bea-768012559fde");
     define("FROM_EMAIL", "jaspal3101@gmail.com");
 
