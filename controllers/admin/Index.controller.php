@@ -47,7 +47,7 @@
         if(!empty($_POST) && isset($_POST))
         {
             $job = new Jobs();
-            $job->setCategory($_POST['categoryDD']);
+            $job->setJobCategory($_POST['categoryDD']);
             $job->setJobLocation($_POST['jobLocation']);
             $job->setJobType($_POST['typeDD']);
             $job->getJobPosition($_POST['jobtitle']);

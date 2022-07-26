@@ -83,10 +83,18 @@ VALUES('FT', 'Full-Time'),
       ('PT', 'Part-Time');
 
 
+-- insert two fake user for testing purpose
+-- pass: Aaa1234@
+INSERT INTO Users (Fname, Lname, Email, Phone, Password, Role, Agreement)
+VALUES ('Jojo','Weng','wengj4@student.douglascollege.ca','2361231234','$2y$10$.h5F6xiIMqJQabpNOirYVuufISzwF60u2GusEh6peEjX2jaqPbFXa','Admin',1);
+-- pass: Aaa2234@
+INSERT INTO Users (Fname, Lname, Email, Phone, Password, Role, Agreement)
+VALUES ('Amy','LaRoy','amylaroy@douglascollege.ca','2451001000','$2y$10$wrcO2atixWgtlY2rWr3/neBGFoNvRAvzNCSymDVtc66DP/fU13dye','User',1);
+
 
 -- insert some data for jobs
 INSERT INTO Jobs (JobLocation, JobCategory, JobType, JobPosition, Salary, JobDescription, Duty, Qualification, Benefits, CompanyName, CreatedOn)
-VALUES('Vancouver,BC', 'IT','FT','Software Engineer Full Stack Entry Level',4300,'You will work across the stack and have the opportunity to develop new infrastructure that our customers will use to manage their operations and fleet of assets. As a vertically integrated hardware/software solution that is deployable worldwide, our product presents unique challenges including IOT, cloud, security, firmware, billing, analytics, iOS/Android apps, etc. As an early member of our engineering team, you''ll have many opportunities to forge our best practices, technical decisions, and create areas of ownership for yourself.','
+VALUES('Vancouver, BC', 'IT','FT','Software Engineer Full Stack Entry Level',4300,'You will work across the stack and have the opportunity to develop new infrastructure that our customers will use to manage their operations and fleet of assets. As a vertically integrated hardware/software solution that is deployable worldwide, our product presents unique challenges including IOT, cloud, security, firmware, billing, analytics, iOS/Android apps, etc. As an early member of our engineering team, you''ll have many opportunities to forge our best practices, technical decisions, and create areas of ownership for yourself.','
     Write code. Our languages and frameworks include Groovy/Grails, Java, JS/Node.js/AngularJS, C++, Python, PostgreSQL and others.<br>
     Architect your own features. </br>Engineers at Keycafe are given wide latitude on how to approach problems, but be ready for technical feedback.<br>
     Collaborate with product management and other teams to achieve customer experience objectives.<br>
@@ -102,7 +110,7 @@ Ability to work within a team and accept technical feedback','
 ','HastingCafe','2022-07-23');
 
 INSERT INTO Jobs (JobLocation, JobCategory, JobType, JobPosition, Salary, JobDescription, Duty, Qualification, Benefits, CompanyName, CreatedOn)
-VALUES ('Burnaby,BC','IT','FT','Entry-Level Software Developer',4000,'As an entry level software developer, you will work in a collaborative environment where you will play a key role in designing, developing, testing, maintaining, and delivering customized mission-critical solutions to our clients.',' Maintaining existing applications for current clients<br>
+VALUES ('Burnaby, BC','IT','FT','Entry-Level Software Developer',4000,'As an entry level software developer, you will work in a collaborative environment where you will play a key role in designing, developing, testing, maintaining, and delivering customized mission-critical solutions to our clients.',' Maintaining existing applications for current clients<br>
 Constantly improving skills set and sharing new knowledge with others on the team<br>
 Design, develop, document, test and debug complex and large-scale applications<br>
 Participate in the full software development life cycle<br>
@@ -125,7 +133,7 @@ Experience with MS SQL Server, or database design a plus<br>',
 ','RedMane Technology','2022-07-10');
 
 INSERT INTO Jobs (JobLocation, JobCategory, JobType, JobPosition, Salary, JobDescription, Duty, Qualification, Benefits, CompanyName, CreatedOn)
-VALUES ('Vancouver,BC', 'IT','PT','Software Testing Engineer',6000,'As a Software Engineer in Test you will work as part of the Quality team responsible for delivering an enterprise class NetApp software product. Through the application of systematic test tools and processes you will help deliver reliable, innovative storage and data management products. You will be part of a team that develops, modifies, and executes automated software test plans; analyzes and writes test standards and procedures; maintains documentation of results; and works closely with development engineers in feature development and resolution of problems.','As a software engineer you would participate in product design, development, verification, troubleshooting, and delivery of a system or major subsystems. This position requires an individual to be creative, team-oriented, technology savvy, driven to produce results and demonstrates the ability to take a cross-team leadership role.',
+VALUES ('Vancouver, BC', 'IT','PT','Software Testing Engineer',6000,'As a Software Engineer in Test you will work as part of the Quality team responsible for delivering an enterprise class NetApp software product. Through the application of systematic test tools and processes you will help deliver reliable, innovative storage and data management products. You will be part of a team that develops, modifies, and executes automated software test plans; analyzes and writes test standards and procedures; maintains documentation of results; and works closely with development engineers in feature development and resolution of problems.','As a software engineer you would participate in product design, development, verification, troubleshooting, and delivery of a system or major subsystems. This position requires an individual to be creative, team-oriented, technology savvy, driven to produce results and demonstrates the ability to take a cross-team leadership role.',
 'Experience with multiple programming languages is a benefit but there is also room to improve your skills.<br>
 Most entry-level engineers have a level of proficiency in: C, C++, Java and/or Python<br>
 Projects, experiences, or coursework related to areas such as: Operating Systems, Computer Architecture, Multi-Threading, Data Structures & Algorithms<br>
@@ -135,7 +143,7 @@ Strong oral and written communication is necessary for success<br>
 Ability to work on a diverse team or with a diverse range of people.<br>','','NetApp','2022-07-21');
 
 INSERT INTO Jobs (JobLocation, JobCategory, JobType, JobPosition, Salary, JobDescription, Duty, Qualification, Benefits, CompanyName, CreatedOn)
-VALUES ('Vancouver,BC','IT','FT','Full Stack Software Engineer',3500,'Forsta is looking for experienced Python engineers who love to build and deliver great products to the market. We are building our next generation of products and we want them to be beautiful, functional and interactive.','','
+VALUES ('Vancouver, BC','IT','FT','Full Stack Software Engineer',3500,'Forsta is looking for experienced Python engineers who love to build and deliver great products to the market. We are building our next generation of products and we want them to be beautiful, functional and interactive.','','
     1+ years industry experience developing applications using Python<br>
     1+ year experience with JavaScript/React<br>
     Experience developing Rest API''s using Flask/Django frameworks will be advantage<br>
@@ -148,7 +156,7 @@ Casual work atmosphere, flexible work schedules, and a great team<br>',
 'Forsta','2022-07-24');
 
 INSERT INTO Jobs (JobLocation, JobCategory, JobType, JobPosition, Salary, JobDescription, Duty, Qualification, Benefits, CompanyName, CreatedOn)
-VALUES ('Vancouver,BC','IT','FT','Full Stack Software Engineering',5000,'You will work in a Scrum team of around seven members using C#, ASP.NET and SQL Server technologies. Experience with these, or other web technologies, as well as an undergraduate degree or diploma in Computer Science, Electrical/Computer Engineering or Engineering Physics are desired. Some background in physics, chemistry, materials science or electronics would be great, but not required.','Our daily work includes designing and developing new features for our software, interacting with interesting clients to determine their requirements and configuring and customizing our software to meet those requirements. Our software is developed with a high degree of professionalism and a strong aesthetic sense. We encourage direct communication between developers and our clients.
+VALUES ('Vancouver, BC','IT','FT','Full Stack Software Engineering',5000,'You will work in a Scrum team of around seven members using C#, ASP.NET and SQL Server technologies. Experience with these, or other web technologies, as well as an undergraduate degree or diploma in Computer Science, Electrical/Computer Engineering or Engineering Physics are desired. Some background in physics, chemistry, materials science or electronics would be great, but not required.','Our daily work includes designing and developing new features for our software, interacting with interesting clients to determine their requirements and configuring and customizing our software to meet those requirements. Our software is developed with a high degree of professionalism and a strong aesthetic sense. We encourage direct communication between developers and our clients.
 
 If this resonates with you, we’d love to talk with you.','Software Development Occupations: 1 year (preferred)','
     Casual dress
@@ -161,3 +169,20 @@ If this resonates with you, we’d love to talk with you.','Software Development
     On-site parking
     Vision care
 ','Quartz Imaging Corporation','2022-06-30');
+
+INSERT INTO Jobs (JobLocation, JobCategory, JobType, JobPosition, Salary, JobDescription, Duty, Qualification, Benefits, CompanyName, CreatedOn)
+VALUES ('Richmond, BC','MT','FT','WonderFi Software Project Coordinator Intern', 3500,
+'We''re looking for a passionate and organized student who wants to explore an exciting opportunity to dive into the world of cryptocurrency and gain extensive experience managing teams and projects. In this role, you will be expected to communicate with multiple stakeholders and leaders at the company. You will also be expected to use tools such as the Agile methodology, SCRUM practices and Jira Software Management to manage and keep track of projects and their progress.',
+'Participate in Software development to build high quality and scalable infrastructure.<br>
+Participate in research, design, development, testing and documenting blockchain technologies.<br>
+Help develop interactive interfaces for decentralized applications (dApps).<br>
+Take on a leadership role to help delegate project tasks to teams best suited for completing them.<br>',
+'Communication skills, both written and verbal<br>
+&#8226; Delegating project tasks to teams best suited for completing them<br>
+&#8226; Working with stakeholders such as the Product team to detail specific project deliverables<br>
+&#8226; Working with stakeholders like the Customer Success team or the Marketing team on creating tasks or bug tickets for the Engineering teams<br>
+&#8226; Tracking progress and providing regular reports on project status to project team and key stakeholders<br>',
+'Competitive salary<br>
+ Dental and vision care<br>
+ Flexible schedule<br>',
+ 'BiTbyte Tech Inc.','2022-06-29');

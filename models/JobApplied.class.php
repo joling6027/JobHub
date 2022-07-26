@@ -4,8 +4,6 @@
         private $AppliedID;
         private $UserID;
         private $JobID;
-        private $JobType;
-        private $JobPosition;
         private $DesiredPay;
         private $AdditionalUrls;
         private $Comments;
@@ -34,23 +32,6 @@
 
         function setJobID(int $jobId){
             $this->JobID = $jobId;
-        }
-
-        function getJobType():string{
-            return $this->JobType;
-        }
-
-        function setJobType(string $jobType){
-            $this->JobType = $jobType;
-        }
-
-
-        function getJobPosition():string{
-            return $this->JobPosition;
-        }
-
-        function setJobPosition(string $jobPosition){
-            $this->JobPosition = $jobPosition;
         }
 
         function getComments():string{

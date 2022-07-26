@@ -11,7 +11,7 @@ class PageRegister
                 <div class="container h-100">
                     <div class="row d-flex justify-content-center align-items-center h-100">
                         <div class="col-lg-12 col-xl-11">
-                            <div class="card mb-2" style="border-radius: 25px;">
+                            <div class="card mb-2" style="border-radius: 25px; z-index:auto">
                                 <div class="card-body p-md-5">
                                     <div class="row justify-content-center">
                                         <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-2 order-lg-1">
