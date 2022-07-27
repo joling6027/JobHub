@@ -27,10 +27,10 @@ CREATE TABLE Jobs (
  JobType VARCHAR(4) NOT NULL,
  JobPosition VARCHAR(50) NOT NULL,
  Salary NUMERIC(8) CHECK (Salary > 0),
- JobDescription VARCHAR(500) NOT NULL,
- Duty VARCHAR(500),
- Qualification VARCHAR(500),
- Benefits VARCHAR(500),
+ JobDescription VARCHAR(1000) NOT NULL,
+ Duty VARCHAR(1000),
+ Qualification VARCHAR(1000),
+ Benefits VARCHAR(800),
  CompanyName VARCHAR(200) NOT NULL,
  CreatedOn DATE DEFAULT NULL,
  PRIMARY KEY ( JobID )
@@ -158,7 +158,7 @@ Casual work atmosphere, flexible work schedules, and a great team<br>',
 INSERT INTO Jobs (JobLocation, JobCategory, JobType, JobPosition, Salary, JobDescription, Duty, Qualification, Benefits, CompanyName, CreatedOn)
 VALUES ('Vancouver, BC','IT','FT','Full Stack Software Engineering',5000,'You will work in a Scrum team of around seven members using C#, ASP.NET and SQL Server technologies. Experience with these, or other web technologies, as well as an undergraduate degree or diploma in Computer Science, Electrical/Computer Engineering or Engineering Physics are desired. Some background in physics, chemistry, materials science or electronics would be great, but not required.','Our daily work includes designing and developing new features for our software, interacting with interesting clients to determine their requirements and configuring and customizing our software to meet those requirements. Our software is developed with a high degree of professionalism and a strong aesthetic sense. We encourage direct communication between developers and our clients.
 
-If this resonates with you, we’d love to talk with you.','Software Development Occupations: 1 year (preferred)','
+If this resonates with you, we''d love to talk with you.','Software Development Occupations: 1 year (preferred)','
     Casual dress
     Dental care
     Disability insurance
@@ -186,3 +186,72 @@ Take on a leadership role to help delegate project tasks to teams best suited fo
  Dental and vision care<br>
  Flexible schedule<br>',
  'BiTbyte Tech Inc.','2022-06-29');
+
+ INSERT INTO Jobs (JobLocation, JobCategory, JobType, JobPosition, Salary, JobDescription, Duty, Qualification, Benefits, CompanyName, CreatedOn)
+ VALUES ('Burnaby, BC','MT','FT','Project Manager (Traffic)', 6500,'You love working in a team to see projects through from start to finish, and you''re a proactive problem solver who doesn''t let a project hiccup slow you down. You have progressive experience working on project teams and place a high importance on quality work.<br>
+  As a Project Manager, you will report to our Traffic Division Manager, and work alongside a tight-knit team of approximately 11 staff. You will interact with a wide variety of clients and oversee the delivery of a portfolio of traffic engineering services. You will manage design projects for both private and public clients, and collaborate with members of the Traffic team, as well as many other parts of the business. Projects can range from stand-alone traffic assignments to providing support on major infrastructure projects, and everything in between.','
+    Engaging in active business development<br>
+    Acting as the key contact on projects working with clients, stakeholders, consultants, contractors, and support staff<br>
+    Preparing proposals and reports in coordination with our proposal team and senior staff<br>
+    Developing project schedules and coordinating resources<br>
+    Monitoring budget and progress on projects<br>
+    Providing guidance to the internal project team<br>',
+    '
+    Engaging in active business development<br>
+    Acting as the key contact on projects working with clients, stakeholders, consultants, contractors, and support staff<br>
+    Preparing proposals and reports in coordination with our proposal team and senior staff<br>
+    Developing project schedules and coordinating resources<br>
+    Monitoring budget and progress on projects<br>
+    Providing guidance to the internal project team<br>',
+'People come first. We support you with the education, mentoring, and growth opportunities you need to build an interesting career. As an employee-owned firm, we create a clear internal growth path that can keep up with even the most ambitious professionals. We are connected from our field staff to each of our six offices and we support communication between all staff, and across all divisions. You''ll be well connected to the rest of Binnie via phone, video conferencing, and our popular intranet. Whether it''s joining a book club, or writing about your experience in the field, everyone can get involved in their own way.',
+'Binnie',
+'2022-05-15');
+
+ INSERT INTO Jobs (JobLocation, JobCategory, JobType, JobPosition, Salary, JobDescription, Duty, Qualification, Benefits, CompanyName, CreatedOn)
+ VALUES ('Vancouver, BC','MT','FT','Project Manager',5500,'We are looking for a Project Manager who will provide our clients and colleagues with a proactive, strategic, measurable and organized approach to holistic marketing strategies and product implementation. This role partners project management, business analysis skills, and effective communication skills to ensure that the necessary information of a project is delivered to the key stakeholders while keeping projects moving and within scope. The Project Manager works with internal teams to manage deliverables, but also owns client relationships providing excellent client service throughout every stage of work. This position would be part of our Project Delivery Team, and reports to our Director of Project Delivery.',
+ 'Collaborate with all VERB Internal departments on key projects and process efficiency including, Discovery, Design, Marketing, Development, QA, and IT Operations<br>
+Work closely with projects and the Account Directors to ensure total service delivery excellence in meeting deadlines, budgets, and quality assurance
+Create and maintain project schedules, internal and external status reports, risk and issues logs.<br>
+Act as the project expert/product owner who has an intimate understanding of the entire solution.<br>
+Plan and facilitate client workshops and requirements gathering meetings.<br>
+Define and prioritize requirements for web projects using various needs analysis techniques.<br>
+Craft requirements documents with technical specifications, functionalities, and/or user stories.<br>
+Translates conceptual ideas into technically feasible CMS web solutions.<br>
+Administrator and/or build new web pages, make changes to existing modules, implement modules/widgets/content templates, research new modules or enhancements within Wordpress and/or Drupal Content Management Systems.<br>
+Oversee the implementation of campaigns for clients, this may be small, one-off social media campaigns or large-scale integrated marketing campaigns.<br>
+Working closely with the Project Delivery Team, there will be the opportunity to help shape processes used throughout the organization.<br>',
+'
+    Must possess at least 2 years of experience with project management responsibilities
+    Bachelor''s degree/equivalent in business administration or related field (or equivalent experience)
+    Experience implementing Agile project management methodologies
+    Experience developing requirements, use cases, user stories, etc
+    Experience working with a Content Management System (CMS) within an agency setting (Wordpress and Drupal)
+    Knowledge of project delivery processes, including Discover, Definition, Design, Develop, Deploy
+    Willingness and attitude to help project teams find workable and pragmatic solutions
+    Superb verbal and written communication skills
+    Excellent organizational and prioritization',
+    ' Our benefits are anything but basic, with vacation time available on day one (not to mention an extra bonus week during the holidays), an annual travel credit (for non-work related travel), and free office snacks and drinks to keep you energized when you''re around.
+In addition, we offer the following and are consistently looking for new ways to enhance the benefits we offer to our team:<br>
+&#8226;100% premium share option for Group Health Insurance (medical, dental, vision), with a health spending account to top up your claims<br>
+&#8226;A healthy living account<br>
+&#8226;Company matching RRSP program<br>
+&#8226;Top up for Parental/Pregnancy leave<br>
+&#8226;Remote and flexible work arrangements<br>
+&#8226;Transit and fitness discounts<br>
+&#8226;Recreational sports teams<br>
+&#8226;Learning and development opportunities with a multitude of resources<br>
+&#8226;Internal recognition programs',
+'VERB Interactive','2022-07-20');
+
+INSERT INTO Jobs (JobLocation, JobCategory, JobType, JobPosition, Salary, JobDescription, Duty, Qualification, Benefits, CompanyName, CreatedOn)
+ VALUES ('Vancouver, BC','MT','FT','IT Project Management Specialist (SDLC)',4500,'A master organizer and communicator with an eagle eye for detail and a talent for delivering value to clients in the most efficient way possible. Your superpower Helping organizations perform better and achieve their goals through project management activities-plans, estimates, scope, and requirements, from kickoff to rollout. You''re a pragmatist who''s always ready to take the helm on technology projects. You bring creativity and flexibility to your game, and you''re a natural at building an atmosphere of trust, openness, and communication so partners work well together on shared objectives. Negotiating and time-management skills You have both in spades, along with a gift for getting diverse stakeholders on the same page when it comes to priorities and direction.',
+ 'Have overall accountability to lead and implement quality projects while meeting cost, schedule and scope using Agile Methodologies and tools.<br>
+Direct large-scale, complex projects often involving multiple internal and external constituents and matrix partners.<br>
+Monitors and controls the project.<br>
+Process recommendations and adjustments to the Accountable Executive and publishes periodic project status reports.<br>',
+' 3 years'' experience with end-to-end solution delivery in software/IT Projects such as applications development, software upgrades, and systems integration.<br>
+Full software development life cycle (SDLC) Experience working directly with developers.<br>
+Financial management skills in developing and tracking project budget & P&L.<br>
+Hands on experience with project management tools such as MS Project, and project management methodologies (margins, budget, timelines, scope, and quality to make better business decisions).<br>
+Bachelor''s degree or equivalent.',
+'','Accenture','2022-07-20');

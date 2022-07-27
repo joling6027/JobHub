@@ -59,9 +59,10 @@
             $this->AdditionalUrls = $additionalUrl;
         }
 
-        function getResume()
+
+        function getResume(): string
         {
-            $this->Resume;
+            return $this->Resume;
         }
 
         function setResume($resume)
