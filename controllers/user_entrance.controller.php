@@ -24,6 +24,7 @@ $jobs = JobsDAO::getJobs();
 if(LoginManager::verifyLogin()){
   
   UsersDAO::initialize(USERS);
+  JobAppliedDAO::initialize(JOBAPPLIED);
   $user = UsersDAO::getUser($_SESSION['username']['Email']);
   PageHeader::header(true);
 
@@ -58,11 +59,11 @@ if (isset($_GET['jobdesc']) && isset($_GET['jobid'])) {
       } else {
         // $file_name = $_FILES['resume']['name'];
         $file_tmp = $_FILES['resume']['tmp_name'];
-        if ($pdf_blob = fopen($file_tmp, "rb")) {
+        if ($pdf_blob = file_get_contents($file_tmp)) {
           $applicant->setResume($pdf_blob);
 
           //save to database
-          JobAppliedDAO::initialize(JOBAPPLIED);
+          
           $apply = JobAppliedDAO::createNewJobApplied($applicant);
         } else {
           echo "Could not open the attached file.";

@@ -50,7 +50,7 @@ class UserPage
               <!-- second for loop here -->
               <?php
               for ($i = 4; $i < count($jobData); $i++) {
-                if ($jobData[$i]->getJobCategory() == 'IT' &&  $i < 8) {
+                if ($jobData[$i]->getJobCategory() == 'IT') {
 
                   $link = $_SERVER['PHP_SELF'] . "?jobdesc=true&jobid=" . $jobData[$i]->getJobId();
                   echo "<a class=\"card me-2\" href=\"" . $link . "\" style=\"z-index:1; max-width: 15rem;\">";
@@ -194,13 +194,19 @@ class UserPage
                             <?= $job->getJobDescription() ?>
                           </p>
                           <!-- SQL ATTR: duty -->
-                          <li class="fs-5">What You'll Do:</li>
+                          <?php if($job->getDuty() != ''){
+                            echo "<li class=\"fs-5\">What You'll Do:</li>";
+                          } ?>
                           <p><?= $job->getDuty() ?></p>
                           <!-- SQL ATTR: qualification -->
-                          <li class="fs-5">About you:</li>
+                          <?php if($job->getQualification() != ''){
+                              echo "<li class=\"fs-5\">About you:</li>";
+                          } ?>
                           <p><?= $job->getQualification() ?></p>
                           <!-- SQL ATTR: benefits -->
-                          <li class="fs-5">Benefits:</li>
+                          <?php if($job->getBenefits() != ''){
+                            echo "<li class=\"fs-5\">Benefits:</li>";
+                          }  ?>
                           <p><?= $job->getBenefits() ?></p>
                         </ul>
                       </div>
