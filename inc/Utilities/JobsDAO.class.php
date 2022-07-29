@@ -9,6 +9,10 @@
         }
 
         static function createJob(Jobs $jobs): int{
+
+            echo "<pre>";
+            var_dump($_POST);
+            echo "</pre>";
    
             try{
 
