@@ -50,13 +50,11 @@
        
         if(!empty($_POST) && isset($_POST))
         {
-
-
             $job = new Jobs();
             $job->setJobCategory($_POST['categoryDD']);
             $job->setJobLocation($_POST['jobLocation']);
             $job->setJobType($_POST['typeDD']);
-            $job->setJobPosition($_POST['jobtitle']);
+            $job->getJobPosition($_POST['jobtitle']);
             $job->setsalary($_POST['salary']);
             $job->setJobDescription($_POST['descriptionTA']);
             $job->setDuty($_POST['dutyTA']);
