@@ -9,162 +9,255 @@ class UserPage
   {
 ?>
     <!-- job-posting part -->
-    <div class="ms-3" id="nav-jobs" role="tabpanel" aria-labelledby="nav-jobs-tab" tabindex="0">
-      <h4 class="mt-5 ms-3">Information Technology</h4>
-      <div id="carousel1" class="carousel slide " data-bs-ride="carousel">
-        <div class="carousel-inner d-flex">
-          <div class="carousel-item active">
-            <div class="d-flex mt-2 px-5">
-              <!-- placing a for loop here -->
-              <?php
-              // echo "<pre>";
-              // foreach($jobData as $job){
-              //   var_dump($job);
-              // }
-              // echo "</pre>";
+    <?php
+    $c1 = 0;
+    $c2 = 0;
+    $c3 = 0;
 
-              for ($i = 0; $i < count($jobData); $i++) {
-                if ($jobData[$i]->getJobCategory() == 'IT' && $i < 4) {
-                  // for ($j = 0; $j < 4; $j++) {
-                  $link = $_SERVER['PHP_SELF'] . "?jobdesc=true&jobid=" . $jobData[$i]->getJobId();
-                  echo "<a class=\"card me-2\" href=\"" . $link . "\" style=\"z-index:1 ;max-width: 15rem;\">";
+    for ($i = 0; $i < count($jobData); $i++) {
+      if ($jobData[$i]->getJobCategory() == 'IT') {
+        self::$jobArray['IT'][$c1] = $jobData[$i];
+        $c1++;
+      } elseif ($jobData[$i]->getJobCategory() == 'MT') {
+        self::$jobArray['MT'][$c2] = $jobData[$i];
+        $c2++;
+      } elseif ($jobData[$i]->getJobCategory() == 'LB') {
+        self::$jobArray['LB'][$c3] = $jobData[$i];
+        $c3++;
+      }
+    }
+    ?>
+    <div class="ms-3" id="nav-jobs" role="tabpanel" aria-labelledby="nav-jobs-tab" tabindex="0">
+      <?php if (!empty(self::$jobArray['IT'])) {  ?>
+        <h4 class="mt-5 ms-3">Information Technology</h4>
+        <div id="carousel1" class="carousel slide " <?= (count(self::$jobArray['IT']) > 4) ? "data-bs-ride=\"carousel\"" : "" ?>>
+          <div class="carousel-inner d-flex">
+            <div class="carousel-item active">
+              <div class="d-flex mt-2 ms-5 px-5">
+                <!-- placing a for loop here -->
+                <?php
+
+                for ($i = 0; $i < count(self::$jobArray['IT']); $i++) {
+                  if ($i < 4) {
+                    $link = $_SERVER['PHP_SELF'] . "?jobdesc=true&jobid=" . self::$jobArray['IT'][$i]->getJobId();
+                    echo "<a class=\"card me-2\" href=\"" . $link . "\" style=\"z-index:1; width: 15rem; height: 18rem;\">";
+                    echo "<div class=\"card-body\">";
+                    echo "<h6 class=\"card-subtitle mb-3 text-muted\">" . self::$jobArray['IT'][$i]->getCompanyName() . "</h6>";
+                    echo "<h5 class=\"card-title\">" . self::$jobArray['IT'][$i]->getJobPosition() . "</h5>";
+                    echo "<p class=\"card-text\">" . substr(self::$jobArray['IT'][$i]->getJobDescription(), 0, 90) . "..." . "</p>";
+                    echo "<h6 class=\"card-subtitle mb-3 text-muted\">Pay: $" . self::$jobArray['IT'][$i]->getSalary() . " a month</h6>";
+                    $job_type = '';
+                    if (self::$jobArray['IT'][$i]->getJobType() == 'FT') $job_type = 'Full-Time';
+                    else $job_type = 'Part-Time';
+                    echo "<h6 class=\"card-subtitle mb-2 px-2 badge rounded-pill bg-primary text-white\">" . $job_type . "</h6>";
+                    echo "</div></a>";
+                  }
+                }
+
+                ?>
+              </div>
+            </div>
+            <?php
+            $page = 1;
+            $results_per_page = 4;
+            $number_of_page = ceil(count(self::$jobArray['IT']) / $results_per_page); //2
+
+            while ($page <  $number_of_page) {
+              echo "<div class=\"carousel-item \">";
+              echo "<div class=\"d-flex mt-3 ms-5 px-5\">";
+              for ($i = 4; $i < count(self::$jobArray['IT']); $i++) {
+                if (intdiv($i, 4) == $page) {
+                  $link = $_SERVER['PHP_SELF'] . "?jobdesc=true&jobid=" . self::$jobArray['IT'][$i]->getJobId();
+                  echo "<a class=\"card me-2\" href=\"" . $link . "\" style=\"z-index:1; width: 15rem; height: 18rem;\">";
                   echo "<div class=\"card-body\">";
-                  echo "<h6 class=\"card-subtitle mb-3 text-muted\">" . $jobData[$i]->getCompanyName() . "</h6>";
-                  echo "<h5 class=\"card-title\">" . $jobData[$i]->getJobPosition() . "</h5>";
-                  echo "<p class=\"card-text\">" . substr($jobData[$i]->getJobDescription(), 0, 90) . "..." . "</p>";
-                  echo "<h6 class=\"card-subtitle mb-3 text-muted\">Pay: $" . $jobData[$i]->getSalary() . " a month</h6>";
+                  echo "<h6 class=\"card-subtitle mb-3 text-muted\">" . self::$jobArray['IT'][$i]->getCompanyName() . "</h6>";
+                  echo "<h5 class=\"card-title\">" . self::$jobArray['IT'][$i]->getJobPosition() . "</h5>";
+                  echo "<p class=\"card-text\">" . substr(self::$jobArray['IT'][$i]->getJobDescription(), 0, 90) . "..." . "</p>";
+                  echo "<h6 class=\"card-subtitle mb-3 text-muted\">Pay: $" . self::$jobArray['IT'][$i]->getSalary() . " a month</h6>";
                   $job_type = '';
-                  if ($jobData[$i]->getJobType() == 'FT') $job_type = 'Full-Time';
+                  if (self::$jobArray['IT'][$i]->getJobType() == 'FT') $job_type = 'Full-Time';
                   else $job_type = 'Part-Time';
                   echo "<h6 class=\"card-subtitle mb-2 px-2 badge rounded-pill bg-primary text-white\">" . $job_type . "</h6>";
                   echo "</div></a>";
                   // }
                 }
               }
+              $page++;
+              echo "</div></div>";
+            }
 
-              ?>
-            </div>
-          </div>
-          <div class="carousel-item ">
-            <div class="d-flex mt-3 px-5">
-              <!-- second for loop here -->
-              <?php
-              for ($i = 4; $i < count($jobData); $i++) {
-                if ($jobData[$i]->getJobCategory() == 'IT') {
-
-                  $link = $_SERVER['PHP_SELF'] . "?jobdesc=true&jobid=" . $jobData[$i]->getJobId();
-                  echo "<a class=\"card me-2\" href=\"" . $link . "\" style=\"z-index:1; max-width: 15rem;\">";
-                  echo "<div class=\"card-body\">";
-                  echo "<h6 class=\"card-subtitle mb-3 text-muted\">" . $jobData[$i]->getCompanyName() . "</h6>";
-                  echo "<h5 class=\"card-title\">" . $jobData[$i]->getJobPosition() . "</h5>";
-                  echo "<p class=\"card-text\">" . substr($jobData[$i]->getJobDescription(), 0, 90) . "..." . "</p>";
-                  echo "<h6 class=\"card-subtitle mb-3 text-muted\">Pay: $" . $jobData[$i]->getSalary() . " a month</h6>";
-                  $job_type = '';
-                  if ($jobData[$i]->getJobType() == 'FT') $job_type = 'Full-Time';
-                  else $job_type = 'Part-Time';
-                  echo "<h6 class=\"card-subtitle mb-2 px-2 badge rounded-pill bg-primary text-white\">" . $job_type . "</h6>";
-                  echo "</div></a>";
-                }
-              }
-              ?>
-            </div>
-          </div>
-          <?php  ?>
-
-          <button style="position: absolute; left:-60px" class="carousel-control-prev" type="button" data-bs-target="#carousel1" data-bs-slide="prev">
-            <svg class="carousel-control-prev-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#000">
-              <path d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
-            </svg>
-
-          </button>
-          <button class="carousel-control-next" style="position: absolute; right:-60px" type="button" data-bs-target="#carousel1" data-bs-slide="next">
-            <svg class="carousel-control-next-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#000">
-              <path d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      <!-- second category -->
-      <h4 class="mt-5 ms-3">Management</h4>
-      <div id="carousel2" class="carousel slide " data-bs-ride="carousel">
-        <button style="position: absolute; left:-60px" class="carousel-control-prev" id="carousel-prev" type="button" data-bs-target="#carousel2" data-bs-slide="prev">
-          <svg class="carousel-control-prev-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#000">
-            <path d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
-          </svg>
-        </button>
-        <button style="position: absolute; right:-60px" class="carousel-control-next" id="carousel-next" type="button" data-bs-target="#carousel2" data-bs-slide="next">
-          <svg class="carousel-control-next-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#000">
-            <path d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
-          </svg>
-        </button>
-        <div class="carousel-inner d-flex">
-          <div class="carousel-item active">
-      <!-- second category -->
-      <h4 class="mt-5 ms-3">Management</h4>
-      <div id="carousel2" class="carousel slide ">
-        <button style="position: absolute; left:-60px" class="carousel-control-prev" id="carousel-prev" type="button" data-bs-target="#carousel2" data-bs-slide="prev">
-          <svg class="carousel-control-prev-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#000">
-            <path d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
-          </svg>
-        </button>
-        <button style="position: absolute; right:-60px" class="carousel-control-next" id="carousel-next" type="button" data-bs-target="#carousel2" data-bs-slide="next">
-          <svg class="carousel-control-next-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#000">
-            <path d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
-          </svg>
-        </button>
-        <div class="carousel-inner d-flex">
-          <div class="carousel-item active" data-bs-interval="false">
-            <div class="d-flex mt-2  px-5">
-              <?php
-              $counter = 0;
-              for ($i = 0; $i < count($jobData); $i++) {
-                if ($jobData[$i]->getJobCategory() == 'MT') {
-                  // echo "<div class=\"d-flex mt-2 px-5\">";
-                  $link = $_SERVER['PHP_SELF'] . "?jobdesc=true&jobid=" . $jobData[$i]->getJobId();
-                  echo "<a class=\"card me-2\" href=\"" . $link . "\" style=\"z-index:1 ;max-width: 15rem;\">";
-                  echo "<div class=\"card-body\">";
-                  echo "<h6 class=\"card-subtitle mb-3 text-muted\">" . $jobData[$i]->getCompanyName() . "</h6>";
-                  echo "<h5 class=\"card-title\">" . $jobData[$i]->getJobPosition() . "</h5>";
-                  echo "<p class=\"card-text\">" . substr($jobData[$i]->getJobDescription(), 0, 90) . "..."."</p>";
-                  echo "<h6 class=\"card-subtitle mb-3 text-muted\">Pay: $" . $jobData[$i]->getSalary() . "  a month</h6>";
-                  $job_type = '';
-                  if ($jobData[$i]->getJobType() == 'FT') $job_type = 'Full-Time';
-                  else $job_type = 'Part-Time';
-                  echo "<h6 class=\"card-subtitle mb-2 px-2 badge rounded-pill bg-primary text-white\">" . $job_type . "</h6>";
-                  echo "</div></a>";
-
-                  $counter++;
-                }
-                if($counter > 4){
-                  break;
-                }
-              }
-              ?>
-            </div>
-          </div>
-          <div class="carousel-item ">
+            ?>
+            <!-- control button -->
             <?php
-            for ($i = 4; $i < count($jobData); $i++) {
-              if ($jobData[$i]->getJobCategory() == 'MB' && $i < 8) {
-                // echo "<div class=\"d-flex mt-2 px-5\">";
-                $link = $_SERVER['PHP_SELF'] . "?jobdesc=true&jobid=" . $jobData[$i]->getJobId();
-                echo "<a class=\"card me-2\" href=\"" . $link . "\" style=\"z-index:1 ;\">";
-                echo "<div class=\"card-body\">";
-                echo "<h6 class=\"card-subtitle mb-3 text-muted\">" . $jobData[$i]->getCompanyName() . "</h6>";
-                echo "<h5 class=\"card-title\">" . $jobData[$i]->getJobPosition() . "</h5>";
-                echo "<p class=\"card-text\">Some quick example text to build on the card title and make up the bulk of the card's
-                    content.</p>";
-                echo "<h6 class=\"card-subtitle mb-3 text-muted\">Pay: $" . $jobData[$i]->getSalary() . " a month</h6>";
-                echo "<h6 class=\"card-subtitle mb-2 px-2 badge rounded-pill bg-primary text-white\">" . $jobData[$i]->getJobType() . "</h6>";
-                echo "</div></a>";
+            if (count(self::$jobArray['IT']) > 4) {
+            ?>
+              <button style="position: absolute; left:-60px" class="carousel-control-prev" type="button" data-bs-target="#carousel1" data-bs-slide="prev">
+                <svg class="carousel-control-prev-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#000">
+                  <path d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                </svg>
+
+              </button>
+              <button class="carousel-control-next" style="position: absolute; right:-60px" type="button" data-bs-target="#carousel1" data-bs-slide="next">
+                <svg class="carousel-control-next-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#000">
+                  <path d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                </svg>
+              </button>
+            <?php }  ?>
+          </div>
+        </div>
+      <?php } ?>
+
+      <!-- second category -->
+      <?php if (!empty(self::$jobArray['MT'])) {  ?>
+        <h4 class="mt-5 ms-3">Management</h4>
+        <div id="carousel2" class="carousel slide " <?= (count(self::$jobArray['MT']) > 4) ? "data-bs-ride=\"carousel\"" : "" ?>>
+
+          <!-- control button -->
+          <?php if (count(self::$jobArray['MT']) > 4) {  ?>
+            <button style="position: absolute; left:-60px" class="carousel-control-prev" id="carousel-prev" type="button" data-bs-target="#carousel2" data-bs-slide="prev">
+              <svg class="carousel-control-prev-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#000">
+                <path d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+              </svg>
+            </button>
+            <button style="position: absolute; right:-60px" class="carousel-control-next" id="carousel-next" type="button" data-bs-target="#carousel2" data-bs-slide="next">
+              <svg class="carousel-control-next-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#000">
+                <path d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+              </svg>
+            </button>
+          <?php } ?>
+
+          <div class="carousel-inner d-flex">
+            <div class="carousel-item active">
+              <div class="d-flex mt-3 ms-5 px-5">
+                <?php
+                for ($i = 0; $i < count(self::$jobArray['MT']); $i++) {
+                  if ($i < 4) {
+                    // echo "<div class=\"d-flex mt-2 px-5\">";
+                    $link = $_SERVER['PHP_SELF'] . "?jobdesc=true&jobid=" . self::$jobArray['MT'][$i]->getJobId();
+                    echo "<a class=\"card me-2\" href=\"" . $link . "\" style=\"z-index:1 ;max-width: 15rem;\">";
+                    echo "<div class=\"card-body\">";
+                    echo "<h6 class=\"card-subtitle mb-3 text-muted\">" . self::$jobArray['MT'][$i]->getCompanyName() . "</h6>";
+                    echo "<h5 class=\"card-title\">" . self::$jobArray['MT'][$i]->getJobPosition() . "</h5>";
+                    echo "<p class=\"card-text\">" . substr(self::$jobArray['MT'][$i]->getJobDescription(), 0, 90) . "..." . "</p>";
+                    echo "<h6 class=\"card-subtitle mb-3 text-muted\">Pay: $" . self::$jobArray['MT'][$i]->getSalary() . "  a month</h6>";
+                    $job_type = '';
+                    if (self::$jobArray['MT'][$i]->getJobType() == 'FT') $job_type = 'Full-Time';
+                    else $job_type = 'Part-Time';
+                    echo "<h6 class=\"card-subtitle mb-2 px-2 badge rounded-pill bg-primary text-white\">" . $job_type . "</h6>";
+                    echo "</div></a>";
+                  }
+                }
+                ?>
+              </div>
+            </div>
+            <?php
+            $page = 1;
+            $results_per_page = 4;
+            $number_of_page = ceil(count(self::$jobArray['MT']) / $results_per_page); //2
+
+            while ($page <  $number_of_page) {
+              echo "<div class=\"carousel-item \">";
+              echo "<div class=\"d-flex mt-3 ms-5 px-5\">";
+              for ($i = 4; $i < count(self::$jobArray['MT']); $i++) {
+                if (intdiv($i, 4) == $page) {
+                  $link = $_SERVER['PHP_SELF'] . "?jobdesc=true&jobid=" . self::$jobArray['MT'][$i]->getJobId();
+                  echo "<a class=\"card me-2\" href=\"" . $link . "\" style=\"z-index:1; width: 15rem; height: 18rem;\">";
+                  echo "<div class=\"card-body\">";
+                  echo "<h6 class=\"card-subtitle mb-3 text-muted\">" . self::$jobArray['MT'][$i]->getCompanyName() . "</h6>";
+                  echo "<h5 class=\"card-title\">" . self::$jobArray['MT'][$i]->getJobPosition() . "</h5>";
+                  echo "<p class=\"card-text\">" . substr(self::$jobArray['MT'][$i]->getJobDescription(), 0, 90) . "..." . "</p>";
+                  echo "<h6 class=\"card-subtitle mb-3 text-muted\">Pay: $" . self::$jobArray['MT'][$i]->getSalary() . " a month</h6>";
+                  $job_type = '';
+                  if (self::$jobArray['MT'][$i]->getJobType() == 'FT') $job_type = 'Full-Time';
+                  else $job_type = 'Part-Time';
+                  echo "<h6 class=\"card-subtitle mb-2 px-2 badge rounded-pill bg-primary text-white\">" . $job_type . "</h6>";
+                  echo "</div></a>";
+                }
               }
+              $page++;
+              echo "</div></div>";
+            }
+
+            ?>
+
+          </div>
+        </div>
+      <?PHP } ?>
+      <?php if (!empty(self::$jobArray['LB'])) {  ?>
+        <h4 class="mt-5 ms-3">Labour</h4>
+        <div id="carousel2" class="carousel slide " <?= (count(self::$jobArray['LB']) > 4) ? "data-bs-ride=\"carousel\"" : "" ?>>
+          <!-- control button -->
+          <?php if (count(self::$jobArray['LB']) > 4) {  ?>
+            <button style="position: absolute; left:-60px" class="carousel-control-prev" id="carousel-prev" type="button" data-bs-target="#carousel2" data-bs-slide="prev">
+              <svg class="carousel-control-prev-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#000">
+                <path d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+              </svg>
+            </button>
+            <button style="position: absolute; right:-60px" class="carousel-control-next" id="carousel-next" type="button" data-bs-target="#carousel2" data-bs-slide="next">
+              <svg class="carousel-control-next-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#000">
+                <path d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+              </svg>
+            </button>
+          <?php } ?>
+          <div class="carousel-inner d-flex">
+            <div class="carousel-item active">
+              <div class="d-flex mt-3 ms-5 px-5">
+                <?php
+                for ($i = 0; $i < count(self::$jobArray['LB']); $i++) {
+                  if ($i < 4) {
+                    // echo "<div class=\"d-flex mt-2 px-5\">";
+                    $link = $_SERVER['PHP_SELF'] . "?jobdesc=true&jobid=" . self::$jobArray['LB'][$i]->getJobId();
+                    echo "<a class=\"card me-2\" href=\"" . $link . "\" style=\"z-index:1 ;max-width: 15rem;min-height: 18rem;\">";
+                    echo "<div class=\"card-body\">";
+                    echo "<h6 class=\"card-subtitle mb-3 text-muted\">" . self::$jobArray['LB'][$i]->getCompanyName() . "</h6>";
+                    echo "<h5 class=\"card-title\">" . self::$jobArray['LB'][$i]->getJobPosition() . "</h5>";
+                    echo "<p class=\"card-text\">" . substr(self::$jobArray['LB'][$i]->getJobDescription(), 0, 90) . "..." . "</p>";
+                    echo "<h6 class=\"card-subtitle mb-3 text-muted\">Pay: $" . self::$jobArray['LB'][$i]->getSalary() . "  a month</h6>";
+                    $job_type = '';
+                    if (self::$jobArray['LB'][$i]->getJobType() == 'FT') $job_type = 'Full-Time';
+                    else $job_type = 'Part-Time';
+                    echo "<h6 class=\"card-subtitle mb-2 px-2 badge rounded-pill bg-primary text-white\">" . $job_type . "</h6>";
+                    echo "</div></a>";
+                  }
+                }
+                ?>
+              </div>
+            </div>
+            <?php
+            $page = 1;
+            $results_per_page = 4;
+            $number_of_page = ceil(count(self::$jobArray['LB']) / $results_per_page); //2
+
+            while ($page <  $number_of_page) {
+              echo "<div class=\"carousel-item \">";
+              echo "<div class=\"d-flex mt-3 ms-5 px-5\">";
+              for ($i = 4; $i < count(self::$jobArray['LB']); $i++) {
+                if (intdiv($i, 4) == $page) {
+                  $link = $_SERVER['PHP_SELF'] . "?jobdesc=true&jobid=" . self::$jobArray['LB'][$i]->getJobId();
+                  echo "<a class=\"card me-2\" href=\"" . $link . "\" style=\"z-index:1; width: 15rem; height: 18rem;\">";
+                  echo "<div class=\"card-body\">";
+                  echo "<h6 class=\"card-subtitle mb-3 text-muted\">" . self::$jobArray['LB'][$i]->getCompanyName() . "</h6>";
+                  echo "<h5 class=\"card-title\">" . self::$jobArray['LB'][$i]->getJobPosition() . "</h5>";
+                  echo "<p class=\"card-text\">" . substr(self::$jobArray['LB'][$i]->getJobDescription(), 0, 90) . "..." . "</p>";
+                  echo "<h6 class=\"card-subtitle mb-3 text-muted\">Pay: $" . self::$jobArray['LB'][$i]->getSalary() . " a month</h6>";
+
+                  $job_type = '';
+                  if (self::$jobArray['LB'][$i]->getJobType() == 'FT') $job_type = 'Full-Time';
+                  else $job_type = 'Part-Time';
+                  echo "<h6 class=\"card-subtitle mb-2 px-2 badge rounded-pill bg-primary text-white\">" . $job_type . "</h6>";
+                  echo "</div></a>";
+                }
+              }
+              $page++;
+              echo "</div></div>";
+
             }
 
             ?>
           </div>
         </div>
-      </div>
+      <?PHP } ?>
+
     </div>
   <?php
   }
