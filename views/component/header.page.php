@@ -82,7 +82,7 @@ class PageHeader
                                 <input type="hidden" id="mailFrm" value="<?= FROM_EMAIL ?>">
                                 <input type="hidden" id="token" value="<?= SECURE_TOKEN ?>">
                                 <li><a class="dropdown-item changePwd" href="javascript:void(0)">Change Password</a></li>
-                                <li><a class="dropdown-item" href="../Login.controller.php">Logout</a></li>
+                                <li><a class="dropdown-item" href="../controllers/Login.controller.php">Logout</a></li>
                             <?php
                             } else {
                             ?>
