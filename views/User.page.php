@@ -146,6 +146,23 @@ class UserPage
         <div class="carousel-inner d-flex">
           <div class="carousel-item active">
             <div class="d-flex mt-2 ms-5 px-5">
+
+      <!-- second category -->
+      <h4 class="mt-5 ms-3">Management</h4>
+      <div id="carousel2" class="carousel slide ">
+        <button style="position: absolute; left:-60px" class="carousel-control-prev" id="carousel-prev" type="button" data-bs-target="#carousel2" data-bs-slide="prev">
+          <svg class="carousel-control-prev-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#000">
+            <path d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+          </svg>
+        </button>
+        <button style="position: absolute; right:-60px" class="carousel-control-next" id="carousel-next" type="button" data-bs-target="#carousel2" data-bs-slide="next">
+          <svg class="carousel-control-next-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#000">
+            <path d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+          </svg>
+        </button>
+        <div class="carousel-inner d-flex">
+          <div class="carousel-item active" data-bs-interval="false">
+            <div class="d-flex mt-2  px-5">
               <?php
               $counter = 0;
               for ($i = 0; $i < count($jobData); $i++) {

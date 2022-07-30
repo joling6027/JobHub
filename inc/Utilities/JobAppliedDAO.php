@@ -12,7 +12,8 @@ class JobAppliedDAO{
 
     try{
 
-      $sql = "INSERT INTO Job_Applied (UserID,JobID,DesiredPay,AdditionalUrls,Comments,Resume,AppliedOn) VALUES (:userid,:jobid,:desiredPay,:additionalUrls,:comments,:resume,:appliedOn)";
+      $sql = "INSERT INTO Job_Applied (UserID,JobID,DesiredPay,AdditionalUrls,Comments,Resume,AppliedOn) 
+              VALUES (:userid,:jobid,:desiredPay,:additionalUrls,:comments,:resume,:appliedOn)";
 
       self::$db->query($sql);
       self::$db->bind(":userid", $jobApplied->getUserID());
@@ -36,15 +37,43 @@ class JobAppliedDAO{
     }
   }
 
+  static function getJobs($category):Array
+  {
+    $jobList = array();
+    $it_jobs = array();
+    $mt_jobs = array();
+    $lb_jobs = array();
+    $sql = "SELECT Jobs.JobId, Jobs.*, Job_Applied.* FROM jobs 
+            LEFT JOIN Job_Applied ON jobs.JobID = Job_Applied.JobID";
+      try
+      {
+              self::$db->query($sql);
+              self::$db->execute();
+              $jobs = self::$db->resultSet();
+              foreach($jobs as $job){
+                  if($job->JobCategory == $category[0]){
+                     $it_jobs[] = $job;
+                  }
 
+                  if($job->JobCategory == $category[1]){
+                    $mt_jobs[] = $job;
+                  }
 
+                  if($job->JobCategory == $category[2]){
+                    $lb_jobs[] = $job;
+                  }
+              }
+              
+              if(!empty($it_jobs)){$jobList['IT'] = $it_jobs;}
+              if(!empty($mt_jobs)){$jobList['MT'] = $mt_jobs;}
+              if(!empty($lb_jobs)){$jobList['LB'] = $lb_jobs;}
 
-
-
-
-
-
+              return $jobList;
+      }
+      catch(Exception $exc){
+              echo $exc->getMessage();
+              return false;
+      } 
+  }
 
 }
-
-?>
