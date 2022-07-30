@@ -1,14 +1,13 @@
 <?php
-
-    require_once('../../inc/config.inc.php');
-    require_once('../../views/component/footer.page.php');
-    require_once('../../views/component/header.page.php');
-    require_once('../../views/admin/User_details.page.php');
-    require_once('../../inc/Utilities/PDOService.php');
-    // require_once('../../inc/Utilities/JobsDAO.class.php');
-    require_once('../../inc/Utilities/UsersDAO.class.php');
+    require_once('../inc/config.inc.php');
+    require_once('../views/component/footer.page.php');
+    require_once('../views/component/header.page.php');
+    require_once('../views/User_details.page.php');
+    require_once('../inc/Utilities/PDOService.php');
+    // require_once(../../inc/Utilities/JobsDAO.class.php');
+    require_once('../inc/Utilities/UsersDAO.class.php');
     // require_once('../../models/Jobs.class.php');
-    require_once('../../models/Users.class.php');
+    require_once('../models/Users.class.php');
 
     UsersDAO::initialize(USERS);
     

@@ -35,7 +35,7 @@ class PageHeader
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
             <script src="https://smtpjs.com/v3/smtp.js"></script>
-            <script src="../../js/script.js" defer></script>
+            <script src="../js/script.js" defer></script>
             <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
             <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
             <link rel="stylesheet" type="text/css" href="../css/custom.css">
@@ -49,7 +49,7 @@ class PageHeader
 
 
                 <link rel="stylesheet" type="text/css" href="../css/custom.css">
-                <link rel="stylesheet" type="text/css" href="../../css/custom.css">
+                <!-- <link rel="stylesheet" type="text/css" href="../../css/custom.css"> -->
         </head>
 
         <body>
@@ -103,7 +103,7 @@ class PageHeader
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form id="modal-myform" class=" col" method="post" action="../../controllers/Change_password.controller.php">
+                            <form id="modal-myform" class=" col" method="post" action="../controllers/Change_password.controller.php">
                                 <div class="mb-3 otp-visible">
                                     <div class="mb-3 bg-success bg-opacity-25 mt-0 p-2 border border-success rounded sent-msg">
                                         <i><strong>Email is successfully sent. </strong>

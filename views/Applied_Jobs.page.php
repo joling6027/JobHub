@@ -47,42 +47,6 @@ class PageJobApplied
                                                 echo "</tr></tbody>";
                                             } 
                                     ?>
-
-                                        <!-- <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>mark12@gmail.com</td>
-                                            <td>6047439820</td>
-                                            <td><a href="#">resume link</a></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Mark</td>
-                                            <td>mark12@gmail.com</td>
-                                            <td>6047439820</td>
-                                            <td><a href="#">resume link</a></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td>Mark</td>
-                                            <td>mark12@gmail.com</td>
-                                            <td>6047439820</td>
-                                            <td><a href="#">resume link</a></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">4</th>
-                                            <td>Mark</td>
-                                            <td>mark12@gmail.com</td>
-                                            <td>6047439820</td>
-                                            <td><a href="#">resume link</a></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">5</th>
-                                            <td>Mark</td>
-                                            <td>mark12@gmail.com</td>
-                                            <td>6047439820</td>
-                                            <td><a href="#">resume link</a></td>
-                                        </tr> -->
                                     </tbody>
                                 </table>
                             </div>
