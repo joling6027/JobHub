@@ -3,7 +3,7 @@
 class UserPage
 {
 
-
+  private static $jobArray = [];
 
   static function showEntrance($jobData)
   {
@@ -79,7 +79,6 @@ class UserPage
                   else $job_type = 'Part-Time';
                   echo "<h6 class=\"card-subtitle mb-2 px-2 badge rounded-pill bg-primary text-white\">" . $job_type . "</h6>";
                   echo "</div></a>";
-                  // }
                 }
               }
               $page++;
@@ -240,7 +239,6 @@ class UserPage
                   echo "<h5 class=\"card-title\">" . self::$jobArray['LB'][$i]->getJobPosition() . "</h5>";
                   echo "<p class=\"card-text\">" . substr(self::$jobArray['LB'][$i]->getJobDescription(), 0, 90) . "..." . "</p>";
                   echo "<h6 class=\"card-subtitle mb-3 text-muted\">Pay: $" . self::$jobArray['LB'][$i]->getSalary() . " a month</h6>";
-
                   $job_type = '';
                   if (self::$jobArray['LB'][$i]->getJobType() == 'FT') $job_type = 'Full-Time';
                   else $job_type = 'Part-Time';
@@ -250,7 +248,6 @@ class UserPage
               }
               $page++;
               echo "</div></div>";
-
             }
 
             ?>
@@ -264,6 +261,9 @@ class UserPage
 
   static function showJobDescription($job)
   {
+    // echo "<pre>";
+    // var_dump($job);
+    // echo "</pre>";
   ?>
     <div class="container mt-5">
 
@@ -280,43 +280,44 @@ class UserPage
                       <!-- SQL ATTR: jobPosition -->
                       <h3 class="text-left"><?= $job->getJobPosition() ?></h3>
                       <!-- SQL ATTR: companyName -->
-                      <span class="text-left fs-5"><?= $job->getCompanyName() ?></span>
+                      <h5 class="text-left fs-5"><?= $job->getCompanyName() ?></h5>
                       <!-- SQL ATTR: jobLocation -->
-                      <span class="text-left fs-5"><?= $job->getJobLocation() ?></span>
+                      <h5 class="text-left fs-5"><?= $job->getJobLocation() ?></h5>
                       <!-- SQL ATTR: jobType -->
                       <?php
                       $job_type = '';
                       if ($job->getJobType() == 'FT') $job_type = 'Full-Time';
                       else $job_type = 'Part-Time';
                       ?>
-                      <span class="text-left fs-5"><?= $job_type ?></span>
+                      <h5 class="text-left fs-5"><?= $job_type ?></h5>
                       <!-- SQL ATTR: salary -->
-                      <span class="text-left fs-5">Salary: $<?= $job->getsalary() ?> a month</span>
+                      <h5 class="text-left fs-5">Salary: $<?= $job->getsalary() ?> a month</h5>
                       <p></p>
                       <hr>
                       <div class="job-description-content">
-                        <ul>
-                          <!-- SQL ATTR: jobDescription -->
-                          <li class="fs-5">Full Job Description</li>
-                          <p>
-                            <?= $job->getJobDescription() ?>
-                          </p>
-                          <!-- SQL ATTR: duty -->
-                          <?php if($job->getDuty() != ''){
-                            echo "<li class=\"fs-5\">What You'll Do:</li>";
-                          } ?>
-                          <p><?= $job->getDuty() ?></p>
-                          <!-- SQL ATTR: qualification -->
-                          <?php if($job->getQualification() != ''){
-                              echo "<li class=\"fs-5\">About you:</li>";
-                          } ?>
-                          <p><?= $job->getQualification() ?></p>
-                          <!-- SQL ATTR: benefits -->
-                          <?php if($job->getBenefits() != ''){
-                            echo "<li class=\"fs-5\">Benefits:</li>";
-                          }  ?>
-                          <p><?= $job->getBenefits() ?></p>
-                        </ul>
+                        <!-- SQL ATTR: jobDescription -->
+                        <h4 class="fs-5">Full Job Description</h4>
+                        <?php echo "<p style=\"white-space: pre-line\">" . $job->getJobDescription() . "</p>" ?>
+
+                        <!-- SQL ATTR: duty -->
+                        <?php if ($job->getDuty() != '') {
+                          echo "<h4 class=\"fs-5\">What You'll Do</h4>";
+                        } ?>
+                        <p style="white-space: pre-line"><?= $job->getDuty() ?></p>
+                        <!-- SQL ATTR: qualification -->
+                        <?php if ($job->getQualification() != '') {
+                          echo "<h4 class=\"fs-5\">About you</h4>";
+                        }
+
+                        ?>
+                        <p style="white-space: pre-line"><?= $job->getQualification() ?></p>
+                        <!-- SQL ATTR: benefits -->
+                        <?php
+                        if ($job->getBenefits() != '') {
+                          echo "<h4 class=\"fs-5\">Benefits</h4>";
+                        } ?>
+                        <p style="white-space: pre-line"><?= $job->getBenefits() ?></p>
+
                       </div>
                     </div>
                   </div>
@@ -344,71 +345,71 @@ class UserPage
         </div>
       </div>
     </div>
-    <?php
+  <?php
   }
 
   static function applyForm(Users $user)
   {
-    ?>
-      <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Application Form</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <div class="innerMain">
-                <div class="container p-5">
-                  <div class="card inneradminDetails w-100 m-auto">
-                    <div class="card-body">
-                      <!-- <h4> Software Engineer Entry Level</h4>
+  ?>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Application Form</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="innerMain">
+              <div class="container p-5">
+                <div class="card inneradminDetails w-100 m-auto">
+                  <div class="card-body">
+                    <!-- <h4> Software Engineer Entry Level</h4>
                           <span>Vancouver, BC</span> -->
-                      <form class=" col mt-4" enctype="multipart/form-data" method="post" action="<?php $_SERVER['PHP_SELF'] ?>">
-                        <div class="mb-3">
-                          <label for="username" class="form-label">Name</label>
-                          <input type="text" disabled class="form-control" value="<?= $user->getFname() . " " . $user->getLname() ?>" id="username" name="username">
-                        </div>
-                        <div class="mb-3">
-                          <label for="email" class="form-label">Email</label>
-                          <input type="email" disabled class="form-control" value="<?= $user->getEmail() ?>" id="email" name="email" aria-describedby="emailHelp">
-                        </div>
-                        <div class="mb-3">
-                          <label for="desiredPay" class="form-label">Desired Pay Per Month</label>
-                          <input type="number" class="form-control" id="desiredPay" name="desiredPay">
-                        </div>
-                        <div class="mb-3">
-                          <label for="additionalUrl" class="form-label">Additional URL (Optional)</label>
-                          <input type="url" class="form-control" id="additionalUrl" name="additionalUrl">
-                        </div>
+                    <form class=" col mt-4" enctype="multipart/form-data" method="post" action="<?php $_SERVER['PHP_SELF'] ?>">
+                      <div class="mb-3">
+                        <label for="username" class="form-label">Name</label>
+                        <input type="text" disabled class="form-control" value="<?= $user->getFname() . " " . $user->getLname() ?>" id="username" name="username">
+                      </div>
+                      <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" disabled class="form-control" value="<?= $user->getEmail() ?>" id="email" name="email" aria-describedby="emailHelp">
+                      </div>
+                      <div class="mb-3">
+                        <label for="desiredPay" class="form-label">Desired Pay Per Month</label>
+                        <input type="number" class="form-control" id="desiredPay" name="desiredPay">
+                      </div>
+                      <div class="mb-3">
+                        <label for="additionalUrl" class="form-label">Additional URL (Optional)</label>
+                        <input type="url" class="form-control" id="additionalUrl" name="additionalUrl">
+                      </div>
 
-                        <div class="mb-3">
-                          <label for="resumeUpload" class="form-label">Upload your resume (pdf only)</label>
-                          <input type="file" class="form-control" id="resumeUpload" name="resume" value="" required accept=".pdf">
-                        </div>
-                        <div class="mb-3">
-                          <label for="comments" class="form-label">Anything you want to tell us? (Optional)</label>
-                          <textarea class="form-control" id="comments" name="comments" rows="2"></textarea>
-                        </div>
-                        <div class="d-grid">
-                          <button type="submit" class="btn btn-primary mt-4 " name="submit" value="apply">APPLY</button>
-                        </div>
-                      </form>
-                    </div>
-
+                      <div class="mb-3">
+                        <label for="resumeUpload" class="form-label">Upload your resume (pdf only)</label>
+                        <input type="file" class="form-control" id="resumeUpload" name="resume" value="" required accept=".pdf">
+                      </div>
+                      <div class="mb-3">
+                        <label for="comments" class="form-label">Anything you want to tell us? (Optional)</label>
+                        <textarea class="form-control" id="comments" name="comments" rows="2"></textarea>
+                      </div>
+                      <div class="d-grid">
+                        <button type="submit" class="btn btn-primary mt-4 " name="submit" value="apply">APPLY</button>
+                      </div>
+                    </form>
                   </div>
+
                 </div>
               </div>
-              <!-- <div class="modal-footer">
+            </div>
+            <!-- <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                 <button type="button" class="btn btn-primary">Save Changes</button>
               </div>
             </div> -->
-            </div>
           </div>
         </div>
       </div>
+    </div>
     </div>
 <?php
   }
