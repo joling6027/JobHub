@@ -29,11 +29,24 @@
     //Header Location
     define("LOCATION_LOGIN", "Location: ./Login.controller.php");
     define("LOCATION_LOGOUT", "Location: ./Logout.controller.php");
-    define("LOCATION_ADMIN", "Location: ./admin/Index.controller.php");
+    define("LOCATION_ADMIN", "Location: ./Index.controller.php");
     define("LOCATION_USER", "Location: ./Register.controller.php");
     define("LOCATION_USER_DETAILS", "Location: ./admin/User_details.controller.php");
     define("LOCATION_USER_ENTRANCE","Location: ./user_entrance.controller.php");
     define("SECURE_TOKEN", "5f66daf9-e5a0-4ac4-9bea-768012559fde");
     define("FROM_EMAIL", "jaspal3101@gmail.com");
+
+    //Category
+    define('IT','Information Technology');
+    define('MT','Management');
+    define('LB','Labour');
+    
+    $category = array('IT', 'MT', 'LB');
+
+    //type
+    define('FT','Full-Time');
+    define('PT','Part-Time');
+    $type = array('FT', 'PT');
+
 
 ?>

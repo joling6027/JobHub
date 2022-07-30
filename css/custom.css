@@ -2,8 +2,8 @@
  .logo{font-family: 'Chakra Petch', sans-serif; font-family: 'Poppins', sans-serif; font-family: 'Rubik', sans-serif;font-size: 1.5em;}
 
 *{box-sizing: border-box; }
-.card{z-index:-1}
-a{text-decoration: none; color:#000 }
+.carousel .card{z-index:999}
+ a{text-decoration: none; color:#000 }
 .bg{background:#36b7d3!important}
 .btn{border:none!important}
 .btn:hover{border:none!important}
