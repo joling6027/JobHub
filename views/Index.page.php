@@ -23,7 +23,7 @@
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                   <button class="nav-link " id="nav-create-tab" data-bs-toggle="tab" data-bs-target="#nav-create" type="button" role="tab" aria-controls="nav-create" aria-selected="true">Create Jobs</button>
-                  <button class="nav-link <?= 'active' ?> " id="nav-jobs-tab" data-bs-toggle="tab" data-bs-target="#nav-jobs" type="button" role="tab" aria-controls="nav-jobs" aria-selected="true">Existing Jobs</button>
+                  <button class="nav-link active" id="nav-jobs-tab" data-bs-toggle="tab" data-bs-target="#nav-jobs" type="button" role="tab" aria-controls="nav-jobs" aria-selected="true">Existing Jobs</button>
                   <button class="nav-link" id="nav-manage-users-tab" data-bs-toggle="tab" data-bs-target="#nav-manage-users" type="button" role="tab" aria-controls="nav-manage-users" aria-selected="true">Manage users</button>
                 
                 </div>
@@ -66,27 +66,23 @@
                                     ?>
                                     </select>
                                 </div>
-                                    </div>
-                                    <div class="mb-3 col d-flex">
-                                    <div class="col-6 pe-2">
-
-
+                            </div>
+                            <div class="mb-3 col d-flex">
+                            <div class="col-6 pe-2">
                             <label for="companyName" class="form-label">Company Name</label>
                             <input type="text" class="form-control mb-3" id="companyName" name="companyName" aria-describedby="companyName">
-                                    </div>
-                                    <div class="col-6 ps-2">
-  
+                            </div>
+                            <div class="col-6 ps-2">
                             <label for="jobtitle" class="form-label">Job Title</label>
                             <input type="text" class="form-control" id="jobtitle" name="jobtitle" aria-describedby="descriptionHelp">
                             <!-- <div id="descriptionHelp" class="form-text">We'll never share your email with anyone else.</div> -->
                             </div>
-                                    </div>
-                                    <div class="mb-3 col d-flex">
-                                    <div class="col-6 pe-2">
+                            </div>
+                            <div class="mb-3 col d-flex">
+                            <div class="col-6 pe-2">
                            <label for="descriptionTA" class="form-label">Job Description</label>
                             <textarea class="form-control mb-3" placeholder="Add Description" id="descriptionTA" name="descriptionTA"></textarea>
                             </div>
-
                             <div class="col-6 ps-2">
                             <label for="dutyTA" class="form-label">Job Duty</label>
                             <textarea class="form-control mb-3" placeholder="Add Benefits" id="dutyTA" name="dutyTA"></textarea>
@@ -133,44 +129,56 @@
             static function existingJobs($jobs, $category, $type){
               if(!empty($jobs)){
                 ?>
-                
+                <div class="tab-pane fade show active" id="nav-jobs" role="tabpanel" aria-labelledby="nav-jobs-tab" tabindex="0">
+                <div class="input-group mb-3 mt-4" >
+                    <span class="input-group-text" id="basic-addon1">Search</span>
+                    <input type="search" id="searchInput" class="form-control" placeholder="keyword" aria-label="Username" aria-describedby="basic-addon1">
+                </div> 
                <?php
-                  $counter = 0;
                   foreach ($jobs as $key=>$value) {
-                    if($counter < count($ ) && $key == $category[$counter]){
                       ?>
-                    <div class="tab-pane fade show active" id="nav-jobs" role="tabpanel" aria-labelledby="nav-jobs-tab" tabindex="0">
                 <h4 class="mt-5">
-                  <?Php
+                  <?php
                     if(!empty($value))
                     {
-                       if($key == IT){IT}
-                       if($key == MT){MT}
-                       if($key == LB){LB}
+                       if($key == $category[0])
+                       {
+                        echo IT;
+                       }
+                       if($key == $category[1])
+                       {
+                        echo MT;
+                       }
+                       if($key == $category[2])
+                       {
+                        echo LB;
+                       }
                     }
                   ?>
                 </h4>
-                <div id="carousel1" class="carousel slide ">
+                <div id="carousel_<?=$key?>" class="carousel slide ">
                 <div class="carousel-inner d-flex">
                       <?php
                       $i=0;
                       while ($i < count($value)) { 
                         ?>
-                          <div class="carousel-item <?=$i==0?'active':''?>" data-bs-interval="false">
-                              <div class="d-flex mt-2 px-5">
+                          <div  id="jobCard" class="carousel-item <?=$i==0?'active':''?>" data-bs-interval="false">
+                              <div  class="d-flex mt-2 px-5">
                                             <?php
                                              $j=0;
                                               while($j<4 && $i < count($value)){
                                                 ?>
-                                                <a class="card me-2" href="<?=$_SERVER['PHP_SELF'] . "?jobid=" . $value[$i]->JobId?>">
+                                                <a class="card me-2" href="<?=$_SERVER['PHP_SELF'] . "?action=jobs&id=" . $value[$i]->JobId?>">
                                                 <div class="card-body">
                                                 <h6 class="card-subtitle mb-3 text-muted"><?=$value[$i]->CompanyName?></h6>
                                                   <h5 class="card-title"><?=$value[$i]->JobPosition?></h5>
                                                   <p class="card-text"><?=$value[$i]->JobDescription?></p>
+                                                  <div class="position-absolute salType">
                                                   <h6 class="card-subtitle mb-3 text-muted"><?=$value[$i]->Salary?></h6>
                                                   <h6 class="card-subtitle mb-2 px-2 badge rounded-pill bg-primary text-white">
                                                     <?=($value[$i]->JobType==$type[0])?FT:PT ?>
                                                   </h6>
+                                                  </div>
                                                 </div>
                                             </a>
                                          
@@ -184,23 +192,24 @@
                         <?php
                       }
                       ?>
-                          <button style="position: absolute; left:-68px" class="carousel-control-prev" type="button" data-bs-target="#carousel1" data-bs-slide="prev">
+                          <button style="position: absolute; left:-68px" class="carousel-control-prev" type="button" data-bs-target="#carousel_<?=$key?>" data-bs-slide="prev">
                           <svg class="carousel-control-prev-icon"  aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#000">
                             <path d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
                           </svg>
                         </button>
-                        <button class="carousel-control-next" style="position: absolute; right:-60px" type="button" data-bs-target="#carousel1" data-bs-slide="next">
+                        <button class="carousel-control-next" style="position: absolute; right:-60px" type="button" data-bs-target="#carousel_<?=$key?>" data-bs-slide="next">
                           <svg class="carousel-control-next-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#000">
                             <path d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
                           </svg>
                         </button>
                         </div>
             </div>
-            </div> 
+            
                     <?php
-                    }
-                    $counter++;
                   }
+                  ?>
+                   </div> 
+                  <?php
               }
             }
 
@@ -212,6 +221,10 @@
                         <span class="input-group-text" id="basic-addon1">Search</span>
                         <input type="search" id="searchInput" class="form-control" placeholder="keyword" aria-label="Username" aria-describedby="basic-addon1">
                       </div>
+                      <?php
+                                 if(!empty($users))
+                                 {
+                                ?>
                         <table class="table table-striped mt-3" data-filter-control="true" data-show-search-clear-button="true" data-filter-control-visible="true">
                             <thead>
                               <tr>
@@ -219,7 +232,7 @@
                                 <th scope="col">Name</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">Phone no.</th>
-                                <th scope="col">Resume</th>
+                                <!-- <th scope="col">Resume</th> -->
                                 <th scope="col">Options</th>
                               </tr>
                             </thead>
@@ -236,7 +249,7 @@
                                             <td><?=$user->getEmail()?></td>
                                             <td><?=$user->getPhone()?></td>
                                             <!-- need to add downloadable link -->
-                                            <td><a href="#">resume link</a></td>
+                                            <!-- <td><a href="#">resume link</a></td> -->
                                             <!-- <td><a class="edituser" href="<?=$_SERVER['PHP_SELF']."?action=edit&id=".$user->getUserID()?>"> -->
                                             <td><a class="edituser" href="./User_details.controller.php?action=edit&id=<?=$user->getUserID()?>">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="16" height="16" fill="#000" class="bi bi-pencil-fill" viewBox="0 0 16 16">
@@ -255,6 +268,9 @@
                                 ?>
                             </tbody>
                           </table>
+                          <?php
+                                 }
+                                ?>
                     </div>
                     
                     </div>

@@ -4,14 +4,12 @@
     require_once('../views/component/header.page.php');
     require_once('../views/User_details.page.php');
     require_once('../inc/Utilities/PDOService.php');
-    // require_once(../../inc/Utilities/JobsDAO.class.php');
     require_once('../inc/Utilities/UsersDAO.class.php');
-    // require_once('../../models/Jobs.class.php');
     require_once('../models/Users.class.php');
+    require_once('../inc/Utilities/LoginManager.class.php');
 
+if(LoginManager::verifyLogin()){
     UsersDAO::initialize(USERS);
-    
-   
     if(!empty($_POST) && isset($_POST))
     {
         $user = new Users();
@@ -37,3 +35,8 @@
         PageUserDetails::userInfo($user);
         PageFooter::footer(true);
     }
+}
+else{
+  PageHeader::header(true);
+  exit;
+}
