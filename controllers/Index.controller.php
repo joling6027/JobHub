@@ -12,6 +12,7 @@
     require_once('../models/JobApplied.class.php');
     require_once('../inc/Utilities/LoginManager.class.php');
     require_once('../inc/Utilities/JobAppliedDAO.php');
+    require_once('../inc/Utilities/Extension.class.php');
     
     if(LoginManager::verifyLogin())
     {
@@ -43,13 +44,15 @@
             if ($_GET["action"] == "delete")  {
                 if(UsersDAO::deleteUser($_GET["id"]))
                 {
-                    header(LOCATION_ADMIN);
-                    exit;
+                    $msg = "User is deleted sucessfully.";
+                    DropOff::sucessful($msg);
+                }
+                else{
+                  $msg = "User is not deleted.";
+                  DropOff::fail($msg );
                 }
             }
-            else{
-                //show toast for user not deleted
-            }
+           
         }
 
         if(!empty($_POST) && isset($_POST))
@@ -71,23 +74,16 @@
     
             if($res > 0)
             {
-                echo '<div class="offcanvas show bg-success offcanvas-top text-white text-small message" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
-                <div class="offcanvas-header m-0 p-1 justify-content-center">
-                  <span id="offcanvasTopLabel m-0 text-small">Job is created sucessfully.</span>
-                </div>
-              </div>';
-              header(LOCATION_ADMIN);
-              exit;
+              $msg = "Job is created sucessfully.";
+              DropOff::sucessful($msg);
             }
             else{
-                echo '<div class="offcanvas bg-danger offcanvas-top text-white text-small message" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
-                <div class="offcanvas-header m-0 p-1 justify-content-center">
-                  <span id="offcanvasTopLabel m-0 text-small">Job is not created.</span>
-                </div>
-              </div>';
+              $msg = "Job is not created.";
+              DropOff::fail($msg);
             }
-         
+          
         }
+           
             PageHeader::header(true);
             PageIndex::adminDetails($_SESSION['username']['Email'], $_SESSION['username']['Name']);
             PageIndex::createJobs();
