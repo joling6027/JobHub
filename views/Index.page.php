@@ -113,12 +113,8 @@
                             <input type="number" class="form-control" id="salary" name="salary" aria-describedby="emailHelp" required>
                                     </div>
                                     </div>
-                            <input type="submit" class="btn btn-primary mt-4" value="Create Job">
+                            <input type="submit" class="btn btn-primary mt-4 btnSubmit" value="Create Job">
                     </form>
-                      
-                        <!-- <div class="image mt-5 pt-5 ms-5 flex-end">
-                        <img src="../../images/createjobs.png" alt="create job" height="400">
-                        </div> -->
                         </div>
                       
                 </div>

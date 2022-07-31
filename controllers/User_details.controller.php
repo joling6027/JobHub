@@ -7,6 +7,7 @@
     require_once('../inc/Utilities/UsersDAO.class.php');
     require_once('../models/Users.class.php');
     require_once('../inc/Utilities/LoginManager.class.php');
+    require_once('../inc/Utilities/Extension.class.php');
 
 if(LoginManager::verifyLogin()){
     UsersDAO::initialize(USERS);
@@ -21,8 +22,14 @@ if(LoginManager::verifyLogin()){
 
         if($res > 0)
         {
-           //update notification 
+          $msg = "User is updated sucessfully.";
+          DropOff::sucessful($msg);
         }
+        else{
+          $msg = "User is not updated.";
+          DropOff::fail($msg );
+        }
+       
         header(LOCATION_ADMIN);
         exit;
     }

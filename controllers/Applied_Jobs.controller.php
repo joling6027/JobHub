@@ -11,6 +11,7 @@ require_once('../inc/Utilities/JobsDAO.class.php');
 require_once('../models/Users.class.php');
 require_once('../models/Jobs.class.php');
 require_once('../inc/Utilities/LoginManager.class.php');
+require_once('../inc/Utilities/Extension.class.php');
 
 $users;
 $job;
@@ -59,10 +60,15 @@ if(LoginManager::verifyLogin())
         $res = JobsDAO::updateJob($job);
         if($res>0){
             //green toast
+         $msg = "Job is updated sucessfully.";
+         DropOff::sucessful($msg);
         }
         else{
-            //red toast
+            $msg = "Job is not updated.";
+            DropOff::fail($msg );
         }
+        header(LOCATION_ADMIN);
+        exit;
     }
     
     PageHeader::header(true);
