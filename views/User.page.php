@@ -4,6 +4,7 @@ class UserPage
 {
 
   private static $jobArray = [];
+  public static $notification = [];
 
   static function showEntrance($jobData)
   {
@@ -261,9 +262,6 @@ class UserPage
 
   static function showJobDescription($job)
   {
-    // echo "<pre>";
-    // var_dump($job);
-    // echo "</pre>";
   ?>
     <div class="container mt-5">
 
@@ -332,9 +330,10 @@ class UserPage
               <div class="col-lg-12 col-xl-11">
                 <?php
                 if (isset($_SESSION['username'])) {
-                  echo "<button class=\"btn btn-primary fw-bolder\" data-bs-toggle=\"modal\" data-bs-target=\"#exampleModal\" style=\"position:fixed;\">Apply Now</button>";
+                  echo "<button class=\"btn btn-primary fw-bolder\" data-bs-toggle=\"modal\" data-bs-target=\"#applicationModal\" style=\"position:fixed;\">Apply Now</button>";
                 } else {
-                  echo "<a href=\"Login.controller.php\"><button class=\"btn btn-primary fw-bolder\" data-bs-toggle=\"modal\" data-bs-target=\"#exampleModal\" style=\"position:fixed;\">Log In To Apply</button></a>";
+
+                  echo "<a href=\"Login.controller.php\"><button class=\"btn btn-primary fw-bolder\" data-bs-toggle=\"modal\" data-bs-target=\"#applicationModal\" style=\"position:fixed;\">Log In To Apply</button></a>";
                 }
 
                 ?>
@@ -348,15 +347,15 @@ class UserPage
   <?php
   }
 
-  static function applyForm(Users $user)
+  static function applyForm(Users $user, $isApplied)
   {
   ?>
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="applicationModal" tabindex="-1" aria-labelledby="applicationModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Application Form</h5>
+            <h5 class="modal-title" id="applicationModalLabel">Application Form</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
@@ -364,8 +363,11 @@ class UserPage
               <div class="container p-5">
                 <div class="card inneradminDetails w-100 m-auto">
                   <div class="card-body">
-                    <!-- <h4> Software Engineer Entry Level</h4>
-                          <span>Vancouver, BC</span> -->
+                  <?php
+                      if($isApplied)  
+                          echo "<h5 style=\"color:red;\">". self::$notification['alreadyAppliedAlert'] ."</h5>";
+                  ?>
+                          <!-- <span>Vancouver, BC</span> -->
                     <form class=" col mt-4" enctype="multipart/form-data" method="post" action="<?php $_SERVER['PHP_SELF'] ?>">
                       <div class="mb-3">
                         <label for="username" class="form-label">Name</label>
@@ -393,7 +395,7 @@ class UserPage
                         <textarea class="form-control" id="comments" name="comments" rows="2"></textarea>
                       </div>
                       <div class="d-grid">
-                        <button type="submit" class="btn btn-primary mt-4 " name="submit" value="apply">APPLY</button>
+                        <button type="submit" class="btn btn-primary mt-4 " name="submit" value="apply" <?= ($isApplied)?"disabled":""  ?>>APPLY</button>
                       </div>
                     </form>
                   </div>
@@ -410,9 +412,10 @@ class UserPage
         </div>
       </div>
     </div>
-    </div>
+  </div>
 <?php
   }
+
 }
 
 ?>

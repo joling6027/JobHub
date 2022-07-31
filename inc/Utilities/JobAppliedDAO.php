@@ -76,4 +76,24 @@ class JobAppliedDAO{
       } 
   }
 
+  static function getAppliedJob($userid, $jobid){
+
+    $sql = "SELECT * FROM Job_Applied WHERE UserID=:userid AND JobID=:jobid";
+
+    try {
+      self::$db->query($sql);
+      self::$db->bind(":userid",$userid);
+      self::$db->bind(":jobid",$jobid);
+      self::$db->execute();
+
+      return self::$db->singleResult();
+    } catch (Exception $ex) {
+      echo $ex->getMessage();
+      error_log($ex->getMessage());
+    }
+
+  }
+
+
+
 }
