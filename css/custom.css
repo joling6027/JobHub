@@ -2,7 +2,9 @@
  .logo{font-family: 'Chakra Petch', sans-serif; font-family: 'Poppins', sans-serif; font-family: 'Rubik', sans-serif;font-size: 1.5em;}
 
 *{box-sizing: border-box; }
-.carousel .card{z-index:999}
+.carousel .card{z-index:999;flex-basis:25%;height:315px}
+.salType{bottom:10px}
+.card-text{max-height: 180px;overflow: hidden;white-space: normal;text-overflow: ellipsis;-webkit-box-orient: vertical; display: -webkit-box;-webkit-line-clamp: 5;}
  a{text-decoration: none; color:#000 }
 .bg{background:#36b7d3!important}
 .btn{border:none!important}
@@ -24,5 +26,5 @@ ul li {list-style: none;}
 .toast-mail{position: absolute; top: 50px; left: 0; z-index: 9999;}
 .round-input-otp{border-top-left-radius: 5px !important; border-bottom-left-radius: 5px !important; border-top-right-radius:0px !important; border-bottom-right-radius: 0px !important;}
 .round-btn-otp{border-top-right-radius: 5px !important; border-bottom-right-radius: 5px !important; border-top-left-radius: 0px !important; border-bottom-left-radius: 0px !important;}
-
+.message{max-height:32px!important;}
 

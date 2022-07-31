@@ -34,6 +34,12 @@
                 exit;
             }
 
+            if($_GET["action"] == "jobs")
+            {
+                header(LOCATION_APPLIED_JOBS."?action=jobs&id=".$_GET['id']);
+                exit;
+            }
+
             if ($_GET["action"] == "delete")  {
                 if(UsersDAO::deleteUser($_GET["id"]))
                 {
@@ -46,15 +52,13 @@
             }
         }
 
-        
-       
         if(!empty($_POST) && isset($_POST))
         {
             $job = new Jobs();
             $job->setJobCategory($_POST['categoryDD']);
             $job->setJobLocation($_POST['jobLocation']);
             $job->setJobType($_POST['typeDD']);
-            $job->getJobPosition($_POST['jobtitle']);
+            $job->setJobPosition($_POST['jobtitle']);
             $job->setsalary($_POST['salary']);
             $job->setJobDescription($_POST['descriptionTA']);
             $job->setDuty($_POST['dutyTA']);
@@ -65,11 +69,24 @@
     
             $res = JobsDAO::createJob($job);
     
-            // if($res > 0)
-            // {
-            //    //show toast for user not created
-            // }
-    
+            if($res > 0)
+            {
+                echo '<div class="offcanvas show bg-success offcanvas-top text-white text-small message" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
+                <div class="offcanvas-header m-0 p-1 justify-content-center">
+                  <span id="offcanvasTopLabel m-0 text-small">Job is created sucessfully.</span>
+                </div>
+              </div>';
+              header(LOCATION_ADMIN);
+              exit;
+            }
+            else{
+                echo '<div class="offcanvas bg-danger offcanvas-top text-white text-small message" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
+                <div class="offcanvas-header m-0 p-1 justify-content-center">
+                  <span id="offcanvasTopLabel m-0 text-small">Job is not created.</span>
+                </div>
+              </div>';
+            }
+         
         }
             PageHeader::header(true);
             PageIndex::adminDetails($_SESSION['username']['Email'], $_SESSION['username']['Name']);
@@ -77,6 +94,7 @@
             PageIndex::existingJobs($jobs, $category, $type);
             PageIndex::manageUsers($users);
             PageFooter::footer(true);
+           
     }
     else{
         header(LOCATION_LOGIN);

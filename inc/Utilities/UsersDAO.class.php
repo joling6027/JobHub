@@ -150,13 +150,16 @@
                 return true;
         }
 
-        static function getUsersAppliedJob(){
+        static function getUsersAppliedJob($jobId):array{
 
-            $sql = "SELECT users.*, job_applied.AppliedID FROM users, job_applied
-                    WHERE users.userId = job_applied.userId";
+            $sql = "SELECT users.*, job_applied.DesiredPay, job_applied.AdditionalUrls, 
+                           job_applied.AppliedID, job_applied.Comments, job_applied.AppliedOn 
+                    FROM users, job_applied
+                    WHERE users.userId = job_applied.userId AND job_applied.jobId = :jobId ";
             try
             {
                     self::$db->query($sql);
+                    self::$db->bind(':jobId',(int)$jobId);
                     self::$db->execute();
                     return self::$db->resultSet();
             }
@@ -165,5 +168,7 @@
                     return false;
             } 
         } 
+
+       
     }
 ?>

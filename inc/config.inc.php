@@ -31,7 +31,9 @@
     define("LOCATION_LOGOUT", "Location: ./Logout.controller.php");
     define("LOCATION_ADMIN", "Location: ./Index.controller.php");
     define("LOCATION_USER", "Location: ./Register.controller.php");
-    define("LOCATION_USER_DETAILS", "Location: ./admin/User_details.controller.php");
+    define("LOCATION_APPLIED_JOBS", "Location: ./Applied_Jobs.controller.php");
+    define("LOCATION_RESUME", "Location: ./Resume.controller.php");
+    define("LOCATION_USER_DETAILS", "Location: ./User_details.controller.php");
     define("LOCATION_USER_ENTRANCE","Location: ./user_entrance.controller.php");
     define("SECURE_TOKEN", "5f66daf9-e5a0-4ac4-9bea-768012559fde");
     define("FROM_EMAIL", "jaspal3101@gmail.com");
