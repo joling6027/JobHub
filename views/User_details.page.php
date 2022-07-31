@@ -28,18 +28,9 @@ class PageUserDetails
                                         <label for="phone" class="form-label">Contact</label>
                                         <input type="tel" class="form-control" id="phone" name="phone" value="<?=$user->getPhone();?>">
                                     </div>
-                                    <!-- <div class="mb-3">
-                                        <label for="address" class="form-label">Address</label>
-                                        <input type="text" class="form-control" id="address" >
-                                    </div> -->
-
-                                    <div class="input-group mb-3 mt-2">
-                                        <span class="input-group-text" id="basic-addon1">Resume</span>
-                                        <a href="" class="ms-2 mt-2" target="download">file attached</a>
-                                    </div>
                                     <input type="hidden" name="id" value="<?=$_GET['id']?>">
                                     <button type="submit" class="btn btn-primary mt-4">Edit</button>
-                                    <!-- <button type="submit" class="btn btn-danger mt-4">Delete</button> -->
+                                    <a href="../controllers/Index.controller.php" class="btn btn-secondary mt-4">Back</a>
                                 </form>
                             </div>
                         </div>
