@@ -40,7 +40,7 @@ class PageHeader
             <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
             <link rel="stylesheet" type="text/css" href="../css/custom.css">
             <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
-            <title>Job hub Admin</title>
+            <title>Job Hub</title>
 
             <?php
 

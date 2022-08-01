@@ -11,8 +11,7 @@ class PageFooter
                 <div class="container py-5 d-flex">
                     <div class="col-8 pe-4">
                         <a href="#" class="logo text-white d-inline"> Job Hub </a>
-                        <p class="text-white">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consectetur, tenetur
-                            dolor, sit amet consectetur adipisicing elit. Consectetur.
+                        <p class="text-white">Never Lose Hope Because There's Always A New Job Post On Job Hub!
                     </div>
                     <div class="col">
                         <h5 class="text-white">Social Link </h5>

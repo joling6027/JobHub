@@ -2,6 +2,7 @@
 
 class PageLogin
 {
+    public static $notification;
 
     static function login()
     {
@@ -14,9 +15,10 @@ class PageLogin
                     </div>
                     <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
                         <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
-                            <h3>Welcome to Job Hub</h3>
-                            <br>
-                            <!-- username input -->
+                            <h3>Welcome to Job Hub</h3> <br>
+                            <?php if (!empty(self::$notification['loginError'])) echo "<p style=\"color:red;\">" . self::$notification['loginError'] . "</p>"; ?>
+
+                            <!-- email input -->
                             <div class="form-outline mb-4">
                                 <input type="email" id="email" name="email" class="form-control form-control-lg" placeholder="Enter your email" required />
                             </div>
@@ -38,8 +40,9 @@ class PageLogin
                             </div>
 
                             <div class="text-center text-lg-start mt-4 pt-2">
-                                <input type="submit" class=" btn-info btn btn-lg" value="Login">
+                                <input type="submit" class=" btn-info btn btn-lg" value="Login" name="login">
                                 <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="../controllers/Register.controller.php" class="link-primary">Register</a>
+                                <p class="small fw-bold mt-2 pt-1 mb-0">Want to keep searching for jobs first? <a href="../controllers/user_entrance.controller.php" class="link-primary">Back to job posting</a>
                                 </p>
                             </div>
 

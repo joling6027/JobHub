@@ -4,6 +4,7 @@
          
             static $categories;
             static $types;
+            public static $notification;
 
             static function adminDetails($email, $name){
                 ?>
@@ -113,7 +114,7 @@
                             <input type="number" class="form-control" id="salary" name="salary" aria-describedby="emailHelp" required>
                                     </div>
                                     </div>
-                            <input type="submit" class="btn btn-primary mt-4 btnSubmit" value="Create Job">
+                            <input type="submit" class="btn btn-primary mt-4 btnSubmit" name="createJob" value="Create Job">
                     </form>
                         </div>
                       

@@ -11,6 +11,7 @@
 .btn:hover{border:none!important}
 .adminDetails{background:url("../images/bg.png")no-repeat; background-position: right; }
 .jobs .card:hover{ color: black; border: 1px solid #36b7d3; background:#f1f1f1}
+.joblist:hover {color: black;  border: 1px solid #36b7d3;  background: #f1f1f1}
 .bg-primary,.btn-primary{background:#36b7d3!important }
 ul li {list-style: none;}
 .inneradminDetails{border:none;z-index:9999}
