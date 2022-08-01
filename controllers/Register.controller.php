@@ -6,6 +6,7 @@
     require_once('../views/Register.page.php');
     require_once('../inc/Utilities/PDOService.php');
     require_once('../inc/Utilities/UsersDAO.class.php');
+    require_once('../inc/Utilities/Validation.class.php');
     require_once('../models/Users.class.php');
 
    
@@ -13,15 +14,16 @@
 
     if(!empty($_POST) && isset($_POST))
     {
+        
         $existingUser = UsersDAO::getUser($_POST['email']);
-        if (!empty($existingUser)) 
-        {
-            echo "Already exists !!!";
-            PageHeader::header();
-            PageRegister::register();
-        } 
-        else
-        {
+        if (!empty($existingUser)) {
+            // echo "Already exists !!!";
+            PageRegister::$notification['existUser'] = "This email address already exists. Please choose another one.";
+            // PageHeader::header();
+            // PageRegister::register();
+
+        }
+        if (Validate::inputValidation()) {
             $user = new Users();
             $user->setFname($_POST['fname']);
             $user->setLname($_POST['lname']);
@@ -30,20 +32,21 @@
             $user->setPassword(password_hash($_POST['password'], PASSWORD_DEFAULT));
             $user->setAgreement($_POST['agreement']);
             $user->setRole();
-            
+
             $res = UsersDAO::createUser($user);
 
-            if($res > 0)
-            {
+            if ($res > 0) {
                 header(LOCATION_LOGIN);
                 exit;
             }
         }
 
     }
-    else{
-        PageHeader::header();
-        PageRegister::register();
+    // echo "<pre>";
+    // var_dump(PageRegister::$notification);
+    // echo "</pre>";
+    PageHeader::header();
+    PageRegister::register();
         
-    }
+
 

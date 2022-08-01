@@ -31,7 +31,8 @@
                 
             }
             else{
-                echo "Something wrong with Password or User Name !!!";
+                // echo "Something wrong with Password or User Name !!!";
+                PageLogin::$notification['loginError'] = "Email or password is invalid";
             }
         }
     }

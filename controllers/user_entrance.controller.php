@@ -9,6 +9,7 @@ require_once('../inc/Utilities/PDOService.php');
 require_once('../inc/Utilities/UsersDAO.class.php');
 require_once('../inc/Utilities/JobsDAO.class.php');
 require_once('../inc/Utilities/JobAppliedDAO.php');
+require_once('../inc/Utilities/Validation.class.php');
 require_once('../models/Users.class.php');
 require_once('../models/Jobs.class.php');
 require_once('../models/JobApplied.class.php');
@@ -68,20 +69,22 @@ if (isset($_GET['jobdesc']) && isset($_GET['jobid'])) {
         if ($_FILES['resume']['error'] != 0) {
           // notification-- something wrong
           
-        } else {
-          // $file_name = $_FILES['resume']['name'];
-          $file_tmp = $_FILES['resume']['tmp_name'];
-          if ($pdf_blob = file_get_contents($file_tmp)) {
-            $applicant->setResume($pdf_blob);
+        }else {
 
-            //save to database
+            // $file_name = $_FILES['resume']['name'];
+            $file_tmp = $_FILES['resume']['tmp_name'];
+            if ($pdf_blob = file_get_contents($file_tmp)) {
+              $applicant->setResume($pdf_blob);
 
-            $apply = JobAppliedDAO::createNewJobApplied($applicant);
-            UserPage::$notification['applySuccessMsg'] = 'Applied Succussfully!';
+              //save to database
+              $apply = JobAppliedDAO::createNewJobApplied($applicant);
+              UserPage::$notification['applySuccessMsg'] = 'Applied Succussfully!';
+              echo "<meta http-equiv='refresh' content='0'>";
 
-          } else {
-            echo "Could not open the attached file.";
-          }
+            } else {
+              echo "Could not open the attached file.";
+            }
+          
         }
 
     } else {

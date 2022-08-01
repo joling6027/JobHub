@@ -89,3 +89,7 @@ li{
 .login-content{
   margin: 3% 0;
 }
+
+.notification {
+  color: red;
+}

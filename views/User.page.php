@@ -31,7 +31,7 @@ class UserPage
     <div class="ms-3" id="nav-jobs" role="tabpanel" aria-labelledby="nav-jobs-tab" tabindex="0">
       <?php if (!empty(self::$jobArray['IT'])) {  ?>
         <h4 class="mt-5 ms-3">Information Technology</h4>
-        <div id="carousel1" class="carousel slide " <?= (count(self::$jobArray['IT']) > 4) ? "data-bs-ride=\"carousel\"" : "" ?>>
+        <div id="carousel1" class="carousel slide">
           <div class="carousel-inner d-flex">
             <div class="carousel-item active">
               <div class="d-flex mt-2 ms-5 px-5">
@@ -41,17 +41,18 @@ class UserPage
                 for ($i = 0; $i < count(self::$jobArray['IT']); $i++) {
                   if ($i < 4) {
                     $link = $_SERVER['PHP_SELF'] . "?jobdesc=true&jobid=" . self::$jobArray['IT'][$i]->getJobId();
-                    echo "<a class=\"card me-2\" href=\"" . $link . "\" style=\"z-index:1; width: 15rem; height: 18rem;\">";
+                    echo "<a class=\"joblist card me-2\" href=\"" . $link . "\">";
                     echo "<div class=\"card-body\">";
                     echo "<h6 class=\"card-subtitle mb-3 text-muted\">" . self::$jobArray['IT'][$i]->getCompanyName() . "</h6>";
                     echo "<h5 class=\"card-title\">" . self::$jobArray['IT'][$i]->getJobPosition() . "</h5>";
                     echo "<p class=\"card-text\">" . substr(self::$jobArray['IT'][$i]->getJobDescription(), 0, 90) . "..." . "</p>";
+                    echo "<div class=\"position-absolute salType\">";
                     echo "<h6 class=\"card-subtitle mb-3 text-muted\">Pay: $" . self::$jobArray['IT'][$i]->getSalary() . " a month</h6>";
                     $job_type = '';
                     if (self::$jobArray['IT'][$i]->getJobType() == 'FT') $job_type = 'Full-Time';
                     else $job_type = 'Part-Time';
                     echo "<h6 class=\"card-subtitle mb-2 px-2 badge rounded-pill bg-primary text-white\">" . $job_type . "</h6>";
-                    echo "</div></a>";
+                    echo "</div></div></a>";
                   }
                 }
 
@@ -69,17 +70,18 @@ class UserPage
               for ($i = 4; $i < count(self::$jobArray['IT']); $i++) {
                 if (intdiv($i, 4) == $page) {
                   $link = $_SERVER['PHP_SELF'] . "?jobdesc=true&jobid=" . self::$jobArray['IT'][$i]->getJobId();
-                  echo "<a class=\"card me-2\" href=\"" . $link . "\" style=\"z-index:1; width: 15rem; height: 18rem;\">";
+                  echo "<a class=\"joblist card me-2\" href=\"" . $link . "\">";
                   echo "<div class=\"card-body\">";
                   echo "<h6 class=\"card-subtitle mb-3 text-muted\">" . self::$jobArray['IT'][$i]->getCompanyName() . "</h6>";
                   echo "<h5 class=\"card-title\">" . self::$jobArray['IT'][$i]->getJobPosition() . "</h5>";
                   echo "<p class=\"card-text\">" . substr(self::$jobArray['IT'][$i]->getJobDescription(), 0, 90) . "..." . "</p>";
+                  echo "<div class=\"position-absolute salType\">";
                   echo "<h6 class=\"card-subtitle mb-3 text-muted\">Pay: $" . self::$jobArray['IT'][$i]->getSalary() . " a month</h6>";
                   $job_type = '';
                   if (self::$jobArray['IT'][$i]->getJobType() == 'FT') $job_type = 'Full-Time';
                   else $job_type = 'Part-Time';
                   echo "<h6 class=\"card-subtitle mb-2 px-2 badge rounded-pill bg-primary text-white\">" . $job_type . "</h6>";
-                  echo "</div></a>";
+                  echo "</div></div></a>";
                 }
               }
               $page++;
@@ -110,7 +112,7 @@ class UserPage
       <!-- second category -->
       <?php if (!empty(self::$jobArray['MT'])) {  ?>
         <h4 class="mt-5 ms-3">Management</h4>
-        <div id="carousel2" class="carousel slide " <?= (count(self::$jobArray['MT']) > 4) ? "data-bs-ride=\"carousel\"" : "" ?>>
+        <div id="carousel2" class="carousel slide ">
 
           <!-- control button -->
           <?php if (count(self::$jobArray['MT']) > 4) {  ?>
@@ -134,17 +136,18 @@ class UserPage
                   if ($i < 4) {
                     // echo "<div class=\"d-flex mt-2 px-5\">";
                     $link = $_SERVER['PHP_SELF'] . "?jobdesc=true&jobid=" . self::$jobArray['MT'][$i]->getJobId();
-                    echo "<a class=\"card me-2\" href=\"" . $link . "\" style=\"z-index:1 ;max-width: 15rem;\">";
+                    echo "<a class=\" joblist card me-2\" href=\"" . $link . "\">";
                     echo "<div class=\"card-body\">";
                     echo "<h6 class=\"card-subtitle mb-3 text-muted\">" . self::$jobArray['MT'][$i]->getCompanyName() . "</h6>";
                     echo "<h5 class=\"card-title\">" . self::$jobArray['MT'][$i]->getJobPosition() . "</h5>";
                     echo "<p class=\"card-text\">" . substr(self::$jobArray['MT'][$i]->getJobDescription(), 0, 90) . "..." . "</p>";
+                    echo "<div class=\"position-absolute salType\">";
                     echo "<h6 class=\"card-subtitle mb-3 text-muted\">Pay: $" . self::$jobArray['MT'][$i]->getSalary() . "  a month</h6>";
                     $job_type = '';
                     if (self::$jobArray['MT'][$i]->getJobType() == 'FT') $job_type = 'Full-Time';
                     else $job_type = 'Part-Time';
                     echo "<h6 class=\"card-subtitle mb-2 px-2 badge rounded-pill bg-primary text-white\">" . $job_type . "</h6>";
-                    echo "</div></a>";
+                    echo "</div></div></a>";
                   }
                 }
                 ?>
@@ -161,17 +164,18 @@ class UserPage
               for ($i = 4; $i < count(self::$jobArray['MT']); $i++) {
                 if (intdiv($i, 4) == $page) {
                   $link = $_SERVER['PHP_SELF'] . "?jobdesc=true&jobid=" . self::$jobArray['MT'][$i]->getJobId();
-                  echo "<a class=\"card me-2\" href=\"" . $link . "\" style=\"z-index:1; width: 15rem; height: 18rem;\">";
+                  echo "<a class=\"joblist card me-2\" href=\"" . $link . "\">";
                   echo "<div class=\"card-body\">";
                   echo "<h6 class=\"card-subtitle mb-3 text-muted\">" . self::$jobArray['MT'][$i]->getCompanyName() . "</h6>";
                   echo "<h5 class=\"card-title\">" . self::$jobArray['MT'][$i]->getJobPosition() . "</h5>";
                   echo "<p class=\"card-text\">" . substr(self::$jobArray['MT'][$i]->getJobDescription(), 0, 90) . "..." . "</p>";
+                  echo "<div class=\"position-absolute salType\">";
                   echo "<h6 class=\"card-subtitle mb-3 text-muted\">Pay: $" . self::$jobArray['MT'][$i]->getSalary() . " a month</h6>";
                   $job_type = '';
                   if (self::$jobArray['MT'][$i]->getJobType() == 'FT') $job_type = 'Full-Time';
                   else $job_type = 'Part-Time';
                   echo "<h6 class=\"card-subtitle mb-2 px-2 badge rounded-pill bg-primary text-white\">" . $job_type . "</h6>";
-                  echo "</div></a>";
+                  echo "</div></div></a>";
                 }
               }
               $page++;
@@ -185,7 +189,7 @@ class UserPage
       <?PHP } ?>
       <?php if (!empty(self::$jobArray['LB'])) {  ?>
         <h4 class="mt-5 ms-3">Labour</h4>
-        <div id="carousel2" class="carousel slide " <?= (count(self::$jobArray['LB']) > 4) ? "data-bs-ride=\"carousel\"" : "" ?>>
+        <div id="carousel2" class="carousel slide ">
           <!-- control button -->
           <?php if (count(self::$jobArray['LB']) > 4) {  ?>
             <button style="position: absolute; left:-60px" class="carousel-control-prev" id="carousel-prev" type="button" data-bs-target="#carousel2" data-bs-slide="prev">
@@ -207,17 +211,18 @@ class UserPage
                   if ($i < 4) {
                     // echo "<div class=\"d-flex mt-2 px-5\">";
                     $link = $_SERVER['PHP_SELF'] . "?jobdesc=true&jobid=" . self::$jobArray['LB'][$i]->getJobId();
-                    echo "<a class=\"card me-2\" href=\"" . $link . "\" style=\"z-index:1 ;max-width: 15rem;min-height: 18rem;\">";
+                    echo "<a class=\"joblist card me-2\" href=\"" . $link . "\">";
                     echo "<div class=\"card-body\">";
                     echo "<h6 class=\"card-subtitle mb-3 text-muted\">" . self::$jobArray['LB'][$i]->getCompanyName() . "</h6>";
                     echo "<h5 class=\"card-title\">" . self::$jobArray['LB'][$i]->getJobPosition() . "</h5>";
                     echo "<p class=\"card-text\">" . substr(self::$jobArray['LB'][$i]->getJobDescription(), 0, 90) . "..." . "</p>";
+                    echo "<div class=\"position-absolute salType\">";
                     echo "<h6 class=\"card-subtitle mb-3 text-muted\">Pay: $" . self::$jobArray['LB'][$i]->getSalary() . "  a month</h6>";
                     $job_type = '';
                     if (self::$jobArray['LB'][$i]->getJobType() == 'FT') $job_type = 'Full-Time';
                     else $job_type = 'Part-Time';
                     echo "<h6 class=\"card-subtitle mb-2 px-2 badge rounded-pill bg-primary text-white\">" . $job_type . "</h6>";
-                    echo "</div></a>";
+                    echo "</div></div></a>";
                   }
                 }
                 ?>
@@ -234,17 +239,18 @@ class UserPage
               for ($i = 4; $i < count(self::$jobArray['LB']); $i++) {
                 if (intdiv($i, 4) == $page) {
                   $link = $_SERVER['PHP_SELF'] . "?jobdesc=true&jobid=" . self::$jobArray['LB'][$i]->getJobId();
-                  echo "<a class=\"card me-2\" href=\"" . $link . "\" style=\"z-index:1; width: 15rem; height: 18rem;\">";
+                  echo "<a class=\"joblist card me-2\" href=\"" . $link . "\">";
                   echo "<div class=\"card-body\">";
                   echo "<h6 class=\"card-subtitle mb-3 text-muted\">" . self::$jobArray['LB'][$i]->getCompanyName() . "</h6>";
                   echo "<h5 class=\"card-title\">" . self::$jobArray['LB'][$i]->getJobPosition() . "</h5>";
                   echo "<p class=\"card-text\">" . substr(self::$jobArray['LB'][$i]->getJobDescription(), 0, 90) . "..." . "</p>";
+                  echo "<div class=\"position-absolute salType\">";
                   echo "<h6 class=\"card-subtitle mb-3 text-muted\">Pay: $" . self::$jobArray['LB'][$i]->getSalary() . " a month</h6>";
                   $job_type = '';
                   if (self::$jobArray['LB'][$i]->getJobType() == 'FT') $job_type = 'Full-Time';
                   else $job_type = 'Part-Time';
                   echo "<h6 class=\"card-subtitle mb-2 px-2 badge rounded-pill bg-primary text-white\">" . $job_type . "</h6>";
-                  echo "</div></a>";
+                  echo "</div></div></a>";
                 }
               }
               $page++;
@@ -264,16 +270,21 @@ class UserPage
   {
   ?>
     <div class="container mt-5">
-
       <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-1">
+          <a href="../controllers/user_entrance.controller.php" class="btn btn-secondary mt-0 mb-4">Back</a>
+        </div>
+        <div class="col-md-9">
           <!-- job description -->
           <div class="container h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
               <div class="col-lg-12 col-xl-11">
                 <div class="card mb-5" style="border-radius: 25px;">
                   <div class="card-body p-md-5">
-
+                    <?php
+                    if (!empty(self::$notification['fileUpload'])) echo "<p style=\"color:red;\">" . self::$notification['fileUpload'] . "</p>";
+                    if (!empty(self::$notification['applySuccessMsg'])) echo "<p style=\"color:red;\">" . self::$notification['applySuccessMsg'] . "</p>";
+                    ?>
                     <div class="row">
                       <!-- SQL ATTR: jobPosition -->
                       <h3 class="text-left"><?= $job->getJobPosition() ?></h3>
@@ -363,12 +374,12 @@ class UserPage
               <div class="container p-5">
                 <div class="card inneradminDetails w-100 m-auto">
                   <div class="card-body">
-                  <?php
-                      if($isApplied)  
-                          echo "<h5 style=\"color:red;\">". self::$notification['alreadyAppliedAlert'] ."</h5>";
-                  ?>
-                          <!-- <span>Vancouver, BC</span> -->
-                    <form class=" col mt-4" enctype="multipart/form-data" method="post" action="<?php $_SERVER['PHP_SELF'] ?>">
+                    <?php
+                    if ($isApplied)
+                      echo "<h5 style=\"color:red;\">" . self::$notification['alreadyAppliedAlert'] . "</h5>";
+                    ?>
+                    <!-- <span>Vancouver, BC</span> -->
+                    <form class=" col mt-4" enctype="multipart/form-data" method="post" action="">
                       <div class="mb-3">
                         <label for="username" class="form-label">Name</label>
                         <input type="text" disabled class="form-control" value="<?= $user->getFname() . " " . $user->getLname() ?>" id="username" name="username">
@@ -379,7 +390,7 @@ class UserPage
                       </div>
                       <div class="mb-3">
                         <label for="desiredPay" class="form-label">Desired Pay Per Month</label>
-                        <input type="number" class="form-control" id="desiredPay" name="desiredPay">
+                        <input type="number" class="form-control" id="desiredPay" name="desiredPay" min="0">
                       </div>
                       <div class="mb-3">
                         <label for="additionalUrl" class="form-label">Additional URL (Optional)</label>
@@ -395,7 +406,7 @@ class UserPage
                         <textarea class="form-control" id="comments" name="comments" rows="2"></textarea>
                       </div>
                       <div class="d-grid">
-                        <button type="submit" class="btn btn-primary mt-4 " name="submit" value="apply" <?= ($isApplied)?"disabled":""  ?>>APPLY</button>
+                          <button type="submit" class="btn btn-primary mt-4 " name="applyJob" value="apply" <?= ($isApplied) ? "disabled" : ""  ?>>APPLY</button>
                       </div>
                     </form>
                   </div>
@@ -412,10 +423,9 @@ class UserPage
         </div>
       </div>
     </div>
-  </div>
+    </div>
 <?php
   }
-
 }
 
 ?>
