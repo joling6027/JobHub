@@ -11,11 +11,11 @@ class PageJobApplied
 ?>
         <main class="innerMain">
             <div class="container p-5">
-            <a href="../controllers/Index.controller.php" class="btn btn-secondary mt-0 mb-4">Back</a>
+            <a href="../controllers/Admin.controller.php" class="btn btn-secondary mt-0 mb-4">Back</a>
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                         <button class="nav-link active" id="nav-applied-tab" data-bs-toggle="tab" data-bs-target="#nav-applied" type="button" role="tab" aria-controls="nav-applied" aria-selected="true">Users Applied for this job</button>
-                        <button class="nav-link " id="nav-edit-tab" data-bs-toggle="tab" data-bs-target="#nav-edit" type="button" role="tab" aria-controls="nav-edit" aria-selected="true">Job Description</button>
+                        <button class="nav-link " id="nav-edit-tab" data-bs-toggle="tab" data-bs-target="#nav-edit" type="button" role="tab" aria-controls="nav-edit" aria-selected="true">Edit Job Description</button>
                     </div>
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
@@ -137,31 +137,23 @@ class PageJobApplied
                             <div class="mb-3 col d-flex">
                             <div class="col-6 pe-2">
                            <label for="descriptionTA" class="form-label">Job Description</label>
-                            <textarea class="form-control mb-3" placeholder="Add Description" id="descriptionTA" name="descriptionTA">
-                                <?= trim($job->getJobDescription());?>
-                            </textarea>
+                            <textarea class="form-control mb-3" placeholder="Add Description" id="descriptionTA" name="descriptionTA"><?php trim($job->getJobDescription());?></textarea>
                             </div>
                             <div class="col-6 ps-2">
                             <label for="dutyTA" class="form-label">Job Duty</label>
-                            <textarea class="form-control mb-3" placeholder="Add Benefits" id="dutyTA" name="dutyTA">
-                                <?= trim($job->getDuty());?>
-                            </textarea>
+                            <textarea class="form-control mb-3" placeholder="Add Benefits" id="dutyTA" name="dutyTA"><?= trim($job->getDuty());?></textarea>
                             </div>
                                     </div>
 
                                     <div class="mb-3 col d-flex">
                                     <div class="col-6 pe-2">
                                 <label for="benefitsTA" class="form-label">Job Benefits</label>
-                            <textarea class="form-control mb-3" placeholder="Add Benefits" id="benefitsTA" name="benefitsTA">
-                                <?= trim($job->getBenefits());?>
-                            </textarea>
+                            <textarea class="form-control mb-3" placeholder="Add Benefits" id="benefitsTA" name="benefitsTA"><?= trim($job->getBenefits());?></textarea>
                             </div>
 
                             <div class="col-6 ps-2">
                             <label for="qualificationTA" class="form-label">Job Qualification</label>
-                            <textarea class="form-control mb-3" placeholder="Add Qualification" id="qualificationTA" name="qualificationTA">
-                                <?= trim($job->getQualification());?>
-                            </textarea>
+                            <textarea class="form-control mb-3" placeholder="Add Qualification" id="qualificationTA" name="qualificationTA"><?= trim($job->getQualification());?></textarea>
                             </div>
                                     </div>
                             
@@ -170,13 +162,13 @@ class PageJobApplied
 
                             <label for="jobLocation" class="form-label ">Company Location</label>
                             <input type="text" class="form-control mb-3" id="jobLocation" name="jobLocation" aria-describedby="jobLocation"
-                            value="<?= $job->getJobLocation();?>">
+                            value="<?= trim($job->getJobLocation());?>">
                                     </div>
                                     <div class="col-6 ps-2">
 
                             <label for="salary" class="form-label">Salary</label>
                             <input type="number" class="form-control" id="salary" name="salary" aria-describedby="emailHelp" required
-                             value="<?= $job->getsalary();?>">
+                             value="<?= trim($job->getsalary());?>">
                                     </div>
                                     </div>
                             <input type="hidden" name="jobId" value="<?=$_GET['id']?>">

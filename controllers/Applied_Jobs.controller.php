@@ -34,7 +34,7 @@ if(LoginManager::verifyLogin())
 
         if($_GET["action"] == "download")
         {
-           header(LOCATION_RESUME."?action=".$_GET['action']."&id=".$_GET['id']);
+           header("Location: ".LOCATION_RESUME."?action=".$_GET['action']."&id=".$_GET['id']);
            exit;
         }
 
@@ -59,15 +59,14 @@ if(LoginManager::verifyLogin())
 
         $res = JobsDAO::updateJob($job);
         if($res>0){
-            //green toast
-         $msg = "Job is updated sucessfully.";
-         DropOff::sucessful($msg);
+            $_SESSION['msg']['success']  = "Job details is updated sucessfully.";
         }
         else{
-            $msg = "Job is not updated.";
-            DropOff::fail($msg );
+            $_SESSION['msg']['error'] = "Job details is not updated.";
+            
         }
-        header(LOCATION_ADMIN);
+        $_SESSION['msg']['url'] = LOCATION_ADMIN;
+        header("Location: ".LOCATION_ADMIN);
         exit;
     }
     
@@ -78,7 +77,7 @@ if(LoginManager::verifyLogin())
    
 }
 else{
-    header(LOCATION_LOGIN);
+    header("Location: ".LOCATION_LOGIN);
     exit;
 }
 

@@ -44,7 +44,8 @@ class JobAppliedDAO{
     $mt_jobs = array();
     $lb_jobs = array();
     $sql = "SELECT Jobs.JobId, Jobs.*, Job_Applied.* FROM jobs 
-            LEFT JOIN Job_Applied ON jobs.JobID = Job_Applied.JobID";
+            LEFT JOIN Job_Applied ON jobs.JobID = Job_Applied.JobID
+            ORDER BY Jobs.JobId DESC";
       try
       {
               self::$db->query($sql);
@@ -92,6 +93,24 @@ class JobAppliedDAO{
       error_log($ex->getMessage());
     }
 
+  }
+  static function getResume($appliedId){
+
+    $sql ="SELECT users.Fname, users.Lname, Job_Applied.Resume 
+           FROM users JOIN Job_Applied 
+           ON users.UserID = Job_Applied.UserID 
+           WHERE job_applied.AppliedID=:appliedId";
+    try
+    {
+            self::$db->query($sql);
+            self::$db->bind(':appliedId',(int)$appliedId);
+            self::$db->execute();
+            return self::$db->singleResult();
+    }
+    catch(Exception $exc){
+            echo $exc->getMessage();
+            return false;
+    } 
   }
 
 

@@ -8,7 +8,7 @@ require_once('../inc/Utilities/LoginManager.class.php');
 
 if(LoginManager::verifyLogin())
 {
-UsersDAO::initialize(USERS);
+    UsersDAO::initialize(USERS);
 
     if(!empty($_POST))
     {
@@ -19,16 +19,18 @@ UsersDAO::initialize(USERS);
             $response = UsersDAO::updatePassword($_SESSION['username']['Email'], $password);
             if($response > 0)
             {
-                header(LOCATION_LOGOUT);
-                exit;
+                $_SESSION['msg']['success']  = "Password is changed sucessfully.";
             }
             else{
-                //error password not updated.
+                $_SESSION['msg']['success']  = "Password not changed.";
             }
+            $_SESSION['msg']['url'] = LOCATION_LOGIN;
+            header("Location: ".LOCATION_LOGIN);
+            exit;
         }
     }
 }
 else{
-    header(LOCATION_LOGIN);
+    header("Location: ".LOCATION_LOGIN);
     exit;
 }

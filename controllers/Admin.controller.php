@@ -3,7 +3,7 @@
     require_once('../inc/config.inc.php');
     require_once('../views/component/footer.page.php');
     require_once('../views/component/header.page.php');
-    require_once('../views/Index.page.php');
+    require_once('../views/Admin.page.php');
     require_once('../inc/Utilities/PDOService.php');
     require_once('../inc/Utilities/JobsDAO.class.php');
     require_once('../inc/Utilities/UsersDAO.class.php');
@@ -14,6 +14,7 @@
     require_once('../inc/Utilities/JobAppliedDAO.php');
     require_once('../inc/Utilities/Extension.class.php');
     
+
     if(LoginManager::verifyLogin())
     {
         JobsDAO::initialize(JOBS);
@@ -23,34 +24,33 @@
         $types = JobsDAO::getJobTypes();
         $jobs = JobAppliedDAO::getJobs($category);
     
-        PageIndex::$categories = $categories;
-        PageIndex::$types = $types;
+        PageAdmin::$categories = $categories;
+        PageAdmin::$types = $types;
     
         $users = UsersDAO::getUsers();
     
         if (isset($_GET["action"]))  {
             if($_GET["action"] == "edit")
             {
-                header(LOCATION_USER_DETAILS);
+                header("Location: ".LOCATION_USER_DETAILS);
                 exit;
             }
 
             if($_GET["action"] == "jobs")
             {
-                header(LOCATION_APPLIED_JOBS."?action=jobs&id=".$_GET['id']);
+                header("Location: ".LOCATION_APPLIED_JOBS."?action=jobs&id=".$_GET['id']);
                 exit;
             }
 
             if ($_GET["action"] == "delete")  {
                 if(UsersDAO::deleteUser($_GET["id"]))
                 {
-                    $msg = "User is deleted sucessfully.";
-                    DropOff::sucessful($msg);
+                    $_SESSION['msg']['success'] = "User is deleted sucessfully.";
                 }
                 else{
-                  $msg = "User is not deleted.";
-                  DropOff::fail($msg );
+                    $_SESSION['msg']['error'] = "User is not deleted.";
                 }
+                $_SESSION['msg']['url'] = LOCATION_ADMIN;
             }
            
         }
@@ -58,41 +58,40 @@
         if(!empty($_POST) && isset($_POST))
         {
             $job = new Jobs();
-            $job->setJobCategory($_POST['categoryDD']);
-            $job->setJobLocation($_POST['jobLocation']);
-            $job->setJobType($_POST['typeDD']);
-            $job->setJobPosition($_POST['jobtitle']);
-            $job->setsalary($_POST['salary']);
-            $job->setJobDescription($_POST['descriptionTA']);
-            $job->setDuty($_POST['dutyTA']);
-            $job->setQualification($_POST['qualificationTA']);
-            $job->setBenefits($_POST['benefitsTA']);
-            $job->setCompanyName($_POST['companyName']);
+            $job->setJobCategory(trim($_POST['categoryDD']));
+            $job->setJobLocation(trim($_POST['jobLocation']));
+            $job->setJobType(trim($_POST['typeDD']));
+            $job->setJobPosition(trim($_POST['jobtitle']));
+            $job->setsalary(trim($_POST['salary']));
+            $job->setJobDescription(trim($_POST['descriptionTA']));
+            $job->setDuty(trim($_POST['dutyTA']));
+            $job->setQualification(trim($_POST['qualificationTA']));
+            $job->setBenefits(trim($_POST['benefitsTA']));
+            $job->setCompanyName(trim($_POST['companyName']));
             $job->setCreatedOn();
     
             $res = JobsDAO::createJob($job);
     
             if($res > 0)
             {
-              $msg = "Job is created sucessfully.";
-              DropOff::sucessful($msg);
+              $_SESSION['msg']['success'] = "Job is created sucessfully.";
             }
             else{
-              $msg = "Job is not created.";
-              DropOff::fail($msg);
+              $_SESSION['msg']['error'] = "Job is not created.";
             }
-          
-        }
+            $_SESSION['msg']['url'] = LOCATION_ADMIN;
            
+        }
+            DropOff::verifyMessage();
             PageHeader::header(true);
-            PageIndex::adminDetails($_SESSION['username']['Email'], $_SESSION['username']['Name']);
-            PageIndex::createJobs();
-            PageIndex::existingJobs($jobs, $category, $type);
-            PageIndex::manageUsers($users);
+            PageAdmin::adminDetails($_SESSION['username']['Email'], $_SESSION['username']['Name']);
+            PageAdmin::createJobs();
+            PageAdmin::existingJobs($jobs, $category, $type);
+            PageAdmin::manageUsers($users);
             PageFooter::footer(true);
            
     }
     else{
-        header(LOCATION_LOGIN);
+        header("Location: ".LOCATION_LOGIN);
         exit;
     }

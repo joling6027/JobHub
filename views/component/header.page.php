@@ -49,7 +49,6 @@ class PageHeader
 
 
                 <link rel="stylesheet" type="text/css" href="../css/custom.css">
-                <!-- <link rel="stylesheet" type="text/css" href="../../css/custom.css"> -->
         </head>
 
         <body>
@@ -149,6 +148,7 @@ class PageHeader
         <?php
             } else {
         ?>
+        <link rel="stylesheet" type="text/css" href="../css/custom.css">
             <link rel="stylesheet" href="../css/style.css">
             </head>
 

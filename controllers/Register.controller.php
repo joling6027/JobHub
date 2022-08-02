@@ -36,15 +36,13 @@
             $res = UsersDAO::createUser($user);
 
             if ($res > 0) {
-                header(LOCATION_LOGIN);
+                header("Location: ".LOCATION_LOGIN);
                 exit;
             }
         }
 
     }
-    // echo "<pre>";
-    // var_dump(PageRegister::$notification);
-    // echo "</pre>";
+   
     PageHeader::header();
     PageRegister::register();
         

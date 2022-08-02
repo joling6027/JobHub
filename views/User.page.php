@@ -28,13 +28,14 @@ class UserPage
       }
     }
     ?>
+    <div class="container">
     <div class="ms-3" id="nav-jobs" role="tabpanel" aria-labelledby="nav-jobs-tab" tabindex="0">
       <?php if (!empty(self::$jobArray['IT'])) {  ?>
         <h4 class="mt-5 ms-3">Information Technology</h4>
         <div id="carousel1" class="carousel slide">
           <div class="carousel-inner d-flex">
             <div class="carousel-item active">
-              <div class="d-flex mt-2 ms-5 px-5">
+              <div class="d-flex mt-2 px-5">
                 <!-- placing a for loop here -->
                 <?php
 
@@ -47,7 +48,7 @@ class UserPage
                     echo "<h5 class=\"card-title\">" . self::$jobArray['IT'][$i]->getJobPosition() . "</h5>";
                     echo "<p class=\"card-text\">" . substr(self::$jobArray['IT'][$i]->getJobDescription(), 0, 90) . "..." . "</p>";
                     echo "<div class=\"position-absolute salType\">";
-                    echo "<h6 class=\"card-subtitle mb-3 text-muted\">Pay: $" . self::$jobArray['IT'][$i]->getSalary() . " a month</h6>";
+                    echo "<h6 class=\"card-subtitle mb-3 text-muted\">Pay: $" . self::$jobArray['IT'][$i]->getSalary() . "</h6>";
                     $job_type = '';
                     if (self::$jobArray['IT'][$i]->getJobType() == 'FT') $job_type = 'Full-Time';
                     else $job_type = 'Part-Time';
@@ -66,7 +67,7 @@ class UserPage
 
             while ($page <  $number_of_page) {
               echo "<div class=\"carousel-item \">";
-              echo "<div class=\"d-flex mt-3 ms-5 px-5\">";
+              echo "<div class=\"d-flex mt-3 px-5\">";
               for ($i = 4; $i < count(self::$jobArray['IT']); $i++) {
                 if (intdiv($i, 4) == $page) {
                   $link = $_SERVER['PHP_SELF'] . "?jobdesc=true&jobid=" . self::$jobArray['IT'][$i]->getJobId();
@@ -76,7 +77,7 @@ class UserPage
                   echo "<h5 class=\"card-title\">" . self::$jobArray['IT'][$i]->getJobPosition() . "</h5>";
                   echo "<p class=\"card-text\">" . substr(self::$jobArray['IT'][$i]->getJobDescription(), 0, 90) . "..." . "</p>";
                   echo "<div class=\"position-absolute salType\">";
-                  echo "<h6 class=\"card-subtitle mb-3 text-muted\">Pay: $" . self::$jobArray['IT'][$i]->getSalary() . " a month</h6>";
+                  echo "<h6 class=\"card-subtitle mb-3 text-muted\">Pay: $" . self::$jobArray['IT'][$i]->getSalary() . "</h6>";
                   $job_type = '';
                   if (self::$jobArray['IT'][$i]->getJobType() == 'FT') $job_type = 'Full-Time';
                   else $job_type = 'Part-Time';
@@ -130,7 +131,7 @@ class UserPage
 
           <div class="carousel-inner d-flex">
             <div class="carousel-item active">
-              <div class="d-flex mt-3 ms-5 px-5">
+              <div class="d-flex mt-3 px-5">
                 <?php
                 for ($i = 0; $i < count(self::$jobArray['MT']); $i++) {
                   if ($i < 4) {
@@ -142,7 +143,7 @@ class UserPage
                     echo "<h5 class=\"card-title\">" . self::$jobArray['MT'][$i]->getJobPosition() . "</h5>";
                     echo "<p class=\"card-text\">" . substr(self::$jobArray['MT'][$i]->getJobDescription(), 0, 90) . "..." . "</p>";
                     echo "<div class=\"position-absolute salType\">";
-                    echo "<h6 class=\"card-subtitle mb-3 text-muted\">Pay: $" . self::$jobArray['MT'][$i]->getSalary() . "  a month</h6>";
+                    echo "<h6 class=\"card-subtitle mb-3 text-muted\">Pay: $" . self::$jobArray['MT'][$i]->getSalary() . "</h6>";
                     $job_type = '';
                     if (self::$jobArray['MT'][$i]->getJobType() == 'FT') $job_type = 'Full-Time';
                     else $job_type = 'Part-Time';
@@ -160,7 +161,7 @@ class UserPage
 
             while ($page <  $number_of_page) {
               echo "<div class=\"carousel-item \">";
-              echo "<div class=\"d-flex mt-3 ms-5 px-5\">";
+              echo "<div class=\"d-flex mt-3 px-5\">";
               for ($i = 4; $i < count(self::$jobArray['MT']); $i++) {
                 if (intdiv($i, 4) == $page) {
                   $link = $_SERVER['PHP_SELF'] . "?jobdesc=true&jobid=" . self::$jobArray['MT'][$i]->getJobId();
@@ -170,7 +171,7 @@ class UserPage
                   echo "<h5 class=\"card-title\">" . self::$jobArray['MT'][$i]->getJobPosition() . "</h5>";
                   echo "<p class=\"card-text\">" . substr(self::$jobArray['MT'][$i]->getJobDescription(), 0, 90) . "..." . "</p>";
                   echo "<div class=\"position-absolute salType\">";
-                  echo "<h6 class=\"card-subtitle mb-3 text-muted\">Pay: $" . self::$jobArray['MT'][$i]->getSalary() . " a month</h6>";
+                  echo "<h6 class=\"card-subtitle mb-3 text-muted\">Pay: $" . self::$jobArray['MT'][$i]->getSalary() . "</h6>";
                   $job_type = '';
                   if (self::$jobArray['MT'][$i]->getJobType() == 'FT') $job_type = 'Full-Time';
                   else $job_type = 'Part-Time';
@@ -205,7 +206,7 @@ class UserPage
           <?php } ?>
           <div class="carousel-inner d-flex">
             <div class="carousel-item active">
-              <div class="d-flex mt-3 ms-5 px-5">
+              <div class="d-flex mt-3  px-5">
                 <?php
                 for ($i = 0; $i < count(self::$jobArray['LB']); $i++) {
                   if ($i < 4) {
@@ -217,7 +218,7 @@ class UserPage
                     echo "<h5 class=\"card-title\">" . self::$jobArray['LB'][$i]->getJobPosition() . "</h5>";
                     echo "<p class=\"card-text\">" . substr(self::$jobArray['LB'][$i]->getJobDescription(), 0, 90) . "..." . "</p>";
                     echo "<div class=\"position-absolute salType\">";
-                    echo "<h6 class=\"card-subtitle mb-3 text-muted\">Pay: $" . self::$jobArray['LB'][$i]->getSalary() . "  a month</h6>";
+                    echo "<h6 class=\"card-subtitle mb-3 text-muted\">Pay: $" . self::$jobArray['LB'][$i]->getSalary() . "</h6>";
                     $job_type = '';
                     if (self::$jobArray['LB'][$i]->getJobType() == 'FT') $job_type = 'Full-Time';
                     else $job_type = 'Part-Time';
@@ -235,7 +236,7 @@ class UserPage
 
             while ($page <  $number_of_page) {
               echo "<div class=\"carousel-item \">";
-              echo "<div class=\"d-flex mt-3 ms-5 px-5\">";
+              echo "<div class=\"d-flex mt-3  px-5\">";
               for ($i = 4; $i < count(self::$jobArray['LB']); $i++) {
                 if (intdiv($i, 4) == $page) {
                   $link = $_SERVER['PHP_SELF'] . "?jobdesc=true&jobid=" . self::$jobArray['LB'][$i]->getJobId();
@@ -245,7 +246,7 @@ class UserPage
                   echo "<h5 class=\"card-title\">" . self::$jobArray['LB'][$i]->getJobPosition() . "</h5>";
                   echo "<p class=\"card-text\">" . substr(self::$jobArray['LB'][$i]->getJobDescription(), 0, 90) . "..." . "</p>";
                   echo "<div class=\"position-absolute salType\">";
-                  echo "<h6 class=\"card-subtitle mb-3 text-muted\">Pay: $" . self::$jobArray['LB'][$i]->getSalary() . " a month</h6>";
+                  echo "<h6 class=\"card-subtitle mb-3 text-muted\">Pay: $" . self::$jobArray['LB'][$i]->getSalary() . "</h6>";
                   $job_type = '';
                   if (self::$jobArray['LB'][$i]->getJobType() == 'FT') $job_type = 'Full-Time';
                   else $job_type = 'Part-Time';
@@ -263,6 +264,7 @@ class UserPage
       <?PHP } ?>
 
     </div>
+    </div>
   <?php
   }
 
@@ -271,9 +273,9 @@ class UserPage
   ?>
     <div class="container mt-5">
       <div class="row">
-        <div class="col-md-1">
+        <!-- <div class="col-md-1">
           <a href="../controllers/user_entrance.controller.php" class="btn btn-secondary mt-0 mb-4">Back</a>
-        </div>
+        </div> -->
         <div class="col-md-9">
           <!-- job description -->
           <div class="container h-100">
@@ -337,11 +339,14 @@ class UserPage
         </div>
         <div class=" col-md-2">
           <div class=" container h-100">
-            <div class="btn-apply row d-flex justify-content-center align-items-center">
-              <div class="col-lg-12 col-xl-11">
+            <div class="btn-apply d-flex align-items-start position-fixed">
+              <div class="">
                 <?php
                 if (isset($_SESSION['username'])) {
-                  echo "<button class=\"btn btn-primary fw-bolder\" data-bs-toggle=\"modal\" data-bs-target=\"#applicationModal\" style=\"position:fixed;\">Apply Now</button>";
+                  echo "<button class=\"btn btn-primary fw-bolder\" data-bs-toggle=\"modal\" data-bs-target=\"#applicationModal\">Apply Now</button>";
+                  ?>
+                    <a href="../controllers/user_entrance.controller.php" class="btn btn-secondary mt-0">Back</a>
+        <?php
                 } else {
 
                   echo "<a href=\"Login.controller.php\"><button class=\"btn btn-primary fw-bolder\" data-bs-toggle=\"modal\" data-bs-target=\"#applicationModal\" style=\"position:fixed;\">Log In To Apply</button></a>";
@@ -362,16 +367,15 @@ class UserPage
   {
   ?>
     <!-- Modal -->
-    <div class="modal fade" id="applicationModal" tabindex="-1" aria-labelledby="applicationModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
+    <div class="modal fade" id="applicationModal" data-bs-backdrop="static"  tabindex="-1" aria-labelledby="applicationModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="applicationModalLabel">Application Form</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <div class="innerMain">
-              <div class="container p-5">
+              <div class="container">
                 <div class="card inneradminDetails w-100 m-auto">
                   <div class="card-body">
                     <?php
@@ -380,38 +384,42 @@ class UserPage
                     ?>
                     <!-- <span>Vancouver, BC</span> -->
                     <form class=" col mt-4" enctype="multipart/form-data" method="post" action="">
-                      <div class="mb-3">
+                      <div class="d-flex">
+                      <div class="mb-3 me-2 w-100">
                         <label for="username" class="form-label">Name</label>
                         <input type="text" disabled class="form-control" value="<?= $user->getFname() . " " . $user->getLname() ?>" id="username" name="username">
                       </div>
-                      <div class="mb-3">
+                      <div class="mb-3 w-100">
                         <label for="email" class="form-label">Email</label>
                         <input type="email" disabled class="form-control" value="<?= $user->getEmail() ?>" id="email" name="email" aria-describedby="emailHelp">
                       </div>
-                      <div class="mb-3">
+                      </div>
+                      <div class="d-flex">
+                      <div class="mb-3 w-100 me-2" >
                         <label for="desiredPay" class="form-label">Desired Pay Per Month</label>
                         <input type="number" class="form-control" id="desiredPay" name="desiredPay" min="0">
                       </div>
-                      <div class="mb-3">
+                      <div class="mb-3 w-100">
                         <label for="additionalUrl" class="form-label">Additional URL (Optional)</label>
                         <input type="url" class="form-control" id="additionalUrl" name="additionalUrl">
                       </div>
+                      </div>
 
-                      <div class="mb-3">
+                      <div class="mb-3 w-100 me-2">
                         <label for="resumeUpload" class="form-label">Upload your resume (pdf only)</label>
                         <input type="file" class="form-control" id="resumeUpload" name="resume" value="" required accept=".pdf">
                       </div>
-                      <div class="mb-3">
+                      <div class="mb-3 w-100 me-2">
                         <label for="comments" class="form-label">Anything you want to tell us? (Optional)</label>
                         <textarea class="form-control" id="comments" name="comments" rows="2"></textarea>
                       </div>
-                      <div class="d-grid">
-                          <button type="submit" class="btn btn-primary mt-4 " name="applyJob" value="apply" <?= ($isApplied) ? "disabled" : ""  ?>>APPLY</button>
+                      <button type="submit" class="btn btn-primary mt-4  w-autoo" name="applyJob" value="apply" <?= ($isApplied) ? "disabled" : ""  ?>>APPLY</button>
+
                       </div>
                     </form>
                   </div>
 
-                </div>
+                
               </div>
             </div>
             <!-- <div class="modal-footer">

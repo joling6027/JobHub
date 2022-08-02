@@ -86,7 +86,16 @@ VALUES('FT', 'Full-Time'),
 -- insert two fake user for testing purpose
 -- pass: Aaa1234@
 INSERT INTO Users (Fname, Lname, Email, Phone, Password, Role, Agreement)
+VALUES ('Jaspal','Singh','singhj137@student.douglascollege.ca','2361231234','$2y$10$.h5F6xiIMqJQabpNOirYVuufISzwF60u2GusEh6peEjX2jaqPbFXa','Admin',1);
+
+-- pass: Aaa1234@
+INSERT INTO Users (Fname, Lname, Email, Phone, Password, Role, Agreement)
+VALUES ('Jaspal','Singh','jaspal@gmail.com','2361231234','$2y$10$.h5F6xiIMqJQabpNOirYVuufISzwF60u2GusEh6peEjX2jaqPbFXa','User',1);
+
+-- pass: Aaa1234@
+INSERT INTO Users (Fname, Lname, Email, Phone, Password, Role, Agreement)
 VALUES ('Jojo','Weng','wengj4@student.douglascollege.ca','2361231234','$2y$10$.h5F6xiIMqJQabpNOirYVuufISzwF60u2GusEh6peEjX2jaqPbFXa','Admin',1);
+
 -- pass: Aaa2234@
 INSERT INTO Users (Fname, Lname, Email, Phone, Password, Role, Agreement)
 VALUES ('Amy','LaRoy','amylaroy@douglascollege.ca','2451001000','$2y$10$wrcO2atixWgtlY2rWr3/neBGFoNvRAvzNCSymDVtc66DP/fU13dye','User',1);

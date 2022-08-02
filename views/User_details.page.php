@@ -30,7 +30,7 @@ class PageUserDetails
                                     </div>
                                     <input type="hidden" name="id" value="<?=$_GET['id']?>">
                                     <button type="submit" class="btn btn-primary mt-4">Edit</button>
-                                    <a href="../controllers/Index.controller.php" class="btn btn-secondary mt-4">Back</a>
+                                    <a href="../controllers/Admin.controller.php" class="btn btn-secondary mt-4">Back</a>
                                 </form>
                             </div>
                         </div>

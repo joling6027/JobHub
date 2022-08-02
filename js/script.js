@@ -25,6 +25,49 @@ $(document).ready(function(){
             }, 100000);
     });
 
+    $('.forgetPwd').click(function(e){
+        e.preventDefault();
+        $("#modelPopup").removeClass("modal-lg");
+        $(".modal-footer").addClass("hide-model");
+        $(".hide-pass").addClass("hide-model");
+        $(".otp-visible").addClass("hide-model");
+        $(".sent-msg").addClass("hide-model");
+        $(".err-msg").addClass("hide-model");
+        $('.err').addClass('d-none');
+        $(".missed-otp-msg").addClass("hide-model");
+        $('#staticBackdrop').modal('show')
+    });
+
+    $('#emailBtn').click(function(e){
+        e.preventDefault();
+        if(!validation())
+        {
+            $('.err').removeClass('d-none');
+        }
+        else{
+            $('#otp').val('');
+            $("#modelPopup").removeClass("modal-lg");
+            $(".modal-footer").addClass("hide-model");
+            $(".hide-pass").addClass("hide-model");
+            $(".hide-email").addClass("hide-model");
+            $(".otp-visible").removeClass("hide-model");
+            $(".sent-msg").addClass("hide-model");
+            $(".err-msg").addClass("hide-model");
+            $('.err').addClass('d-none');
+            $(".missed-otp-msg").addClass("hide-model");
+            $('#staticBackdrop').modal('show')
+            sendEmail();
+            clearInterval = setTimeout(function() 
+                {
+                    global_var_otp = "";
+                    $(".sent-msg").addClass("hide-model");
+                    $(".err-msg").addClass("hide-model");
+                    $(".missed-otp-msg").removeClass("hide-model");
+                }, 100000);
+        }
+       
+    });
+
     $("#otpBtn").click(function(e){
         e.preventDefault();
         var value = $('#otp').val();
@@ -40,6 +83,12 @@ $(document).ready(function(){
             $(".err-msg").removeClass("hide-model")
         }
     });
+
+    function validation(){
+        var email = $('#mailTo').val();
+        var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+        return pattern.test(email);
+    }
 
     $('#saveChange').click(function(){
         $('#modal-myform').submit();
@@ -74,7 +123,6 @@ $(document).ready(function(){
 
     $('#delBtn').click(function(){
       location.href = $('#del_loc').val() + usrId;
-    //   location.href = "<?=$_SERVER['PHP_SELF']."?action=delete&id="?>"+usr_id;
     });
 
     $("#searchInput").on("keyup", function () {

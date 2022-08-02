@@ -19,7 +19,7 @@ ul li {list-style: none;}
 .innerMain{background:url("../images/bg-inner.png");background-position: top;}
 /* .carousel-control-prev, .carousel-control-next{visibility: hidden;z-index:99999}
 .carousel-control-prev:hover, .carousel-control-next:hover{visibility: visible;} */
-#carousal-prev{ position: absolute!important; left: -68px!important;}
+#carousal-prev{ position: absolute!important; left: -70px!important;}
 #carousal-next{position: absolute!important; right: -60px!important;}
 .edituser:hover svg{fill:#36b7d3}
 .deleteuser:hover svg{fill:#f00}

@@ -3,12 +3,11 @@
 class LoginManager  {
 
     static function verifyLogin()   {
-
         if(session_id() == '' || !isset($_SESSION)){
             session_start();
         }
   
-        if(isset($_SESSION['username'])){
+        if(isset($_SESSION['username']) || isset($_SESSION['msg'])){
             return true;
         }else{
             session_destroy();
