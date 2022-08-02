@@ -15,7 +15,7 @@ class PageJobApplied
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                         <button class="nav-link <?=!empty(self::$errors)?'':'active'?> " id="nav-applied-tab" data-bs-toggle="tab" data-bs-target="#nav-applied" type="button" role="tab" aria-controls="nav-applied" aria-selected="true">Users Applied for this job</button>
-                        <button class="nav-link <?=!empty(self::$errors)?'active':''?>" id="nav-edit-tab" data-bs-toggle="tab" data-bs-target="#nav-edit" type="button" role="tab" aria-controls="nav-edit" aria-selected="true">Edit Job Description</button>
+                        <button class="nav-link <?=!empty(self::$errors)?'active':''?>" id="nav-edit-tab" data-bs-toggle="tab" data-bs-target="#nav-edit" type="button" role="tab" aria-controls="nav-edit" aria-selected="true">Edit Job</button>
                     </div>
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
@@ -207,7 +207,8 @@ class PageJobApplied
                                     </div>
                                     </div>
                             <input type="hidden" name="jobId" value="<?=!empty($_GET['id'])?$_GET['id'] : $job->getJobId()?>">
-                            <input type="submit" class="btn btn-primary mt-4" value="Create Job">
+                            <input type="submit" class="btn btn-primary mt-4" value="Edit">
+                            <a href="javascript:void(0)" class=" btn btn-danger mt-4 del_job" >Delete</a>
                     </form>
                         </div>
                             </div>
@@ -219,6 +220,26 @@ class PageJobApplied
 
 
         </main>
+        <div class="modal fade" id="deletemodal" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">Delete Job</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Are you sure to delete this job?
+            </div>
+            <div class="modal-footer">
+              <input type="hidden" id="del_jobId" value="<?=$_SERVER['PHP_SELF']."?action=delete&id="?><?=!empty($_GET['id'])?$_GET['id'] : $job->getJobId()?>">
+              <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button id="delJobBtn" class="btn btn-danger">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
 <?php
                 }
             }

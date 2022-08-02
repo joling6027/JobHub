@@ -14,7 +14,7 @@
 .joblist:hover {color: black;  border: 1px solid #36b7d3;  background: #f1f1f1}
 .bg-primary,.btn-primary{background:#36b7d3!important }
 ul li {list-style: none;}
-.inneradminDetails{border:none;z-index:9999}
+.inneradminDetails{border:none;z-index:999}
 .inneradminDetails .card:hover{background:none; border:none }
 .innerMain{background:url("../images/bg-inner.png");background-position: top;}
 /* .carousel-control-prev, .carousel-control-next{visibility: hidden;z-index:99999}
@@ -28,3 +28,4 @@ ul li {list-style: none;}
 .round-input-otp{border-top-left-radius: 5px !important; border-bottom-left-radius: 5px !important; border-top-right-radius:0px !important; border-bottom-right-radius: 0px !important;}
 .round-btn-otp{border-top-right-radius: 5px !important; border-bottom-right-radius: 5px !important; border-top-left-radius: 0px !important; border-bottom-left-radius: 0px !important;}
 .message{max-height:32px!important;}
+#deletemodal{z-index:999999}

@@ -169,8 +169,8 @@
                 ?>
                 <div class="tab-pane fade <?=!empty(self::$errors)?'':'show active'?> " id="nav-jobs" role="tabpanel" aria-labelledby="nav-jobs-tab" tabindex="0">
                 <div class="input-group mb-3 mt-4" >
-                    <span class="input-group-text" id="basic-addon1">Search</span>
-                    <input type="search" id="searchInput" class="form-control" placeholder="keyword" aria-label="Username" aria-describedby="basic-addon1">
+                    <span class="input-group-text" id="basic-addon-job">Search</span>
+                    <input type="search" id="searchJob" class="form-control" placeholder="keyword" aria-label="jobs" aria-describedby="basic-addon-job">
                 </div> 
                <?php
                   foreach ($jobs as $key=>$value) {
