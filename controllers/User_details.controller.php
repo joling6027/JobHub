@@ -22,6 +22,7 @@ if(LoginManager::verifyLogin()){
 
         if($res > 0)
         {
+          $_SESSION['username']['Name'] =$user->getFname()." ". $user->getLname();
           $_SESSION['msg']['success']  = "User Info is updated sucessfully.";
         }
         else{
