@@ -13,14 +13,14 @@ class Validate{
 
       //validate first name
       //should contains no digits
-      if (strlen($_POST['fname']) == 0 || preg_match('~[0-9]~', $_POST['fname'])) {
+      if (strlen(trim($_POST['fname'])) == 0 || preg_match('~[0-9]~', $_POST['fname'])) {
         $validate = false;
         PageRegister::$notification['name'] = "First name and/or last name should not be empty or contain numbers.";
       }
 
       //validate last name
       //should contains no digits
-      if (strlen($_POST['lname']) == 0 || preg_match('~[0-9]~', $_POST['lname'])) {
+      if (strlen(trim($_POST['lname'])) == 0 || preg_match('~[0-9]~', $_POST['lname'])) {
         $validate = false;
         PageRegister::$notification['name'] = "First name and/or last name shouldn't be empty.";
       }
@@ -74,17 +74,17 @@ class Validate{
     //for create new job form
     if(isset($_POST['createJob'])){
       //company name, job position, job location, salary
-      if (strlen($_POST['companyName']) == 0) {
+      if (strlen(trim($_POST['companyName'])) == 0) {
         $validate = false;
         PageAdmin::$notification['companyName'] = "Company name should not be empty.";
       }
 
-      if (strlen($_POST['jobtitle'] == 0)) {
+      if (strlen(trim($_POST['jobtitle']) == 0)) {
         $validate = false;
         PageAdmin::$notification['jobtitle'] = "Job Title should not be empty.";
       }
 
-      if (strlen($_POST['jobLocation']) == 0) {
+      if (strlen(trim($_POST['jobLocation'])) == 0) {
         $validate = false;
         PageAdmin::$notification['jobLocation'] = "Job location should not be empty.";
       }
