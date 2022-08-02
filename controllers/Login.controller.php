@@ -8,7 +8,10 @@
     require_once('../views/Login.page.php');
     require_once('../inc/config.inc.php');
     require_once('../models/Users.class.php');
+    require_once('../inc/Utilities/Extension.class.php');
 
+if(!LoginManager::verifyLogin())
+{
     if(!empty($_POST))
     {
         UsersDAO::initialize(USERS);
@@ -21,11 +24,11 @@
                 $_SESSION['username'] = array('Email'=> $user->getEmail(), 'Name' => $user->getFname()." ". $user->getLname());
                 $_SESSION['user_role'] = $user->getRole(); //for click on logo -> go back to home page purpose
                 if($user->getRole() == ROLE_ADMIN){
-                    header(LOCATION_ADMIN);
+                    header("Location: ".LOCATION_ADMIN);
                     exit;
                 }
                 if($user->getRole() == ROLE_USER){
-                    header(LOCATION_USER_ENTRANCE);
+                    header("Location: ".LOCATION_USER_ENTRANCE);
                     exit;
                 }
                 
@@ -36,6 +39,14 @@
             }
         }
     }
-
+    
     PageHeader::header();
     PageLogin::login();
+}
+else{
+    PageHeader::header();
+    PageLogin::login();
+    DropOff::verifyMessage(true);   
+    unset($_SESSION['username']);
+    session_destroy();
+}

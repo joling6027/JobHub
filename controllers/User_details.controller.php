@@ -22,15 +22,13 @@ if(LoginManager::verifyLogin()){
 
         if($res > 0)
         {
-          $msg = "User is updated sucessfully.";
-          DropOff::sucessful($msg);
+          $_SESSION['msg']['success']  = "User Info is updated sucessfully.";
         }
         else{
-          $msg = "User is not updated.";
-          DropOff::fail($msg );
+          $_SESSION['msg']['error'] = "User Info is not updated.";
         }
-       
-        header(LOCATION_ADMIN);
+        $_SESSION['msg']['url'] = LOCATION_ADMIN;
+        header("Location: ".LOCATION_ADMIN);
         exit;
     }
     else
@@ -44,6 +42,7 @@ if(LoginManager::verifyLogin()){
     }
 }
 else{
-  PageHeader::header(true);
+  // PageHeader::header(true);
+  header("Location: ". LOCATION_LOGIN);
   exit;
 }

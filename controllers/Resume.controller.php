@@ -17,12 +17,10 @@ if(LoginManager::verifyLogin())
             header("Content-type: application/pdf");
             header("Content-disposition: download; filename=".$response->Fname."_".$response->Lname."_"."Resume.pdf");
             echo $response->getResume();
-            header(LOCATION_ADMIN);
-            exit;
         }
     }
 }
 else{
-    header(LOCATION_LOGIN);
+    header("Location: ".LOCATION_LOGIN);
     exit;
 }

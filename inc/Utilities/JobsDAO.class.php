@@ -68,7 +68,7 @@
                 self::$db->bind(':JobID', $job->getJobId());
                 self::$db->execute();
 
-                return self::$db->lastInsertedId();
+                return self::$db->rowCount();
             }
             catch(Exception $ex)
             {
