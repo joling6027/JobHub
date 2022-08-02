@@ -76,22 +76,22 @@ class Validate{
       //company name, job position, job location, salary
       if (strlen($_POST['companyName']) == 0) {
         $validate = false;
-        PageIndex::$notification['companyName'] = "Company name should not be empty.";
+        PageAdmin::$notification['companyName'] = "Company name should not be empty.";
       }
 
       if (strlen($_POST['jobtitle'] == 0)) {
         $validate = false;
-        PageIndex::$notification['jobtitle'] = "Job Title should not be empty.";
+        PageAdmin::$notification['jobtitle'] = "Job Title should not be empty.";
       }
 
       if (strlen($_POST['jobLocation']) == 0) {
         $validate = false;
-        PageIndex::$notification['jobLocation'] = "Job location should not be empty.";
+        PageAdmin::$notification['jobLocation'] = "Job location should not be empty.";
       }
 
       if($_POST['salary'] <= 0){
         $validate = false;
-        PageIndex::$notification['salary'] = "Salary should be greater than 0.";
+        PageAdmin::$notification['salary'] = "Salary should be greater than 0.";
       }
     }
 
