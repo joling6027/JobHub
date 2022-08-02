@@ -4,7 +4,7 @@
          
             static $categories;
             static $types;
-            public static $notification;
+            static $errors = [];
 
             static function adminDetails($email, $name){
                 ?>
@@ -23,8 +23,8 @@
           <div class="container mt-5 adminTabs">
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                  <button class="nav-link " id="nav-create-tab" data-bs-toggle="tab" data-bs-target="#nav-create" type="button" role="tab" aria-controls="nav-create" aria-selected="true">Create Jobs</button>
-                  <button class="nav-link active" id="nav-jobs-tab" data-bs-toggle="tab" data-bs-target="#nav-jobs" type="button" role="tab" aria-controls="nav-jobs" aria-selected="true">Existing Jobs</button>
+                  <button class="nav-link <?=!empty(self::$errors)?'active':''?> " id="nav-create-tab" data-bs-toggle="tab" data-bs-target="#nav-create" type="button" role="tab" aria-controls="nav-create" aria-selected="true">Create Jobs</button>
+                  <button class="nav-link <?=!empty(self::$errors)?'':'active'?>" id="nav-jobs-tab" data-bs-toggle="tab" data-bs-target="#nav-jobs" type="button" role="tab" aria-controls="nav-jobs" aria-selected="true">Existing Jobs</button>
                   <button class="nav-link" id="nav-manage-users-tab" data-bs-toggle="tab" data-bs-target="#nav-manage-users" type="button" role="tab" aria-controls="nav-manage-users" aria-selected="true">Manage users</button>
                 
                 </div>
@@ -37,7 +37,7 @@
                 ?>
  
               <div class="tab-content jobs" id="nav-tabContent">
-                <div class="tab-pane fade " id="nav-create" role="tabpanel" aria-labelledby="nav-create-tab" tabindex="0">
+                <div class="tab-pane fade <?=!empty(self::$errors)?'show active':''?>" id="nav-create" role="tabpanel" aria-labelledby="nav-create-tab" tabindex="0">
                     <div class="d-flex">
                     <form class=" col mt-5" action="<?php echo $_SERVER["PHP_SELF"];?>" method="POST">
                             <div class="mb-3 col d-flex">
@@ -71,18 +71,39 @@
                             <div class="mb-3 col d-flex">
                             <div class="col-6 pe-2">
                             <label for="companyName" class="form-label">Company Name</label>
-                            <input type="text" class="form-control mb-3" id="companyName" name="companyName" aria-describedby="companyName">
+                            <input type="text" class="form-control mb-3" id="companyName" name="companyName" aria-describedby="companyName"
+                            value="<?=(!empty($_POST['companyName']) && empty(self::$errors['companyName']))? trim($_POST['companyName']): ''?>">
+                            <?php
+                                            if(!empty(self::$errors) && isset(self::$errors['companyName'])){
+                                                ?>
+                                                    <span class="text-danger mb-0 p-2">
+                                                        <?= self::$errors['companyName']?>
+                                                    </span>
+                                                <?php
+                                            }
+                                        ?>
+                                        
                             </div>
                             <div class="col-6 ps-2">
                             <label for="jobtitle" class="form-label">Job Title</label>
-                            <input type="text" class="form-control" id="jobtitle" name="jobtitle" aria-describedby="descriptionHelp">
-                            <!-- <div id="descriptionHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                            <input type="text" class="form-control" id="jobtitle" name="jobtitle" aria-describedby="jobtitle"
+                            value="<?=(!empty($_POST['jobtitle']) && empty(self::$errors['jobtitle']))? trim($_POST['jobtitle']): ''?>">
+                            <?php
+                                            if(!empty(self::$errors) && isset(self::$errors['jobtitle'])){
+                                                ?>
+                                                    <span class="text-danger mb-0 p-2">
+                                                        <?= self::$errors['jobtitle']?>
+                                                    </span>
+                                                <?php
+                                            }
+                                        ?>
                             </div>
                             </div>
                             <div class="mb-3 col d-flex">
                             <div class="col-6 pe-2">
                            <label for="descriptionTA" class="form-label">Job Description</label>
                             <textarea class="form-control mb-3" placeholder="Add Description" id="descriptionTA" name="descriptionTA"></textarea>
+                            
                             </div>
                             <div class="col-6 ps-2">
                             <label for="dutyTA" class="form-label">Job Duty</label>
@@ -106,12 +127,32 @@
                                     <div class="col-6 pe-2">
 
                             <label for="jobLocation" class="form-label ">Company Location</label>
-                            <input type="text" class="form-control mb-3" id="jobLocation" name="jobLocation" aria-describedby="jobLocation">
+                            <input type="text" class="form-control mb-3" id="jobLocation" name="jobLocation" aria-describedby="jobLocation"
+                            value="<?=(!empty($_POST['jobLocation']) && empty(self::$errors['jobLocation']))? trim($_POST['jobLocation']): ''?>">
+                            <?php
+                                            if(!empty(self::$errors) && isset(self::$errors['jobLocation'])){
+                                                ?>
+                                                    <span class="text-danger mb-0 p-2">
+                                                        <?= self::$errors['jobLocation']?>
+                                                    </span>
+                                                <?php
+                                            }
+                                        ?>
                                     </div>
                                     <div class="col-6 ps-2">
 
                             <label for="salary" class="form-label">Salary</label>
-                            <input type="number" class="form-control" id="salary" name="salary" aria-describedby="emailHelp" required>
+                            <input type="number" class="form-control" id="salary" name="salary" aria-describedby="emailHelp" required
+                            value="<?=(!empty($_POST['salary']) && empty(self::$errors['salary']))? trim($_POST['salary']): ''?>">
+                            <?php
+                                            if(!empty(self::$errors) && isset(self::$errors['salary'])){
+                                                ?>
+                                                    <span class="text-danger mb-0 p-2">
+                                                        <?= self::$errors['salary']?>
+                                                    </span>
+                                                <?php
+                                            }
+                                        ?>
                                     </div>
                                     </div>
                             <input type="submit" class="btn btn-primary mt-4 btnSubmit" name="createJob" value="Create Job">
@@ -126,7 +167,7 @@
             static function existingJobs($jobs, $category, $type){
               if(!empty($jobs)){
                 ?>
-                <div class="tab-pane fade show active" id="nav-jobs" role="tabpanel" aria-labelledby="nav-jobs-tab" tabindex="0">
+                <div class="tab-pane fade <?=!empty(self::$errors)?'':'show active'?> " id="nav-jobs" role="tabpanel" aria-labelledby="nav-jobs-tab" tabindex="0">
                 <div class="input-group mb-3 mt-4" >
                     <span class="input-group-text" id="basic-addon1">Search</span>
                     <input type="search" id="searchInput" class="form-control" placeholder="keyword" aria-label="Username" aria-describedby="basic-addon1">

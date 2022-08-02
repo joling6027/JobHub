@@ -2,9 +2,9 @@
  .logo{font-family: 'Chakra Petch', sans-serif; font-family: 'Poppins', sans-serif; font-family: 'Rubik', sans-serif;font-size: 1.5em;}
 
 *{box-sizing: border-box; }
-.carousel .card{z-index:999;flex-basis:25%;height:315px}
+.carousel .card{z-index:999;flex-basis:25%;height: 315px;}
 .salType{bottom:10px}
-.card-text{max-height: 180px;overflow: hidden;white-space: normal;text-overflow: ellipsis;-webkit-box-orient: vertical; display: -webkit-box;-webkit-line-clamp: 5;}
+.card-text{max-height: 180px;overflow: hidden;white-space: normal;text-overflow: ellipsis;-webkit-box-orient: vertical; display: -webkit-box;-webkit-line-clamp: 5;line-height: 1.3em;}
  a{text-decoration: none; color:#000 }
 .bg{background:#36b7d3!important}
 .btn{border:none!important}

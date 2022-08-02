@@ -12,6 +12,7 @@ require_once('../models/Users.class.php');
 require_once('../models/Jobs.class.php');
 require_once('../inc/Utilities/LoginManager.class.php');
 require_once('../inc/Utilities/Extension.class.php');
+require_once('../inc/Utilities/Validation.class.php');
 
 $users;
 $job;
@@ -43,6 +44,7 @@ if(LoginManager::verifyLogin())
    
     if(!empty($_POST))
     {
+        PageJobApplied::$errors = [];
         $job = new Jobs();
         $job->setJobId($_POST['jobId']);
         $job->setJobCategory($_POST['categoryDD']);
@@ -56,24 +58,40 @@ if(LoginManager::verifyLogin())
         $job->setBenefits($_POST['benefitsTA']);
         $job->setCompanyName($_POST['companyName']);
         $job->setCreatedOn();
-
-        $res = JobsDAO::updateJob($job);
-        if($res>0){
+        $isValid = Validate::validateNewJob($job);
+        PageJobApplied::$errors = $isValid;
+        if(count($isValid) <= 0)
+        {
+            $res = JobsDAO::updateJob($job);
+            if($res>0){
             $_SESSION['msg']['success']  = "Job details is updated sucessfully.";
+            }
+            else{
+                $_SESSION['msg']['error'] = "Job details is not updated.";
+                
+            }
+            $_SESSION['msg']['url'] = LOCATION_ADMIN;
+            header("Location: ".LOCATION_ADMIN);
+            exit;
         }
         else{
-            $_SESSION['msg']['error'] = "Job details is not updated.";
-            
+            $users = UsersDAO::getUsersAppliedJob($job->getJobId());
+            $job = JobsDAO::getJob($job->getJobId());
+            PageHeader::header(true);
+            PageJobApplied::userAppliedJobs($users);
+            PageJobApplied::editJobs($job);
+            PageFooter::footer(true);
         }
-        $_SESSION['msg']['url'] = LOCATION_ADMIN;
-        header("Location: ".LOCATION_ADMIN);
-        exit;
+
+        
     }
-    
-    PageHeader::header(true);
-    PageJobApplied::userAppliedJobs($users);
-    PageJobApplied::editJobs($job);
-    PageFooter::footer(true);
+    else{
+        PageHeader::header(true);
+        PageJobApplied::userAppliedJobs($users);
+        PageJobApplied::editJobs($job);
+        PageFooter::footer(true);
+    }
+   
    
 }
 else{

@@ -58,7 +58,7 @@ class PageHeader
                     //if user is admin, go to admin control page, otherwise go to user entrance page
                     $home = '';
                     if (!empty($_SESSION) && $_SESSION['user_role'] == 'Admin')
-                        $home = "Index.controller.php";
+                        $home = "Admin.controller.php";
                     else
                         $home = "user_entrance.controller.php";
 

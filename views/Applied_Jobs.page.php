@@ -4,7 +4,7 @@ class PageJobApplied
 {
     static $categories;
     static $types;
-
+    static $errors = [];
     static function userAppliedJobs($users)
     {
        
@@ -14,12 +14,12 @@ class PageJobApplied
             <a href="../controllers/Admin.controller.php" class="btn btn-secondary mt-0 mb-4">Back</a>
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <button class="nav-link active" id="nav-applied-tab" data-bs-toggle="tab" data-bs-target="#nav-applied" type="button" role="tab" aria-controls="nav-applied" aria-selected="true">Users Applied for this job</button>
-                        <button class="nav-link " id="nav-edit-tab" data-bs-toggle="tab" data-bs-target="#nav-edit" type="button" role="tab" aria-controls="nav-edit" aria-selected="true">Edit Job Description</button>
+                        <button class="nav-link <?=!empty(self::$errors)?'':'active'?> " id="nav-applied-tab" data-bs-toggle="tab" data-bs-target="#nav-applied" type="button" role="tab" aria-controls="nav-applied" aria-selected="true">Users Applied for this job</button>
+                        <button class="nav-link <?=!empty(self::$errors)?'active':''?>" id="nav-edit-tab" data-bs-toggle="tab" data-bs-target="#nav-edit" type="button" role="tab" aria-controls="nav-edit" aria-selected="true">Edit Job Description</button>
                     </div>
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-applied" role="tabpanel" aria-labelledby="nav-applied-tab" tabindex="0">
+                    <div class="tab-pane fade <?=!empty(self::$errors)?'':'show active'?>" id="nav-applied" role="tabpanel" aria-labelledby="nav-applied-tab" tabindex="0">
                         <div class="card inneradminDetails w-100 m-auto">
                             <div class="card-body">
                                 <!-- search element -->
@@ -85,10 +85,10 @@ class PageJobApplied
                 }
 
 
-                static function editJobs($job)
+                static function editJobs(Jobs $job)
                 {
                     ?>
-                    <div class="tab-pane fade" id="nav-edit" role="tabpanel" aria-labelledby="nav-edit-tab" tabindex="0">
+                    <div class="tab-pane fade <?=!empty(self::$errors)?'show active':''?>" id="nav-edit" role="tabpanel" aria-labelledby="nav-edit-tab" tabindex="0">
                         <div class="card inneradminDetails w-100 m-auto">
                             <div class="card-body">
                             <div class="d-flex">
@@ -125,13 +125,30 @@ class PageJobApplied
                             <div class="col-6 pe-2">
                             <label for="companyName" class="form-label">Company Name</label>
                             <input type="text" class="form-control mb-3" id="companyName" name="companyName" aria-describedby="companyName"
-                             value="<?= $job->getCompanyName();?>">
+                             value="<?= empty(self::$errors['companyName'])?$job->getCompanyName():''?>">
+                             <?php
+                                            if(!empty(self::$errors) && isset(self::$errors['companyName'])){
+                                                ?>
+                                                    <span class="text-danger mb-0 p-2">
+                                                        <?= self::$errors['companyName']?>
+                                                    </span>
+                                                <?php
+                                            }
+                                        ?>
                             </div>
                             <div class="col-6 ps-2">
                             <label for="jobtitle" class="form-label">Job Title</label>
-                            <input type="text" class="form-control" id="jobtitle" name="jobtitle" aria-describedby="descriptionHelp"
-                             value="<?= $job->getJobPosition();?>">
-                            <!-- <div id="descriptionHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                            <input type="text" class="form-control" id="jobtitle" name="jobtitle" aria-describedby="jobtitle"
+                            value="<?= empty(self::$errors['jobtitle'])?$job->getJobPosition():''?>">
+                             <?php
+                                            if(!empty(self::$errors) && isset(self::$errors['jobtitle'])){
+                                                ?>
+                                                    <span class="text-danger mb-0 p-2">
+                                                        <?= self::$errors['jobtitle']?>
+                                                    </span>
+                                                <?php
+                                            }
+                                        ?>
                             </div>
                             </div>
                             <div class="mb-3 col d-flex">
@@ -162,16 +179,34 @@ class PageJobApplied
 
                             <label for="jobLocation" class="form-label ">Company Location</label>
                             <input type="text" class="form-control mb-3" id="jobLocation" name="jobLocation" aria-describedby="jobLocation"
-                            value="<?= trim($job->getJobLocation());?>">
+                            value="<?= empty(self::$errors['jobLocation'])?$job->getJobLocation():''?>">
+                            <?php
+                                            if(!empty(self::$errors) && isset(self::$errors['jobLocation'])){
+                                                ?>
+                                                    <span class="text-danger mb-0 p-2">
+                                                        <?= self::$errors['jobLocation']?>
+                                                    </span>
+                                                <?php
+                                            }
+                                        ?>
                                     </div>
                                     <div class="col-6 ps-2">
 
                             <label for="salary" class="form-label">Salary</label>
                             <input type="number" class="form-control" id="salary" name="salary" aria-describedby="emailHelp" required
-                             value="<?= trim($job->getsalary());?>">
+                            value="<?= empty(self::$errors['salary'])?$job->getsalary():''?>">
+                             <?php
+                                            if(!empty(self::$errors) && isset(self::$errors['salary'])){
+                                                ?>
+                                                    <span class="text-danger mb-0 p-2">
+                                                        <?= self::$errors['salary']?>
+                                                    </span>
+                                                <?php
+                                            }
+                                        ?>
                                     </div>
                                     </div>
-                            <input type="hidden" name="jobId" value="<?=$_GET['id']?>">
+                            <input type="hidden" name="jobId" value="<?=!empty($_GET['id'])?$_GET['id'] : $job->getJobId()?>">
                             <input type="submit" class="btn btn-primary mt-4" value="Create Job">
                     </form>
                         </div>
