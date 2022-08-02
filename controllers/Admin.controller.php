@@ -13,6 +13,7 @@
     require_once('../inc/Utilities/LoginManager.class.php');
     require_once('../inc/Utilities/JobAppliedDAO.php');
     require_once('../inc/Utilities/Extension.class.php');
+    require_once('../inc/Utilities/Validation.class.php');
     
 
     if(LoginManager::verifyLogin())
@@ -52,36 +53,6 @@
                 }
                 $_SESSION['msg']['url'] = LOCATION_ADMIN;
             }
-           
-        }
-
-        if(!empty($_POST) && isset($_POST))
-        {
-            $job = new Jobs();
-            $job->setJobCategory(trim($_POST['categoryDD']));
-            $job->setJobLocation(trim($_POST['jobLocation']));
-            $job->setJobType(trim($_POST['typeDD']));
-            $job->setJobPosition(trim($_POST['jobtitle']));
-            $job->setsalary(trim($_POST['salary']));
-            $job->setJobDescription(trim($_POST['descriptionTA']));
-            $job->setDuty(trim($_POST['dutyTA']));
-            $job->setQualification(trim($_POST['qualificationTA']));
-            $job->setBenefits(trim($_POST['benefitsTA']));
-            $job->setCompanyName(trim($_POST['companyName']));
-            $job->setCreatedOn();
-    
-            $res = JobsDAO::createJob($job);
-    
-            if($res > 0)
-            {
-              $_SESSION['msg']['success'] = "Job is created sucessfully.";
-            }
-            else{
-              $_SESSION['msg']['error'] = "Job is not created.";
-            }
-            $_SESSION['msg']['url'] = LOCATION_ADMIN;
-           
-        }
             DropOff::verifyMessage();
             PageHeader::header(true);
             PageAdmin::adminDetails($_SESSION['username']['Email'], $_SESSION['username']['Name']);
@@ -90,6 +61,64 @@
             PageAdmin::manageUsers($users);
             PageFooter::footer(true);
            
+        }
+
+        if(!empty($_POST) && isset($_POST))
+        {
+                PageAdmin::$errors = [];
+                $job = new Jobs();
+                $job->setJobCategory(trim($_POST['categoryDD']));
+                $job->setJobLocation(trim($_POST['jobLocation']));
+                $job->setJobType(trim($_POST['typeDD']));
+                $job->setJobPosition(trim($_POST['jobtitle']));
+                $job->setsalary(trim($_POST['salary']));
+                $job->setJobDescription(trim($_POST['descriptionTA']));
+                $job->setDuty(trim($_POST['dutyTA']));
+                $job->setQualification(trim($_POST['qualificationTA']));
+                $job->setBenefits(trim($_POST['benefitsTA']));
+                $job->setCompanyName(trim($_POST['companyName']));
+                $job->setCreatedOn();
+
+                $isValid = Validate::validateNewJob($job);
+                PageAdmin::$errors = $isValid;
+                if(count($isValid) <= 0)
+                {
+                    $res = JobsDAO::createJob($job);
+                    if($res > 0)
+                    {
+                    $_SESSION['msg']['success'] = "Job is created sucessfully.";
+                    }
+                    else{
+                    $_SESSION['msg']['error'] = "Job is not created.";
+                    }
+                    $_SESSION['msg']['url'] = LOCATION_ADMIN;
+                    DropOff::verifyMessage();
+                    PageHeader::header(true);
+                    PageAdmin::adminDetails($_SESSION['username']['Email'], $_SESSION['username']['Name']);
+                    PageAdmin::createJobs();
+                    PageAdmin::existingJobs($jobs, $category, $type);
+                    PageAdmin::manageUsers($users);
+                    PageFooter::footer(true);
+                }
+                else{
+                    DropOff::verifyMessage();
+                    PageHeader::header(true);
+                    PageAdmin::adminDetails($_SESSION['username']['Email'], $_SESSION['username']['Name']);
+                    PageAdmin::createJobs();
+                    PageAdmin::existingJobs($jobs, $category, $type);
+                    PageAdmin::manageUsers($users);
+                    PageFooter::footer(true);
+                }
+        }
+        else{
+            DropOff::verifyMessage();
+            PageHeader::header(true);
+            PageAdmin::adminDetails($_SESSION['username']['Email'], $_SESSION['username']['Name']);
+            PageAdmin::createJobs();
+            PageAdmin::existingJobs($jobs, $category, $type);
+            PageAdmin::manageUsers($users);
+            PageFooter::footer(true);
+        }
     }
     else{
         header("Location: ".LOCATION_LOGIN);

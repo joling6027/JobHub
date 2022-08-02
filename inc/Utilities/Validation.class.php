@@ -72,48 +72,71 @@ class Validate{
 
 
     //for create new job form
-    if(isset($_POST['createJob'])){
-      //company name, job position, job location, salary
-      if (strlen(trim($_POST['companyName'])) == 0) {
-        $validate = false;
-        PageAdmin::$notification['companyName'] = "Company name should not be empty.";
-      }
+    // if(isset($_POST['createJob'])){
+    //   //company name, job position, job location, salary
+    //   if (strlen(trim($_POST['companyName'])) == 0) {
+    //     $validate = false;
+    //     PageAdmin::$notification['companyName'] = "Company name should not be empty.";
+    //   }
 
-      if (strlen(trim($_POST['jobtitle']) == 0)) {
-        $validate = false;
-        PageAdmin::$notification['jobtitle'] = "Job Title should not be empty.";
-      }
+    //   if (strlen(trim($_POST['jobtitle']) == 0)) {
+    //     $validate = false;
+    //     PageAdmin::$notification['jobtitle'] = "Job Title should not be empty.";
+    //   }
 
-      if (strlen(trim($_POST['jobLocation'])) == 0) {
-        $validate = false;
-        PageAdmin::$notification['jobLocation'] = "Job location should not be empty.";
-      }
+    //   if (strlen(trim($_POST['jobLocation'])) == 0) {
+    //     $validate = false;
+    //     PageAdmin::$notification['jobLocation'] = "Job location should not be empty.";
+    //   }
 
-      if($_POST['salary'] <= 0){
-        $validate = false;
-        PageAdmin::$notification['salary'] = "Salary should be greater than 0.";
-      }
-    }
-
-    //job application form validation
-    // if(isset($_POST['applyJob'])){
-
-    //   //check upload file
-    //   if($_FILES['resume']['type'] != 'application/pdf'){
-    //       $validate = false;
-    //       UserPage::$notification['fileUpload'] = "File should be of pdf format.";
+    //   if($_POST['salary'] <= 0){
+    //     $validate = false;
+    //     PageAdmin::$notification['salary'] = "Salary should be greater than 0.";
     //   }
     // }
 
-
-    
-    //
-
-
-    
-
   }
 
+  static function validateUserDetail(Users $user){
+
+    $notification = [];
+    if (strlen(trim($user->getFname())) == 0 || preg_match('~[0-9]~', $user->getFname())) {
+     $notification['fname'] = "First name should not be empty or contain numbers.";
+    }
+
+    if (strlen(trim($user->getLname())) == 0 || preg_match('~[0-9]~', $user->getLname())) {
+      $notification['lname'] = "Last name should not be empty or contain numbers.";
+    }
+
+    $option = array("options" => array("regexp" => PHONE_VALIDATION));
+    $filterPhone = filter_var($user->getPhone(), FILTER_VALIDATE_REGEXP, $option);
+    if (!$filterPhone) {
+      $notification['phone'] = "Phone number should be 10 numbers.";
+    }
+
+    return $notification;
+  }
+
+  static function validateNewJob(Jobs $job){
+    $notification = [];
+    if (strlen(trim($job->getCompanyName())) == 0) {
+      $notification['companyName'] = "Company name should not be empty.";
+    }
+
+    if (strlen(trim($job->getJobPosition())) == 0) {
+      $notification['jobtitle'] = "Job Title should not be empty.";
+    }
+
+    if (strlen(trim($job->getJobLocation())) == 0) {
+      $notification['jobLocation'] = "Job location should not be empty.";
+    }
+
+    if(trim($job->getsalary())<= 0){
+      $notification['salary'] = "Salary should be greater than 0.";
+    }
+
+    return $notification;
+  }
 }
 
 ?>
