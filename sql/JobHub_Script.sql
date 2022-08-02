@@ -261,3 +261,57 @@ INSERT INTO Jobs (JobLocation, JobCategory, JobType, JobPosition, Salary, JobDes
 - Hands on experience with project management tools such as MS Project, and project management methodologies (margins, budget, timelines, scope, and quality to make better business decisions).
 - Bachelor''s degree or equivalent.',
 '','Accenture','2022-07-20');
+
+INSERT INTO Jobs (JobLocation, JobCategory, JobType, JobPosition, Salary, JobDescription, Duty, Qualification, Benefits, CompanyName, CreatedOn)
+ VALUES ('Vancouver, BC','LB','PT','Cashiers (Specifically Sunday Schedule) Walmart',1100,
+ 'Our Customer Experience associates interact with every single one of our customers, acting as the warm smile and the helping hand that we pride ourselves on being. It is up to our incredible team to present Walmart’s values to everyone who walks through our doors. We have many opportunities in our Customer Experience teams, including: - Cashier - People-Greeter - Self-Checkout Attendants - Stockperson - Customer Service Manager - Customer Experience Salesfloor Associate Qualifications: - A great attitude and willingness to learn - Some basic math skills, but nothing too scary - Willingness to help solve problems We proudly offer access to benefits for part-time and part-time flex associates. Our part time flex roles provide flexibility of more hours or less hours when needed. Whether you are looking for opportunities to grow your career long-term, or simply seeking a great place to work part-time, this is that place.',
+ '',
+ 'Age - 16 or older ',
+ '- 10% off on every purchase after completing training period
+  - 20% off on every purchase on associate appreciation days
+  - Part Time and Full-time medical insurance',
+ 'Walmart Canada',
+ '2022-07-20'
+ );
+
+ INSERT INTO Jobs (JobLocation, JobCategory, JobType, JobPosition, Salary, JobDescription, Duty, Qualification, Benefits, CompanyName, CreatedOn)
+ VALUES ('New Westminster, BC','LB','PT','(CAN) CAP 3 Associate', 1280,
+ 'To provide customer service by performing assigned duties related to receiving merchandise and moving it to the sales floor. This will be accomplished by unloading trailers, moving pallets into the sales area and assisting in the processing of merchandise in a clean and safe environment. This associate will work as a member of a team to strategically plan and execute tasks based on workload and operational functions',
+ '',
+ 'Age - 16 or older ',
+ '- 10% off on every purchase after completing training period
+  - 20% off on every purchase on associate appreciation days
+  - Part Time and Full-time medical insurance',
+ 'Walmart Canada',
+ '2022-07-25'
+ );
+
+  INSERT INTO Jobs (JobLocation, JobCategory, JobType, JobPosition, Salary, JobDescription, Duty, Qualification, Benefits, CompanyName, CreatedOn)
+ VALUES ('Langley, BC','LB','PT','Guest Service Attendant', 1200,
+ 'Are you looking to get out of the house for just 2 or 3 days a week? Need a break from the kids? Need extra income while you go to school? We are hiring for several positions in Langley. All shifts are 6-8 hour shifts. Email your resume or drop in in person to set up an initial interview. Benefits available after 6 months, and a $250 signing bonus is available after 12 months for those that work 20 hours/week or more on the average.',
+ '',
+ 'Age - 16 or older ',
+ '- Extended health care',
+ 'Petro Canada Gas Station',
+ '2022-07-23'
+ );
+
+ INSERT INTO Jobs (JobLocation, JobCategory, JobType, JobPosition, Salary, JobDescription, Duty, Qualification, Benefits, CompanyName, CreatedOn)
+ VALUES ('Burnaby, BC','LB','PT','Produce Associate', 1200,
+ 'Reporting to the Produce Department Head (or his/her delegates), this position is responsible for preparing various produce products in advance for customers to choose from. The position also needs to stock produce onto the display cases in the sales area, follow FIFO concept, provide good customer service to our customers by fulfilling their requests, and maintain inventory and workplace cleanliness ',
+ '- Maintain inventory and product freshness following FIFO concept; ensure full display of various produce products
+  - Preform regular quality check, follow procedures to process sub-standard products and manage shrinkage 
+  - Prepare various produce for sales activities, include but not limited to sort, cut, wash, weigh, pack and label various produce products and display them in the display cases 
+  - Greet customers with good customer service, smiles, being friendly and enthusiasm
+  - Assist customers in produce product selection and provide recommendations as required
+  - Maintain workplace cleanliness by washing and maintain relevant work tools clean and well-kept
+  - Keep display cases and walk-in coolers clean and tidy',
+ 'Age - 16 or older ',
+ '- Staff purchase discount
+  - Paid annual leave, sick leave, marriage leave and bereavement leave
+  - Discounted staff meals
+  - Life and AD&D Insurance',
+ 'T&T Supermarket',
+ '2022-07-29'
+ );
+ 
