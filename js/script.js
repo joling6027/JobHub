@@ -121,6 +121,16 @@ $(document).ready(function(){
       $('#deletemodal').modal('show')
     });
 
+    $('.del_job').click(function(e){
+        e.preventDefault();
+        $('#deletemodal').modal('show')
+      });
+
+      $('#delJobBtn').click(function(){
+        location.href = $('#del_jobId').val();
+      });
+  
+    
     $('#delBtn').click(function(){
       location.href = $('#del_loc').val() + usrId;
     });
@@ -132,7 +142,7 @@ $(document).ready(function(){
         });
     });
 
-    $("#searchInput").on("keyup", function () {
+    $("#searchJob").on("keyup", function () {
         var value = $(this).val().toLowerCase();
         $("#jobCard a").filter(function () {
         $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)

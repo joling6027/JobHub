@@ -39,6 +39,20 @@ if(LoginManager::verifyLogin())
            exit;
         }
 
+        if($_GET['action'] == 'delete')
+        {
+            if(JobsDAO::deleteJob($_GET['id'])){
+                $_SESSION['msg']['success']  = "Job is deleted sucessfully.";
+            }
+            else{
+                $_SESSION['msg']['error'] = "Job is not deleted.";
+                
+            }
+            $_SESSION['msg']['url'] = LOCATION_ADMIN;
+            header("Location: ".LOCATION_ADMIN);
+            exit;
+        }
+
        
     }
    

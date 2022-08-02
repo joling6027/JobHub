@@ -94,6 +94,7 @@ class JobAppliedDAO{
     }
 
   }
+  
   static function getResume($appliedId){
 
     $sql ="SELECT users.Fname, users.Lname, Job_Applied.Resume 

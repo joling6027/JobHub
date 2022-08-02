@@ -131,6 +131,7 @@
             }
 
         }
+        
         static function deleteUser(string $userId): bool {
     
                 $sql = "DELETE FROM users WHERE UserID = :UserID";
