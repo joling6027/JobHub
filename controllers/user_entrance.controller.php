@@ -9,6 +9,7 @@ require_once('../inc/Utilities/PDOService.php');
 require_once('../inc/Utilities/UsersDAO.class.php');
 require_once('../inc/Utilities/JobsDAO.class.php');
 require_once('../inc/Utilities/JobAppliedDAO.php');
+require_once('../inc/Utilities/Extension.class.php');
 require_once('../inc/Utilities/Validation.class.php');
 require_once('../models/Users.class.php');
 require_once('../models/Jobs.class.php');
@@ -65,6 +66,14 @@ if (isset($_GET['jobdesc']) && isset($_GET['jobid'])) {
         $applicant->setAdditionalUrls($_POST['additionalUrl']);
         $applicant->setComments($_POST['comments']);
 
+        
+        $updateUser = new Users();
+        $updateUser->setFname($_POST['fname']);
+        $updateUser->setLname($_POST['lname']);
+        $updateUser->setPhone($_POST['phone']);
+        $updateUser->setUserID($user->getUserID());
+        
+
         //handle upload file
         if ($_FILES['resume']['error'] != 0) {
           // notification-- something wrong
@@ -78,7 +87,17 @@ if (isset($_GET['jobdesc']) && isset($_GET['jobid'])) {
 
               //save to database
               $apply = JobAppliedDAO::createNewJobApplied($applicant);
-              UserPage::$notification['applySuccessMsg'] = 'Applied Succussfully!';
+              $res = UsersDAO::updateUser($updateUser);
+
+              if($res > 0){
+                  $_SESSION['username']['Name'] = $updateUser->getFname() . " " . $updateUser->getLname();
+                  $_SESSION['msg']['success']  = "Applied sucessfully.";
+              }else{
+                  $_SESSION['msg']['error'] = "User Info is not updated.";
+              }
+              
+              
+              // UserPage::$notification['applySuccessMsg'] = 'Applied Succussfully!';
               echo "<meta http-equiv='refresh' content='0'>";
 
             } else {
