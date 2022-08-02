@@ -302,7 +302,7 @@ class UserPage
                       ?>
                       <h5 class="text-left fs-5"><?= $job_type ?></h5>
                       <!-- SQL ATTR: salary -->
-                      <h5 class="text-left fs-5">Salary: $<?= $job->getsalary() ?> a month</h5>
+                      <h5 class="text-left fs-5">Salary: $<?= $job->getsalary() ?></h5>
                       <p></p>
                       <hr>
                       <div class="job-description-content">
@@ -383,16 +383,26 @@ class UserPage
                       echo "<h5 style=\"color:red;\">" . self::$notification['alreadyAppliedAlert'] . "</h5>";
                     ?>
                     <!-- <span>Vancouver, BC</span> -->
-                    <form class=" col mt-4" enctype="multipart/form-data" method="post" action="">
+                    <form class=" col mt-2" enctype="multipart/form-data" method="post" action="">
+                    <div class="d-flex">
+                        <div class="mb-3 me-2 w-100">
+                          <label for="fname" class="form-label">First Name</label>
+                          <input type="text"  class="form-control" value="" id="fname" name="fname">
+                        </div>
+                        <div class="mb-3 w-100">
+                          <label for="lname" class="form-label">Last Name</label>
+                          <input type="text"  class="form-control" value="" id="lname" name="lname" aria-describedby="lastname">
+                        </div>
+                      </div>
                       <div class="d-flex">
-                      <div class="mb-3 me-2 w-100">
-                        <label for="username" class="form-label">Name</label>
-                        <input type="text" disabled class="form-control" value="<?= $user->getFname() . " " . $user->getLname() ?>" id="username" name="username">
-                      </div>
-                      <div class="mb-3 w-100">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" disabled class="form-control" value="<?= $user->getEmail() ?>" id="email" name="email" aria-describedby="emailHelp">
-                      </div>
+                        <div class="mb-3 me-2 w-100">
+                          <label for="phone" class="form-label">Phone</label>
+                          <input type="phone" class="form-control" value="" id="phone" name="phone">
+                        </div>
+                        <div class="mb-3 w-100">
+                          <label for="email" class="form-label">Email</label>
+                          <input type="email" disabled class="form-control" value="<?= $user->getEmail() ?>" id="email" name="email" aria-describedby="emailHelp">
+                        </div>
                       </div>
                       <div class="d-flex">
                       <div class="mb-3 w-100 me-2" >
