@@ -74,7 +74,7 @@ class PageLogin
                                     </div>
                                     <div class="mb-3 bg-danger bg-opacity-25 mt-0 p-2 border border-success rounded missed-otp-msg">
                                         <i><strong>OTP Expired !! </strong>
-                                            <small><a class="dropdown-item forgetPwd link-primary" href="javascript:void(0)">Click again to Change Password to get new otp.</a> </small></i>
+                                            <small><a class="dropdown-item missed-otp link-primary" href="javascript:void(0)">Click again to Change Password to get new otp.</a> </small></i>
                                     </div>
                                     <label for="otp" class="form-label">Enter OTP</label>
                                     <div class="d-flex">
