@@ -38,6 +38,27 @@ $(document).ready(function(){
         $('#staticBackdrop').modal('show')
     });
 
+    $('.missed-otp').click(function(e){
+        e.preventDefault();
+        $("#modelPopup").removeClass("modal-lg");
+        $(".modal-footer").addClass("hide-model");
+        $(".hide-pass").addClass("hide-model");
+        $(".otp-visible").removeClass("hide-model");
+        $(".sent-msg").addClass("hide-model");
+        $(".err-msg").addClass("hide-model");
+        $('.err').addClass('d-none');
+        $(".missed-otp-msg").addClass("hide-model");
+        $('#staticBackdrop').modal('show')
+         sendEmail();
+        clearInterval = setTimeout(function() 
+            {
+                global_var_otp = "";
+                $(".sent-msg").addClass("hide-model");
+                $(".err-msg").addClass("hide-model");
+                $(".missed-otp-msg").removeClass("hide-model");
+            }, 100000);
+    });
+
     $('#emailBtn').click(function(e){
         e.preventDefault();
         if(!validation())
