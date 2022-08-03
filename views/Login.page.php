@@ -21,9 +21,6 @@ class PageLogin
                             <!-- email input -->
                             <div class="form-outline mb-4">
                                 <input type="email" id="email" name="email" class="form-control form-control-lg" placeholder="Enter your email" required />
-                                <!-- <span class="text-danger d-none mb-0 p-2 err">
-                                     Please enter email address.
-                                </span> -->
                             </div>
 
                             <!-- Password input -->
@@ -39,7 +36,7 @@ class PageLogin
                                
                                 <input type="submit" class=" btn-info btn btn-lg" value="Login" name="login">
                                 <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="../controllers/Register.controller.php" class="link-primary">Register</a>
-                                <p class="small fw-bold mt-2 pt-1 mb-0">Want to keep searching for jobs first? <a href="../controllers/user_entrance.controller.php" class="link-primary">Back to job posting</a>
+                                <p class="small fw-bold mt-2 pt-1 mb-0">Want to keep searching for jobs first? <a href="../controllers/TeamNumber01.php" class="link-primary">Back to job posting</a>
                                 </p>
                             </div>
 

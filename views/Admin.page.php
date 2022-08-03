@@ -206,7 +206,7 @@
                                              $j=0;
                                              while($j<4 && $i < count($value)){
                                                 ?>
-                                                <a class="card me-2" href="<?=$_SERVER['PHP_SELF'] . "?action=jobs&id=" . $value[$i]->JobId?>">
+                                                <a class="card me-2" href="<?=$_SERVER['PHP_SELF'] . "?action=jobs&id=" . $value[$i]->getJobId()?>">
                                                 <div class="card-body">
                                                 <h6 class="card-subtitle mb-3 text-muted"><?=$value[$i]->CompanyName?></h6>
                                                   <h5 class="card-title"><?=$value[$i]->JobPosition?></h5>

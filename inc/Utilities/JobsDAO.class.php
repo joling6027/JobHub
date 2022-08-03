@@ -151,7 +151,7 @@ class JobsDAO
                 throw new Exception("Problem deleting user $jobId");
             }
         } catch (Exception $exc) {
-            echo $exc->getMessage();
+            error_log($exc->getMessage());
             return false;
         }
 

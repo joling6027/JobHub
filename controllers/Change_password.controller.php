@@ -23,6 +23,7 @@ if(LoginManager::verifyLogin())
             }
             else{
                 $_SESSION['msg']['success']  = "Password not changed.";
+                error_log('ChangePassword: Password not changed.');
             }
             $_SESSION['msg']['url'] = LOCATION_LOGIN;
             header("Location: ".LOCATION_LOGIN);

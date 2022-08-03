@@ -34,8 +34,8 @@ if(!LoginManager::verifyLogin())
                 
             }
             else{
-                // echo "Something wrong with Password or User Name !!!";
                 PageLogin::$notification['loginError'] = "Email or password is invalid";
+                error_log('Login: Email or password is invalid.');
             }
         }
     }

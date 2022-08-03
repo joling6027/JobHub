@@ -39,9 +39,6 @@ else{
 if (isset($_GET['jobdesc']) && isset($_GET['jobid'])) {
     $job = JobsDAO::getJob($_GET['jobid']);
 
-    // $_SESSION['jobdesc'] = $_GET['jobdesc'];
-    // $_SESSION['jobid'] = $_GET['jobid'];
-
     UserPage::showJobDescription($job);
 
     if(isset($_SESSION['username']['Name'])){
@@ -51,6 +48,7 @@ if (isset($_GET['jobdesc']) && isset($_GET['jobid'])) {
       $isApplied = false;
       if($alreadyApplied){
         //notification: you have already applied for this job
+        error_log("You have already applied for this job. Please try another one.");
         UserPage::$notification['alreadyAppliedAlert'] = "You have already applied for this job. Please try another one.";
         $isApplied = true;
       }
@@ -77,10 +75,9 @@ if (isset($_GET['jobdesc']) && isset($_GET['jobid'])) {
         //handle upload file
         if ($_FILES['resume']['error'] != 0) {
           // notification-- something wrong
-          
+          error_log('File upload error');
         }else {
 
-            // $file_name = $_FILES['resume']['name'];
             $file_tmp = $_FILES['resume']['tmp_name'];
             if ($pdf_blob = file_get_contents($file_tmp)) {
               $applicant->setResume($pdf_blob);
@@ -92,12 +89,11 @@ if (isset($_GET['jobdesc']) && isset($_GET['jobid'])) {
               if($res > 0){
                   $_SESSION['username']['Name'] = $updateUser->getFname() . " " . $updateUser->getLname();
                   $_SESSION['msg']['success']  = "Applied sucessfully.";
+                  error_log('TeamNumber01: Applied sucessfully');
               }else{
                   $_SESSION['msg']['error'] = "User Info is not updated.";
+                  error_log('TeamNumber01: User Info is not updated.');
               }
-              
-              
-              // UserPage::$notification['applySuccessMsg'] = 'Applied Succussfully!';
               echo "<meta http-equiv='refresh' content='0'>";
 
             } else {
@@ -106,9 +102,7 @@ if (isset($_GET['jobdesc']) && isset($_GET['jobid'])) {
           
         }
 
-    } else {
-      //notification -- file upload not successful
-    }
+    } 
     }
     
 

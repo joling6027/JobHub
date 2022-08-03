@@ -39,7 +39,7 @@ class PageHeader
                     if (!empty($_SESSION) && $_SESSION['user_role'] == 'Admin')
                         $home = "Admin.controller.php";
                     else
-                        $home = "user_entrance.controller.php";
+                        $home = "TeamNumber01.php";
 
                     ?>
                     <a href="<?php echo $home ?>" class="logo text-white d-inline"> Job Hub </a>

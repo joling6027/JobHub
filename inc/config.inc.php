@@ -8,7 +8,7 @@
  
 
     // definition for log file
-    define('LOGFILE','log/error_log.txt');
+    define('LOGFILE','../log/error_log.txt');
     ini_set("log_errors", TRUE);  
     ini_set('error_log', LOGFILE); 
     
@@ -34,7 +34,9 @@
     define("LOCATION_APPLIED_JOBS", "./Applied_Jobs.controller.php");
     define("LOCATION_RESUME", "./Resume.controller.php");
     define("LOCATION_USER_DETAILS", "./User_details.controller.php");
-    define("LOCATION_USER_ENTRANCE","./user_entrance.controller.php");
+    define("LOCATION_USER_ENTRANCE","./TeamNumber01.php");
+    define("LOCATION_TEAM_NUMBER_01","controllers/TeamNumber01.php");
+
     define("SECURE_TOKEN", "5f66daf9-e5a0-4ac4-9bea-768012559fde");
     define("FROM_EMAIL", "jaspal3101@gmail.com");
 
