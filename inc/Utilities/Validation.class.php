@@ -2,9 +2,9 @@
 
 class Validate{
 
-  static $validate = true;
-
   static function inputValidation(){
+
+    $validate = true;
 
     //email, fname, lname, phone, password
 
@@ -68,6 +68,8 @@ class Validate{
         "Password should be min 8 chars, 1 uppercase, 1 lowercase, 1 number and 1 special character.";
       }
     }
+
+    return $validate;
 
   }
 
