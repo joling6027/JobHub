@@ -114,7 +114,7 @@ class PageLogin
                         </div>
                         <div class="modal-footer hide-model">
                             <button id="closeBtn" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <input id="saveChange" type="submit" class="btn btn-primary changePwd" value="Save changes">
+                            <input id="saveChange" type="submit" class="btn btn-primary" value="Save changes">
                         </div>
                     </div>
                 </div>

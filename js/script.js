@@ -90,10 +90,13 @@ $(document).ready(function(){
         return pattern.test(email);
     }
 
-    $("#modal-myform").submit(function (e) {
+    $("#saveChange").click(function (e) {
         if(!isChangePassword()){
             e.preventDefault();
             return false;
+        }
+        else{
+            $('#modal-myform').submit();
         }
     });
 
@@ -125,10 +128,6 @@ $(document).ready(function(){
         return isValid
     }
 
-    $('#saveChange').click(function(){
-        $('#modal-myform').submit();
-    });
-    
     function sendEmail()
     {
         $(".err-msg").addClass("hide-model");
