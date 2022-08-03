@@ -154,7 +154,7 @@ class PageJobApplied
                             <div class="mb-3 col d-flex">
                             <div class="col-6 pe-2">
                            <label for="descriptionTA" class="form-label">Job Description</label>
-                            <textarea class="form-control mb-3" placeholder="Add Description" id="descriptionTA" name="descriptionTA"><?php trim($job->getJobDescription());?></textarea>
+                            <textarea class="form-control mb-3" placeholder="Add Description" id="descriptionTA" name="descriptionTA"><?= trim($job->getJobDescription());?></textarea>
                             </div>
                             <div class="col-6 ps-2">
                             <label for="dutyTA" class="form-label">Job Duty</label>
