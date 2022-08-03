@@ -95,13 +95,18 @@ class PageLogin
                                 <span class="text-danger d-none mb-0 p-2 err">
                                         Please enter valid email address.
                                 </span>
+                                <span class="text-danger d-none mb-0 small err-match-pass">
+                                </span>
                                 <div class="mb-3 hide-pass">
                                     <label for="newpassword" class="form-label">New Password</label>
-                                    <input type="password" class="form-control" name="newpassword" id="newpassword">
+                                    <input type="password" class="form-control" name="newpassword" id="newpassword" require>
+                                    <span class="text-danger d-none mb-0 small err-new-pass"></span>
                                 </div>
                                 <div class="mb-3 hide-pass">
                                     <label for="conpassword" class="form-label">Confirm Password</label>
-                                    <input type="password" class="form-control" name="conpassword" id="conpassword">
+                                    <input type="password" class="form-control" name="conpassword" id="conpassword" require>
+                                    <span class="text-danger d-none mb-0 small err-con-pass">
+                                    </span>
                                 </div>
                                 <input type="hidden" id="mailFrm" value="<?= FROM_EMAIL ?>">
                                 <input type="hidden" id="token" value="<?= SECURE_TOKEN ?>">
@@ -109,7 +114,7 @@ class PageLogin
                         </div>
                         <div class="modal-footer hide-model">
                             <button id="closeBtn" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <input id="saveChange" type="submit" class="btn btn-primary" value="Save changes">
+                            <input id="saveChange" type="submit" class="btn btn-primary changePwd" value="Save changes">
                         </div>
                     </div>
                 </div>

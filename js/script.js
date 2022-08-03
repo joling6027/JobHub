@@ -90,6 +90,41 @@ $(document).ready(function(){
         return pattern.test(email);
     }
 
+    $("#modal-myform").submit(function (e) {
+        if(!isChangePassword()){
+            e.preventDefault();
+            return false;
+        }
+    });
+
+    function isChangePassword(){
+        var new_pass = $('#newpassword').val();
+        var con_pass = $('#conpassword').val();
+        var pattern = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/);
+        var isValid = true;
+        if(new_pass === con_pass){
+            if(!(pattern.test(new_pass)))
+            {
+                $('.err-new-pass').removeClass('d-none');
+                $('.err-new-pass').text('Password should be min 8 chars, 1 uppercase, 1 lowercase, 1 number and 1 special character.');
+                isValid = false;
+            }
+
+            if(!(pattern.test(new_pass)))
+            {
+                $('.err-con-pass').removeClass('d-none');
+                $('.err-con-pass').text('Password should be min 8 chars, 1 uppercase, 1 lowercase, 1 number and 1 special character.');
+                isValid = false;
+            }
+        }
+        else{
+            $('.err-match-pass').removeClass('d-none');
+            $('.err-match-pass').text('Password not matched.');
+            isValid = false;
+        }
+        return isValid
+    }
+
     $('#saveChange').click(function(){
         $('#modal-myform').submit();
     });

@@ -69,34 +69,9 @@ class Validate{
       }
     }
 
-
-
-    //for create new job form
-    // if(isset($_POST['createJob'])){
-    //   //company name, job position, job location, salary
-    //   if (strlen(trim($_POST['companyName'])) == 0) {
-    //     $validate = false;
-    //     PageAdmin::$notification['companyName'] = "Company name should not be empty.";
-    //   }
-
-    //   if (strlen(trim($_POST['jobtitle']) == 0)) {
-    //     $validate = false;
-    //     PageAdmin::$notification['jobtitle'] = "Job Title should not be empty.";
-    //   }
-
-    //   if (strlen(trim($_POST['jobLocation'])) == 0) {
-    //     $validate = false;
-    //     PageAdmin::$notification['jobLocation'] = "Job location should not be empty.";
-    //   }
-
-    //   if($_POST['salary'] <= 0){
-    //     $validate = false;
-    //     PageAdmin::$notification['salary'] = "Salary should be greater than 0.";
-    //   }
-    // }
-
   }
 
+  //Validation on user detail update/edit page
   static function validateUserDetail(Users $user){
 
     $notification = [];
@@ -117,6 +92,7 @@ class Validate{
     return $notification;
   }
 
+  //Validation on create new Job
   static function validateNewJob(Jobs $job){
     $notification = [];
     if (strlen(trim($job->getCompanyName())) == 0) {
@@ -135,6 +111,28 @@ class Validate{
       $notification['salary'] = "Salary should be greater than 0.";
     }
 
+    return $notification;
+  }
+
+  static function validateChangePassword($new_password, $con_password){
+    $notification = [];
+
+    if(trim($new_password) == trim($con_password) )
+    {
+      $pass_option = array("options" => array("regexp" => PASS_VALIDATION));
+      $filterPassword = filter_var($new_password, FILTER_VALIDATE_REGEXP, $pass_option);
+      if (!$filterPassword) {
+       $notification['new_password'] ="Password should be min 8 chars, 1 uppercase, 1 lowercase, 1 number and 1 special character.";
+      }
+  
+      $filterPassword = filter_var($con_password, FILTER_VALIDATE_REGEXP, $pass_option);
+      if (!$filterPassword) {
+       $notification['con_password'] ="Password should be min 8 chars, 1 uppercase, 1 lowercase, 1 number and 1 special character.";
+      }
+    }
+    else{
+      $notification['match_password'] ="Password not matched.";
+    }
     return $notification;
   }
 }
