@@ -158,7 +158,7 @@ class PageJobApplied
                             </div>
                             <div class="col-6 ps-2">
                             <label for="dutyTA" class="form-label">Job Duty</label>
-                            <textarea class="form-control mb-3" placeholder="Add duty" id="dutyTA" name="dutyTA"><?= trim($job->getDuty());?></textarea>
+                            <textarea class="form-control mb-3" placeholder="Add Job duty" id="dutyTA" name="dutyTA"><?= trim($job->getDuty());?></textarea>
                             </div>
                                     </div>
 
