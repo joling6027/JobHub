@@ -107,7 +107,7 @@
                             </div>
                             <div class="col-6 ps-2">
                             <label for="dutyTA" class="form-label">Job Duty</label>
-                            <textarea class="form-control mb-3" placeholder="Add Benefits" id="dutyTA" name="dutyTA"></textarea>
+                            <textarea class="form-control mb-3" placeholder="Add duty" id="dutyTA" name="dutyTA"></textarea>
                             </div>
                                     </div>
 
