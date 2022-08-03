@@ -114,6 +114,7 @@ class JobAppliedDAO
       return self::$db->singleResult();
     } catch (Exception $exc) {
       echo $exc->getMessage();
+      error_log($exc->getMessage());
       return false;
     }
   }

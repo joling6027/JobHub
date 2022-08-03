@@ -17,11 +17,8 @@
         
         $existingUser = UsersDAO::getUser($_POST['email']);
         if (!empty($existingUser)) {
-            // echo "Already exists !!!";
             PageRegister::$notification['existUser'] = "This email address already exists. Please choose another one.";
-            // PageHeader::header();
-            // PageRegister::register();
-
+            error_log('Register: This email address already exists. Please choose another one.');
         }
         if (Validate::inputValidation()) {
             $user = new Users();

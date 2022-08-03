@@ -14,6 +14,7 @@ if(LoginManager::verifyLogin())
         $response = JobAppliedDAO::getResume($_GET['id']);
         if(!empty($response))
         {
+            error_log('Resume: downloaded.');
             header("Content-type: application/pdf");
             header("Content-disposition: download; filename=".$response->Fname."_".$response->Lname."_"."Resume.pdf");
             echo $response->getResume();

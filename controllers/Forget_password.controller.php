@@ -18,6 +18,7 @@ if (!empty($_POST)) {
             $_SESSION['msg']['success']  = "Password is changed sucessfully.";
         } else {
             $_SESSION['msg']['success']  = "Password not changed.";
+            error_log('ForgetPassword: Password not changed.');
         }
         $_SESSION['msg']['url'] = LOCATION_LOGIN;
         header("Location: " . LOCATION_LOGIN);

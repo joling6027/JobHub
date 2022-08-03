@@ -273,9 +273,6 @@ class UserPage
   ?>
     <div class="container mt-5">
       <div class="row">
-        <!-- <div class="col-md-1">
-          <a href="../controllers/user_entrance.controller.php" class="btn btn-secondary mt-0 mb-4">Back</a>
-        </div> -->
         <div class="col-md-9">
           <!-- job description -->
           <div class="container h-100">
@@ -345,7 +342,7 @@ class UserPage
                 if (isset($_SESSION['username'])) {
                   echo "<button class=\"btn btn-primary fw-bolder\" data-bs-toggle=\"modal\" data-bs-target=\"#applicationModal\">Apply Now</button>";
                 ?>
-                  <a href="../controllers/user_entrance.controller.php" class="btn btn-secondary mt-0">Back</a>
+                  <a href="../controllers/TeamNumber01.php" class="btn btn-secondary mt-0">Back</a>
                 <?php
                 } else {
 
@@ -454,11 +451,6 @@ class UserPage
 
             </div>
           </div>
-          <!-- <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary">Save Changes</button>
-              </div>
-            </div> -->
         </div>
       </div>
     </div>

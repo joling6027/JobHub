@@ -72,7 +72,6 @@
         static function getUsers(): array{
 
             try{
-                //need to apply join to get resume
                 $sql ="SELECT * FROM users";
 
                 self::$db->query($sql);
@@ -145,6 +144,7 @@
                     }
                 }catch(Exception $exc){
                     echo $exc->getMessage();
+                    error_log($exc->getMessage());
                     return false;
                 }
         
@@ -166,6 +166,7 @@
             }
             catch(Exception $exc){
                     echo $exc->getMessage();
+                    error_log($exc->getMessage());
                     return false;
             } 
         } 

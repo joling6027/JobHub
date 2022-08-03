@@ -35,6 +35,7 @@ if(LoginManager::verifyLogin()){
           }
           else{
             $_SESSION['msg']['error'] = "User Info is not updated.";
+            error_log('User Details: User Info is not updated.');
           }
           $_SESSION['msg']['url'] = LOCATION_ADMIN;
           header("Location: ".LOCATION_ADMIN);
@@ -58,7 +59,7 @@ if(LoginManager::verifyLogin()){
     }
 }
 else{
-  // PageHeader::header(true);
+  
   header("Location: ". LOCATION_LOGIN);
   exit;
 }

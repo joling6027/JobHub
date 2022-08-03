@@ -64,7 +64,7 @@ class PageRegister
                                                 <input type="submit" class=" btn-info btn btn-lg" name="register" value="Register">
                                             </div>
                                             <p class="small fw-bold mt-2 pt-1 mb-0">Alreay have an account? <a href="../controllers/Login.controller.php" class="link-primary">login</a>
-                                            <p class="small fw-bold mt-2 pt-1 mb-0">Want to keep searching for jobs first? <a href="../controllers/user_entrance.controller.php" class="link-primary">Back to job posting</a>
+                                            <p class="small fw-bold mt-2 pt-1 mb-0">Want to keep searching for jobs first? <a href="../controllers/TeamNumber01.php" class="link-primary">Back to job posting</a>
                                             </p>
                                         </form>
                                     </div>

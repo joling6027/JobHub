@@ -46,10 +46,13 @@
             if ($_GET["action"] == "delete")  {
                 if(UsersDAO::deleteUser($_GET["id"]))
                 {
+                    
                     $_SESSION['msg']['success'] = "User is deleted sucessfully.";
+                    error_log('Admin: User is deleted sucessfully.');
                 }
                 else{
                     $_SESSION['msg']['error'] = "User is not deleted.";
+                    error_log('Admin: User is not deleted.');
                 }
                 $_SESSION['msg']['url'] = LOCATION_ADMIN;
             }
@@ -90,6 +93,7 @@
                     }
                     else{
                     $_SESSION['msg']['error'] = "Job is not created.";
+                    error_log('Admin: Job is not created.');
                     }
                     $_SESSION['msg']['url'] = LOCATION_ADMIN;
                     DropOff::verifyMessage();
