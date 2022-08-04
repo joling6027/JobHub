@@ -2,3 +2,12 @@
 [03-Aug-2022 06:01:20 Europe/Berlin] User Details: User Info is not updated.
 [03-Aug-2022 06:01:40 Europe/Berlin] Resume: downloaded.
 [03-Aug-2022 06:01:52 Europe/Berlin] Resume: downloaded.
+[03-Aug-2022 06:12:51 Europe/Berlin] Admin: User is deleted sucessfully.
+[02-Aug-2022 21:15:56 America/Vancouver] TeamNumber01: Applied sucessfully
+[03-Aug-2022 06:15:56 Europe/Berlin] You have already applied for this job. Please try another one.
+[03-Aug-2022 06:16:03 Europe/Berlin] PHP Warning:  Undefined array key "url" in F:\xampp\htdocs\Repo\JobPortal\inc\Utilities\Extension.class.php on line 8
+[02-Aug-2022 21:19:53 America/Vancouver] TeamNumber01: User Info is not updated.
+[03-Aug-2022 06:19:54 Europe/Berlin] You have already applied for this job. Please try another one.
+[03-Aug-2022 06:20:00 Europe/Berlin] PHP Warning:  Undefined array key "url" in F:\xampp\htdocs\Repo\JobPortal\inc\Utilities\Extension.class.php on line 8
+[02-Aug-2022 21:21:46 America/Vancouver] TeamNumber01: User Info is not updated.
+[03-Aug-2022 06:21:46 Europe/Berlin] You have already applied for this job. Please try another one.
