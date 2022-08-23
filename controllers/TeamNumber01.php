@@ -88,10 +88,8 @@ if (isset($_GET['jobdesc']) && isset($_GET['jobid'])) {
 
               if($res > 0){
                   $_SESSION['username']['Name'] = $updateUser->getFname() . " " . $updateUser->getLname();
-                  $_SESSION['msg']['success']  = "Applied sucessfully.";
                   error_log('TeamNumber01: Applied sucessfully');
               }else{
-                  $_SESSION['msg']['error'] = "User Info is not updated.";
                   error_log('TeamNumber01: User Info is not updated.');
               }
               echo "<meta http-equiv='refresh' content='0'>";
