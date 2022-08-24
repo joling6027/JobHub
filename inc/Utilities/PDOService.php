@@ -9,14 +9,16 @@
         // private  $_dbname = DB_NAME;  
         private  $_dbport = DB_PORT;  
 
-        //Get Heroku ClearDB connection information
-        private $cleardb_url = "mysql://bbb850828a810c:177e813b@us-cdbr-east-06.cleardb.net/heroku_29c3ed69f5c7c1e?reconnect=true";
-        private $cleardb_server = "us-cdbr-east-06.cleardb.net";
-        private $cleardb_username = "bbb850828a810c";
-        private $cleardb_password = "177e813b";
-        private $cleardb_db = "heroku_29c3ed69f5c7c1e";
+        private $cleardb_url;
+        private $cleardb_server;
+        private $cleardb_username;
+        private $cleardb_password;
+        private $cleardb_db;
         private $active_group = 'default';
-        private $query_builder = TRUE;
+        private $query_builder = true;
+
+        //Get Heroku ClearDB connection information
+        
         
 
         //Store the PDO Object
@@ -34,10 +36,16 @@
         public function __construct(string $className) {
             
             $this->_className = $className;
+            $this->cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+            $this->cleardb_server = $this->cleardb_url["host"];
+            $this->cleardb_username = $this->cleardb_url["user"];
+            $this->cleardb_password = $this->cleardb_url["pass"];
+            $this->cleardb_db = substr($this->cleardb_url["path"], 1);
 
             //Assemble the DSN (Data Source Name)
             // $dsn = 'mysql:host=' . $this->_host . ';dbname=' . $this->_dbname.';port='.$this->_dbport; 
-            $dsn = 'mysql:host=' . $this->cleardb_server . ';dbname=' . $this->cleardb_db . ';port=' . $this->_dbport;
+            //"mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password
+            $dsn = "mysql:host=" . $this->cleardb_server . ";dbname=" . $this->cleardb_db.", ". $this->cleardb_username.", ".$this->cleardb_password;
 
             //Set the options for PDO
             $options = array (
