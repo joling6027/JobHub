@@ -3,11 +3,21 @@
     class PDOService {
 
         //Pull in the attributes from the config
-        private  $_host = DB_HOST;  
-        private  $_user = DB_USER;  
-        private  $_pass = DB_PASS;  
-        private  $_dbname = DB_NAME;  
+        // private  $_host = DB_HOST;  
+        // private  $_user = DB_USER;  
+        // private  $_pass = DB_PASS;  
+        // private  $_dbname = DB_NAME;  
         private  $_dbport = DB_PORT;  
+
+        //Get Heroku ClearDB connection information
+        private $cleardb_url = "mysql://bbb850828a810c:177e813b@us-cdbr-east-06.cleardb.net/heroku_29c3ed69f5c7c1e?reconnect=true";
+        private $cleardb_server = "us-cdbr-east-06.cleardb.net";
+        private $cleardb_username = "bbb850828a810c";
+        private $cleardb_password = "177e813b";
+        private $cleardb_db = "heroku_29c3ed69f5c7c1e";
+        private $active_group = 'default';
+        private $query_builder = TRUE;
+        
 
         //Store the PDO Object
         private  $_dbh;
@@ -26,7 +36,8 @@
             $this->_className = $className;
 
             //Assemble the DSN (Data Source Name)
-            $dsn = 'mysql:host=' . $this->_host . ';dbname=' . $this->_dbname.';port='.$this->_dbport; 
+            // $dsn = 'mysql:host=' . $this->_host . ';dbname=' . $this->_dbname.';port='.$this->_dbport; 
+            $dsn = 'mysql:host=' . $this->cleardb_server . ';dbname=' . $this->cleardb_db . ';port=' . $this->_dbport;
 
             //Set the options for PDO
             $options = array (
