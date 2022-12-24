@@ -1,11 +1,8 @@
-# JobHub
-A job portal web application using HTML, CSS, JS with BootStrap for front-end and PHP for back-end with MySQL database.
+## JoBHub
 
-## Introduction
+JobHub is a comprehensive job portal that connects job seekers with potential employers. With a user-friendly interface and robust functionality, JobHub makes it easy for job seekers to search and apply for jobs, and for employers to post job openings and review resumes.
 
-Job Hub is an application for searching, applying jobs as well as maintaining all the data behind the screen. Users can view job lists as well as job descriptions without logging in. However, only members who registered in the Job Hub can apply for jobs. Meanwhile, admins have their own page where they can create, maintaining, viewing jobs, and manage users. Applications will be saved into database and retrieve in admin page for them to manage and review. For the feature details, please see below feature list.
-
-## Features
+### Features
 
 - User Landing page:
 Landing page for all users to browse the job postings
@@ -28,7 +25,7 @@ After logging in, if the account is an admin account, the admin will be redirect
 ![alt text](https://github.com/joling6027/JobHub/blob/main/images/create_job_1.png "admin index")
 
 
-## Additional functions
+### Additional functions
 Email One-time password(OTP):
 Used on forget password in log in page as well as the navigation bar dropdown when logging in.
 
